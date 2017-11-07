@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+###################################################################
+#  ☭  ☭  ☭  ☭  ☭  ☭  ☭  ☭  ☭  ☭  ☭  ☭  ☭  ☭  ☭  ☭  ☭  ☭  ☭  ☭  ☭  #
+###################################################################
+SAVE='templates\|content\|git\|README'
+#SAVE='templates\|content\|git\|index\|README'
+BASE='https://raw.githubusercontent.com/pipedocs/pipedocs.github.io/master'
+[[ -z ${DOCS} ]] && echo "Define DOCS first -- site not built" && exit
+
+###################################################################
+# Build static website from flatdoc templates
+###################################################################
+cd ${DOCS}
+kill=$(find . -mindepth 1 -maxdepth 1|grep -v ${SAVE})
+rm -rf ${kill}
+kill=$(find . -name "*proc.md")
+rm -f  ${kill}
+
+template=./templates/template.html
+t_c=$(cat ${template})
+
+content=$(find content/ -name "*.md" -type f)
+
+for c in ${content}
+   do
+   c_c=$(cat      ${c})
+   c_d=$(dirname  ${c})
+   c_f=$(basename ${c})
+   c_f=${c_f//\.md/}
+   c_d=${c_d##content}
+   [[ -n ${c_d} ]] && c_d=${c_d##\/}/
+   c=content/${c_d}${c_f}_proc.md
+   echo "${c_c}"|sed s@'%%BASEURL'@${BASE}@g >> ${c}
+   mkdir -p ${DOCS}/${c_d}
+   echo "${t_c}"|sed s@'%%MARKDOWN'@${c}@g >> ${DOCS}/${c_d}${c_f}.html
+done
