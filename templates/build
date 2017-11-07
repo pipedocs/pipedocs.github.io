@@ -33,5 +33,5 @@ for c in ${content}
    c=content/${c_d}${c_f}_proc.md
    echo "${c_c}"|sed s@'%%BASEURL'@${BASE}@g >> ${c}
    mkdir -p ${DOCS}/${c_d}
-   echo "${t_c}"|sed s@'%%MARKDOWN'@${c}@g >> ${DOCS}/${c_d}${c_f}.html
+   echo "${t_c}"|sed s@'%%MARKDOWN'@${BASE}'/'${c}@g >> ${DOCS}/${c_d}${c_f}.html
 done
