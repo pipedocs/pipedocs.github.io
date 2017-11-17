@@ -1,12 +1,14 @@
 # Pipeline design file
 
 A pipeline design file (`.dsn`) defines a processing pipeline that is interpreted by the image processing system. The design file contains:
+
 * A list of the [modules](%%BASEURL/modules/index.html) that should be executed;
 * The set of parameters that configure each module, as well as their values
 
 ## Preparing the design file
 
 There are currently three ways to edit a design file:
+
 * Preconfigured template (`xcpConfig`)
 * Manual preparation
 * Direct (runtime) assignment
@@ -14,6 +16,7 @@ There are currently three ways to edit a design file:
 ### `xcpConfig`
 
 `xcpConfig` is a lightweight utility that facilitates customisation of a pipeline design file. The advantages of this approach are:
+
 * Pipelines generated using `xcpConfig` have undergone testing and should be stable.
 * Most `xcpConfig` pipelines correspond to high-performance protocols that represent field consensus.
 * It limits the configuration's parameter space to options that are simple to understand and likely to be of interest.
@@ -25,10 +28,12 @@ The principal disadvantage of `xcpConfig` is that it affords less customisabilit
 ### Manual preparation
 
 The design system supports a highly configurable pipeline, permitting millions of potential configurations to be run. The flexibility of this system presents both opportunity and danger: out of all possible pipelines, the vast majority are not appropriate, and there is no feasible way to test the entire parameter space. The bottom line is this: manual edits to the design file can produce unexpected results and should generally be reserved for two cases:
+
 * Minor tweaks (e.g., changing the values of a few parameters to improve performance for your data) -- but, in this case, direct (runtime) assignment (see below) is sometimes a better option
 * Expert users and developers
 
 *Design files prepared manually are never guaranteed to produce the expected output out of the box.* Validation of all outputs is strongly advised.
+
 * It is our team's intention to support the entire space of reasonable pipeline configurations, so please notify us via GitHub issues if you attempt a manual edit and receive an unexpected result.
 * If you successfully execute a highly customised pipeline to completion, please consider sharing it with the community to help future users reproduce your stream in their data.
 * If enough users request a particular pipeline structure to be supported, we will consider adding it to the preconfigured template database.
@@ -41,7 +46,7 @@ For instance, say that you want to run the same analysis on five different sampl
 
 Direct assignment provides a way to override the values of variables in a design file while keeping the original design file intact. It is invoked by supplying the `-a` flag to the front-end script, `xcpEngine`. The argument supplied to `-a` is the exact substitution that you want to perform. For instance, in order to use the 2mm isotropic OASIS template instead of the template defined in the design file, you could simply run the following without any edits to the design file:
 
-```
+``` bash
 -a 'standard=OASIS%2x2x2'
 ```
 
@@ -50,6 +55,7 @@ Direct assignment enables fewer edits to design files, but a potential disadvant
 ## Examples
 
 A [library of preconfigured pipelines](https://github.com/PennBBL/xcpEngine/tree/master/designs) is available for each of the following experiments:
+
 * Anatomical (`anat`)
 * Functional connectivity (`fc`)
 * Functional connectivity benchmarking (`qcfc`)
@@ -57,6 +63,7 @@ A [library of preconfigured pipelines](https://github.com/PennBBL/xcpEngine/tree
 ## Specifications (advanced)
 
 Design variables fall into four main categories:
+
 * _Analysis variables_ are input variables accessible at all stages of the pipeline
 * The _pipeline definition_ specifies the modules (stages) of the pipeline that are to be run
 * _Module variables_ are input variables accessible at only a single stage of the pipeline, and typically configure the behaviour of that pipeline stage
@@ -67,13 +74,14 @@ Design variables fall into four main categories:
 
 Each design file includes a set of variables that are accessible at all stages of the pipeline.
 
-```
+``` bash
 analysis=accelerator_$(whoami)
 design=${XCPEDIR}/designs/fc-36P.dsn
 sequence=fc-rest
 standard=MNI%2x2x2_via_PNC%2x2x2
 ```
 Documentation for analysis variables will be found below:
+
 * [analysis](%%BASEURL/config/variables/analysis.html)
 * [design](%%BASEURL/config/variables/design.html)
 * [sequence](%%BASEURL/config/variables/sequence.html)
@@ -84,22 +92,22 @@ Documentation for analysis variables will be found below:
 The design file includes the `pipeline` variable, which defines the backbone of the pipeline: a comma-separated sequence of the [modules](%%BASEURL/modules/index.html) that together comprise the processing stream. As of v0.6.0, the processing stream is linear and sequential (only one module runs at a time), but future releases will support branching.
 
 The standard [functional connectivity processing stream](%%BASEURL/config/fc.html) is:
-```
+``` bash
 pipeline=prestats,coreg,confound,regress,fcon,reho,alff,net,roiquant,seed,norm,qcfc
 ```
 
 The standard [benchmarking processing stream](%%BASEURL/config/qcfc.html) is an abbreviated version of the FC stream:
-```
+``` bash
 pipeline=prestats,coreg,confound,regress,fcon,qcfc
 ```
 
 The complete [anatomical processing stream](%%BASEURL/config/anat.html) is:
-```
+``` bash
 pipeline=struc,jlf,gmd,cortcon,sulc,roiquant,qcanat
 ```
 
 The standard [functional activation processing stream](%%BASEURL/config/task.html) is:
-```
+``` bash
 pipeline=task,coreg,roiquant,norm
 ```
 
@@ -107,7 +115,7 @@ pipeline=task,coreg,roiquant,norm
 
 In addition to the overall backbone of the processing stream, the design file includes specifications for each of its constituent modules. As an illustrative example, the specifications of the `coreg` module in a standard functional connectivity stream are provided here:
 
-```
+``` bash
 ###################################################################
 # 2 COREG
 ###################################################################
@@ -132,7 +140,7 @@ Each row defines a different parameter for the `coreg` module (e.g., `coreg_cfun
 
 Output variables aren't defined in the design file that's provided as an argument at runtime. Instead, they are defined as the pipeline is run. Output variables are typically accessible by all pipeline stages after they are produced. An illustrative example is provided, again for the `coreg` module:
 
-```
+``` bash
 # ··· outputs from IMAGE COREGISTRATION MODULE[2] ··· #
 struct2seq_img[9001]=accelerator/9001/coreg/9001_struct2seq.nii.gz
 struct2seq_mat[9001]=accelerator/9001/coreg/9001_struct2seq.mat
