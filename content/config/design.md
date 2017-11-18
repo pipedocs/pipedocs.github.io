@@ -1,4 +1,5 @@
-# Pipeline design file
+Pipeline design file
+====================
 
 A pipeline design file (`.dsn`) defines a processing pipeline that is interpreted by the image processing system.
 
