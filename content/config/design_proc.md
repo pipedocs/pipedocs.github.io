@@ -4,7 +4,7 @@ A pipeline design file (`.dsn`) defines a processing pipeline that is interprete
 
 The design file contains:
 
- * A list of the [modules](https://raw.githubusercontent.com/pipedocs/pipedocs.github.io/master/modules/index.html) that should be executed;
+ * A list of the [modules](https://pipedocs.github.io//modules/index.html) that should be executed;
  * The set of parameters that configure each module, as well as their values
 
 ## Preparing the design file
@@ -25,7 +25,7 @@ There are currently three ways to edit a design file:
 
 The principal disadvantage of `xcpConfig` is that it affords less customisability than manual preparation.
 
-`xcpConfig` is bundled with the BBL's image processing system and can be invoked using the command `${XCPEDIR}/xcpConfig` after [installation](https://raw.githubusercontent.com/pipedocs/pipedocs.github.io/master/config/installation.html). Alternatively, if you wish to configure a pipeline without installing the entire processing system, a [standalone is available](https://github.com/PennBBL/xcpConfig). This is a useful option if you intend to run the pipeline on a remote server or in the cloud (for instance, using [CBICA's IPP](https://ipp.cbica.upenn.edu/)).
+`xcpConfig` is bundled with the BBL's image processing system and can be invoked using the command `${XCPEDIR}/xcpConfig` after [installation](https://pipedocs.github.io//config/installation.html). Alternatively, if you wish to configure a pipeline without installing the entire processing system, a [standalone is available](https://github.com/PennBBL/xcpConfig). This is a useful option if you intend to run the pipeline on a remote server or in the cloud (for instance, using [CBICA's IPP](https://ipp.cbica.upenn.edu/)).
 
 ### Manual preparation
 
@@ -44,7 +44,7 @@ The design system supports a highly configurable pipeline, permitting millions o
 
 What if you have a design file that does almost exactly what you want to do, but requires a few minor tweaks? What if you only want to change the values of one or two variables?
 
-For instance, say that you want to run the same analysis on five different samples of subjects, but each sample has its own [sample-specific template](https://raw.githubusercontent.com/pipedocs/pipedocs.github.io/master/utils/templateConstruct). You could make five design files -- one for each sample -- and change the value of _[standard](https://raw.githubusercontent.com/pipedocs/pipedocs.github.io/master/config/variables/standard.html)_ to correspond to the appropriate template for each sample. However, in this case, _direct_ or _runtime assignment_ of variables can be an easier and cleaner solution than manually editing the design file.
+For instance, say that you want to run the same analysis on five different samples of subjects, but each sample has its own [sample-specific template](https://pipedocs.github.io//utils/templateConstruct). You could make five design files -- one for each sample -- and change the value of _[standard](https://pipedocs.github.io//config/variables/standard.html)_ to correspond to the appropriate template for each sample. However, in this case, _direct_ or _runtime assignment_ of variables can be an easier and cleaner solution than manually editing the design file.
 
 Direct assignment provides a way to override the values of variables in a design file while keeping the original design file intact. It is invoked by supplying the `-a` flag to the front-end script, `xcpEngine`. The argument supplied to `-a` is the exact substitution that you want to perform. For instance, in order to use the 2mm isotropic OASIS template instead of the template defined in the design file, you could simply run the following without any edits to the design file:
 
@@ -70,7 +70,7 @@ Design variables fall into four main categories:
  * The _pipeline definition_ specifies the modules (stages) of the pipeline that are to be run
  * _Module variables_ are input variables accessible at only a single stage of the pipeline, and typically configure the behaviour of that pipeline stage
  * _Output variables_ are produced as the pipeline is run and are accessible at all stages of the pipeline
- * A fifth category of variable is not defined in the design file at all. _Subject variables_ take different values for different subjects. See the [cohort file](https://raw.githubusercontent.com/pipedocs/pipedocs.github.io/master/config/cohort.html) documentation for more information about this type of variable.
+ * A fifth category of variable is not defined in the design file at all. _Subject variables_ take different values for different subjects. See the [cohort file](https://pipedocs.github.io//config/cohort.html) documentation for more information about this type of variable.
 
 ### Analysis variables
 
@@ -84,31 +84,31 @@ standard=MNI%2x2x2_via_PNC%2x2x2
 ```
 Documentation for analysis variables will be found below:
 
- * [analysis](https://raw.githubusercontent.com/pipedocs/pipedocs.github.io/master/config/variables/analysis.html)
- * [design](https://raw.githubusercontent.com/pipedocs/pipedocs.github.io/master/config/variables/design.html)
- * [sequence](https://raw.githubusercontent.com/pipedocs/pipedocs.github.io/master/config/variables/sequence.html)
- * [standard](https://raw.githubusercontent.com/pipedocs/pipedocs.github.io/master/config/variables/standard.html)
+ * [analysis](https://pipedocs.github.io//config/variables/analysis.html)
+ * [design](https://pipedocs.github.io//config/variables/design.html)
+ * [sequence](https://pipedocs.github.io//config/variables/sequence.html)
+ * [standard](https://pipedocs.github.io//config/variables/standard.html)
 
 ### Pipeline definitions
 
-The design file includes the `pipeline` variable, which defines the backbone of the pipeline: a comma-separated sequence of the [modules](https://raw.githubusercontent.com/pipedocs/pipedocs.github.io/master/modules/index.html) that together comprise the processing stream. As of v0.6.0, the processing stream is linear and sequential (only one module runs at a time), but future releases will support branching.
+The design file includes the `pipeline` variable, which defines the backbone of the pipeline: a comma-separated sequence of the [modules](https://pipedocs.github.io//modules/index.html) that together comprise the processing stream. As of v0.6.0, the processing stream is linear and sequential (only one module runs at a time), but future releases will support branching.
 
-The standard [functional connectivity processing stream](https://raw.githubusercontent.com/pipedocs/pipedocs.github.io/master/config/fc.html) is:
+The standard [functional connectivity processing stream](https://pipedocs.github.io//config/fc.html) is:
 ``` bash
 pipeline=prestats,coreg,confound,regress,fcon,reho,alff,net,roiquant,seed,norm,qcfc
 ```
 
-The standard [benchmarking processing stream](https://raw.githubusercontent.com/pipedocs/pipedocs.github.io/master/config/qcfc.html) is an abbreviated version of the FC stream:
+The standard [benchmarking processing stream](https://pipedocs.github.io//config/qcfc.html) is an abbreviated version of the FC stream:
 ``` bash
 pipeline=prestats,coreg,confound,regress,fcon,qcfc
 ```
 
-The complete [anatomical processing stream](https://raw.githubusercontent.com/pipedocs/pipedocs.github.io/master/config/anat.html) is:
+The complete [anatomical processing stream](https://pipedocs.github.io//config/anat.html) is:
 ``` bash
 pipeline=struc,jlf,gmd,cortcon,sulc,roiquant,qcanat
 ```
 
-The standard [functional activation processing stream](https://raw.githubusercontent.com/pipedocs/pipedocs.github.io/master/config/task.html) is:
+The standard [functional activation processing stream](https://pipedocs.github.io//config/task.html) is:
 ``` bash
 pipeline=task,coreg,roiquant,norm
 ```
@@ -136,7 +136,7 @@ coreg_rerun[2]=0
 coreg_cleanup[2]=1
 ```
 
-Each row defines a different parameter for the `coreg` module (e.g., `coreg_cfunc` -- the cost function for registration) and assigns it a value (e.g., `bbr` -- boundary-based registration). When the module is executed, it processes its inputs according to the specifications in the pipeline design file. Documentation for each module's configuration options will be found in the [modules directory](https://raw.githubusercontent.com/pipedocs/pipedocs.github.io/master/modules/index.html).
+Each row defines a different parameter for the `coreg` module (e.g., `coreg_cfunc` -- the cost function for registration) and assigns it a value (e.g., `bbr` -- boundary-based registration). When the module is executed, it processes its inputs according to the specifications in the pipeline design file. Documentation for each module's configuration options will be found in the [modules directory](https://pipedocs.github.io//modules/index.html).
 
 ### Output variables
 
