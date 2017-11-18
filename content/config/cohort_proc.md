@@ -1,4 +1,5 @@
-# Pipeline cohort file
+Pipeline cohort file
+====================
 
 A pipeline cohort file defines the experimental sample -- the set of subjects that the pipeline should process.
 

@@ -1,4 +1,5 @@
-# Pipeline design file
+Pipeline design file
+====================
 
 A pipeline design file (`.dsn`) defines a processing pipeline that is interpreted by the image processing system.
 
@@ -44,7 +45,7 @@ The design system supports a highly configurable pipeline, permitting millions o
 
 What if you have a design file that does almost exactly what you want to do, but requires a few minor tweaks? What if you only want to change the values of one or two variables?
 
-For instance, say that you want to run the same analysis on five different samples of subjects, but each sample has its own [sample-specific template](https://pipedocs.github.io//utils/templateConstruct). You could make five design files -- one for each sample -- and change the value of _[standard](https://pipedocs.github.io//config/variables/standard.html)_ to correspond to the appropriate template for each sample. However, in this case, _direct_ or _runtime assignment_ of variables can be an easier and cleaner solution than manually editing the design file.
+For instance, say that you want to run the same analysis on five different samples of subjects, but each sample has its own [sample-specific template](https://pipedocs.github.io//utils/templateConstruct). You could make five design files -- one for each sample -- and change the value of `[standard](https://pipedocs.github.io//config/variables/standard.html)` to correspond to the appropriate template for each sample. However, in this case, _direct_ or _runtime assignment_ of variables can be an easier and cleaner solution than manually editing the design file.
 
 Direct assignment provides a way to override the values of variables in a design file while keeping the original design file intact. It is invoked by supplying the `-a` flag to the front-end script, `xcpEngine`. The argument supplied to `-a` is the exact substitution that you want to perform. For instance, in order to use the 2mm isotropic OASIS template instead of the template defined in the design file, you could simply run the following without any edits to the design file:
 
