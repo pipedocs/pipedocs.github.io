@@ -89,7 +89,7 @@ If anatomical processing was performed externally, it will be necessary to ensur
 
 ## Subject variables
 
-Each of the columns in the cohort file becomes a _subject variable_ at runtime. Subject variables can be used in the [design file](https://pipedocs.github.io//config/design.html) to assign a parameter subject-specific values. For instance, the `coreg_segmentation` parameter in the `coreg` [module](https://pipedocs.github.io//modules/index.html) can be assigned the `segmentation` subject variable. To indicate that the assignment is a subject variable, include the array index `[sub]` in the variable's name as shown.
+Each of the columns in the cohort file becomes a _subject variable_ at runtime. Subject variables can be used in the [design file](https://pipedocs.github.io/config/design.html) to assign a parameter subject-specific values. For instance, the `coreg_segmentation` parameter in the `coreg` [module](https://pipedocs.github.io/modules/index.html) can be assigned the `segmentation` subject variable. To indicate that the assignment is a subject variable, include the array index `[sub]` in the variable's name as shown.
 ``` bash
 coreg_segmentation[2]=${segmentation[sub]}
 ```
