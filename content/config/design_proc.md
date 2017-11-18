@@ -1,25 +1,27 @@
 # Pipeline design file
 
-A pipeline design file (`.dsn`) defines a processing pipeline that is interpreted by the image processing system. The design file contains:
+A pipeline design file (`.dsn`) defines a processing pipeline that is interpreted by the image processing system.
 
-* A list of the [modules](https://raw.githubusercontent.com/pipedocs/pipedocs.github.io/master/modules/index.html) that should be executed;
-* The set of parameters that configure each module, as well as their values
+The design file contains:
+
+ * A list of the [modules](https://raw.githubusercontent.com/pipedocs/pipedocs.github.io/master/modules/index.html) that should be executed;
+ * The set of parameters that configure each module, as well as their values
 
 ## Preparing the design file
 
 There are currently three ways to edit a design file:
 
-* Preconfigured template (`xcpConfig`)
-* Manual preparation
-* Direct (runtime) assignment
+ * Preconfigured template (`xcpConfig`)
+ * Manual preparation
+ * Direct (runtime) assignment
 
 ### `xcpConfig`
 
 `xcpConfig` is a lightweight utility that facilitates customisation of a pipeline design file. The advantages of this approach are:
 
-* Pipelines generated using `xcpConfig` have undergone testing and should be stable.
-* Most `xcpConfig` pipelines correspond to high-performance protocols that represent field consensus.
-* It limits the configuration's parameter space to options that are simple to understand and likely to be of interest.
+ * Pipelines generated using `xcpConfig` have undergone testing and should be stable.
+ * Most `xcpConfig` pipelines correspond to high-performance protocols that represent field consensus.
+ * It limits the configuration's parameter space to options that are simple to understand and likely to be of interest.
 
 The principal disadvantage of `xcpConfig` is that it affords less customisability than manual preparation.
 
@@ -29,14 +31,14 @@ The principal disadvantage of `xcpConfig` is that it affords less customisabilit
 
 The design system supports a highly configurable pipeline, permitting millions of potential configurations to be run. The flexibility of this system presents both opportunity and danger: out of all possible pipelines, the vast majority are not appropriate, and there is no feasible way to test the entire parameter space. The bottom line is this: manual edits to the design file can produce unexpected results and should generally be reserved for two cases:
 
-* Minor tweaks (e.g., changing the values of a few parameters to improve performance for your data) -- but, in this case, direct (runtime) assignment (see below) is sometimes a better option
-* Expert users and developers
+ * Minor tweaks (e.g., changing the values of a few parameters to improve performance for your data) -- but, in this case, direct (runtime) assignment (see below) is sometimes a better option
+ * Expert users and developers
 
 *Design files prepared manually are never guaranteed to produce the expected output out of the box.* Validation of all outputs is strongly advised.
 
-* It is our team's intention to support the entire space of reasonable pipeline configurations, so please notify us via GitHub issues if you attempt a manual edit and receive an unexpected result.
-* If you successfully execute a highly customised pipeline to completion, please consider sharing it with the community to help future users reproduce your stream in their data.
-* If enough users request a particular pipeline structure to be supported, we will consider adding it to the preconfigured template database.
+ * It is our team's intention to support the entire space of reasonable pipeline configurations, so please notify us via GitHub issues if you attempt a manual edit and receive an unexpected result.
+ * If you successfully execute a highly customised pipeline to completion, please consider sharing it with the community to help future users reproduce your stream in their data.
+ * If enough users request a particular pipeline structure to be supported, we will consider adding it to the preconfigured template database.
 
 ### Direct (runtime) assignment
 
@@ -56,19 +58,19 @@ Direct assignment enables fewer edits to design files, but a potential disadvant
 
 A [library of preconfigured pipelines](https://github.com/PennBBL/xcpEngine/tree/master/designs) is available for each of the following experiments:
 
-* Anatomical (`anat`)
-* Functional connectivity (`fc`)
-* Functional connectivity benchmarking (`qcfc`)
+ * Anatomical (`anat`)
+ * Functional connectivity (`fc`)
+ * Functional connectivity benchmarking (`qcfc`)
 
 ## Specifications (advanced)
 
 Design variables fall into four main categories:
 
-* _Analysis variables_ are input variables accessible at all stages of the pipeline
-* The _pipeline definition_ specifies the modules (stages) of the pipeline that are to be run
-* _Module variables_ are input variables accessible at only a single stage of the pipeline, and typically configure the behaviour of that pipeline stage
-* _Output variables_ are produced as the pipeline is run and are accessible at all stages of the pipeline
-* A fifth category of variable is not defined in the design file at all. _Subject variables_ take different values for different subjects. See the [cohort file](https://raw.githubusercontent.com/pipedocs/pipedocs.github.io/master/config/installation.html) documentation for more information about this type of variable.
+ * _Analysis variables_ are input variables accessible at all stages of the pipeline
+ * The _pipeline definition_ specifies the modules (stages) of the pipeline that are to be run
+ * _Module variables_ are input variables accessible at only a single stage of the pipeline, and typically configure the behaviour of that pipeline stage
+ * _Output variables_ are produced as the pipeline is run and are accessible at all stages of the pipeline
+ * A fifth category of variable is not defined in the design file at all. _Subject variables_ take different values for different subjects. See the [cohort file](https://raw.githubusercontent.com/pipedocs/pipedocs.github.io/master/config/cohort.html) documentation for more information about this type of variable.
 
 ### Analysis variables
 
@@ -82,10 +84,10 @@ standard=MNI%2x2x2_via_PNC%2x2x2
 ```
 Documentation for analysis variables will be found below:
 
-* [analysis](https://raw.githubusercontent.com/pipedocs/pipedocs.github.io/master/config/variables/analysis.html)
-* [design](https://raw.githubusercontent.com/pipedocs/pipedocs.github.io/master/config/variables/design.html)
-* [sequence](https://raw.githubusercontent.com/pipedocs/pipedocs.github.io/master/config/variables/sequence.html)
-* [standard](https://raw.githubusercontent.com/pipedocs/pipedocs.github.io/master/config/variables/standard.html)
+ * [analysis](https://raw.githubusercontent.com/pipedocs/pipedocs.github.io/master/config/variables/analysis.html)
+ * [design](https://raw.githubusercontent.com/pipedocs/pipedocs.github.io/master/config/variables/design.html)
+ * [sequence](https://raw.githubusercontent.com/pipedocs/pipedocs.github.io/master/config/variables/sequence.html)
+ * [standard](https://raw.githubusercontent.com/pipedocs/pipedocs.github.io/master/config/variables/standard.html)
 
 ### Pipeline definitions
 
@@ -138,7 +140,7 @@ Each row defines a different parameter for the `coreg` module (e.g., `coreg_cfun
 
 ### Output variables
 
-Output variables aren't defined in the design file that's provided as an argument at runtime. Instead, they are defined as the pipeline is run. Output variables are typically accessible by all pipeline stages after they are produced. An illustrative example is provided, again for the `coreg` module:
+Output variables aren't defined in the design file that's provided as an argument at runtime. Instead, they are defined as the pipeline is run and written to a copy of the design file. Output variables are typically accessible by all pipeline stages after they are produced. An illustrative example is provided, again for the `coreg` module:
 
 ``` bash
 # ··· outputs from IMAGE COREGISTRATION MODULE[2] ··· #
