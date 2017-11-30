@@ -12,16 +12,16 @@ The design file contains:
 
 There are currently three ways to edit a design file:
 
- * Preconfigured template (`xcpConfig`)
+ * Preconfigured template (`xcpConfig` -- recommended)
  * Manual preparation
  * Direct (runtime) assignment
 
-### `xcpConfig`
+### Recommended approach: `xcpConfig`
 
 `xcpConfig` is a lightweight utility that facilitates customisation of a pipeline design file. The advantages of this approach are:
 
  * Pipelines generated using `xcpConfig` have undergone testing and should be stable.
- * Most `xcpConfig` pipelines correspond to high-performance protocols that represent field consensus.
+ * Most `xcpConfig` pipelines correspond to high-performance protocols that reflect field consensus.
  * It limits the configuration's parameter space to options that are simple to understand and likely to be of interest.
 
 The principal disadvantage of `xcpConfig` is that it affords less customisability than manual preparation.
@@ -45,15 +45,14 @@ The design system supports a highly configurable pipeline, permitting millions o
 
 What if you have a design file that does almost exactly what you want to do, but requires a few minor tweaks? What if you only want to change the values of one or two variables?
 
-For instance, say that you want to run the same analysis on five different samples of subjects, but each sample has its own [sample-specific template](https://pipedocs.github.io/utils/templateConstruct). You could make five design files -- one for each sample -- and change the value of `[standard](https://pipedocs.github.io/config/variables/standard.html)` to correspond to the appropriate template for each sample. However, in this case, _direct_ or _runtime assignment_ of variables can be an easier and cleaner solution than manually editing the design file.
+For instance, say that you want to run the same analysis on five different samples of subjects, but each sample has its own [sample-specific template](https://pipedocs.github.io/utils/templateConstruct). You could make five design files -- one for each sample -- and change the value of [`standard`](https://pipedocs.github.io/config/variables/standard.html) to correspond to the appropriate template for each sample. However, in this case, _direct_ or _runtime assignment_ of variables can be an easier and cleaner solution than manually editing the design file.
 
-Direct assignment provides a way to override the values of variables in a design file while keeping the original design file intact. It is invoked by supplying the `-a` flag to the front-end script, `xcpEngine`. The argument supplied to `-a` is the exact substitution that you want to perform. For instance, in order to use the 2mm isotropic OASIS template instead of the template defined in the design file, you could simply run the following without any edits to the design file:
-
+Direct assignment provides a way to override the values of variables in a design file while keeping the original design file intact. It is invoked by supplying the `-a` flag to the front-end script, `xcpEngine`. The argument supplied to `-a` is the exact substitution that you want to perform. For instance, in order to use the 2mm isotropic OASIS template instead of the template defined in the design file, you could simply provide the illustrated argument without any edits to the design file:
 ``` bash
 -a 'standard=OASIS%2x2x2'
 ```
 
-Direct assignment enables fewer edits to design files, but a potential disadvantage of this approach is a sacrifice of reproducibility, since any user who wishes to reproduce your analysis must now have access not only to your design file but also to the `xcpEngine` command line.
+Direct assignment enables fewer edits to design files, but a potential disadvantage of this approach is a sacrifice of reproducibility, since any user who wishes to reproduce your analysis exactly must now have access not only to your design file but also to the exact `xcpEngine` command line that you used.
 
 ## Examples
 
@@ -94,22 +93,22 @@ Documentation for analysis variables will be found below:
 
 The design file includes the `pipeline` variable, which defines the backbone of the pipeline: a comma-separated sequence of the [modules](https://pipedocs.github.io/modules/index.html) that together comprise the processing stream. As of v0.6.0, the processing stream is linear and sequential (only one module runs at a time), but future releases will support branching.
 
-The standard [functional connectivity processing stream](https://pipedocs.github.io/config/fc.html) is:
+The standard [functional connectivity processing stream](https://pipedocs.github.io/config/streams/fc.html) is:
 ``` bash
 pipeline=prestats,coreg,confound,regress,fcon,reho,alff,net,roiquant,seed,norm,qcfc
 ```
 
-The standard [benchmarking processing stream](https://pipedocs.github.io/config/qcfc.html) is an abbreviated version of the FC stream:
+The standard [benchmarking processing stream](https://pipedocs.github.io/config/streams/qcfc.html) is an abbreviated version of the FC stream:
 ``` bash
 pipeline=prestats,coreg,confound,regress,fcon,qcfc
 ```
 
-The complete [anatomical processing stream](https://pipedocs.github.io/config/anat.html) is:
+The complete [anatomical processing stream](https://pipedocs.github.io/config/streams/anat.html) is:
 ``` bash
 pipeline=struc,jlf,gmd,cortcon,sulc,roiquant,qcanat
 ```
 
-The standard [functional activation processing stream](https://pipedocs.github.io/config/task.html) is:
+The standard [functional activation processing stream](https://pipedocs.github.io/config/streams/task.html) is:
 ``` bash
 pipeline=task,coreg,roiquant,norm
 ```

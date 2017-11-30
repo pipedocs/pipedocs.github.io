@@ -71,9 +71,9 @@ For functional processing, the cohort file should include not only the subject's
 ```
 id0,id1,id2,img,antsct
 ACC,001,001,raw/ACC_001_001_rest.nii.gz,proc/ACC_001_001_antsct
-DSQ,001,001,raw/DSQ_001_001_rest.nii.gz,proc/ACC_001_001_antsct
-DSQ,001,002,raw/DSQ_001_002_rest.nii.gz,proc/ACC_001_001_antsct
-CAT,001,001,raw/CAT_001_001_rest.nii.gz,proc/ACC_001_001_antsct
+DSQ,001,001,raw/DSQ_001_001_rest.nii.gz,proc/DSQ_001_001_antsct
+DSQ,001,002,raw/DSQ_001_002_rest.nii.gz,proc/DSQ_001_002_antsct
+CAT,001,001,raw/CAT_001_001_rest.nii.gz,proc/CAT_001_001_antsct
 ```
 
 If anatomical processing was performed externally, it will be necessary to ensure that all inputs required for a functional processing stream are provided with the appropriate headers. These include:
