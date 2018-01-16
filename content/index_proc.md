@@ -1,7 +1,7 @@
 BBL Imaging Pipeline
 ====================
 
-[INTRODUCTION >](https://pipedocs.github.io/modules/index.html)
+[INTRODUCTION >](https://pipedocs.github.io/intro.html)
 
 [CONFIGURATION >](https://pipedocs.github.io/config/index.html)
 
