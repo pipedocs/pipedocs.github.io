@@ -5,6 +5,7 @@ Pipeline _modules_ are self-contained image processing routines. An image proces
 ## Functional image processing
 
 Modules that process the analyte for functional data.
+
  * [`prestats`](%%BASEURL/modules/prestats.html): Omnibus module for functional preprocessing. Incorporates removal of volumes, skull-stripping, outlier removal, temporal masking, motion estimation and correction, temporal and spatial filtering, slice time correction.
  * [`confound`](%%BASEURL/modules/confound.html): Generates a matrix of nuisance time series for confound regression. Supports most frequently used denoising models, including realignment parameters, tissue-based time series, PCA-derived time series, the global signal, and temporal expansions.
  * [`aroma`](%%BASEURL/modules/aroma.html): Implements ICA-AROMA-like denoising of functional time series data.
@@ -14,6 +15,7 @@ Modules that process the analyte for functional data.
 ## Functional derivatives
 
 Modules that generate derivative maps from functional data.
+
  * [`reho`](%%BASEURL/modules/reho.html): Computes voxelwise regional homogeneity.
  * [`alff`](%%BASEURL/modules/alff.html): Computes the amplitude of low-frequency fluctuations voxelwise.
  * [`task`](%%BASEURL/modules/task.html): Computes voxelwise activation maps for task-based models using FSL’s FEAT. Computes PEs, CoPEs, varCoPEs, z-statistics, and percent signal change maps. Distributes and augments any FEAT `.fsf` design. (Also supports preprocessing.)
@@ -23,6 +25,7 @@ Modules that generate derivative maps from functional data.
 ## Anatomical image processing
 
 Modules that process the analyte for anatomical data.
+
  * [`struc`](%%BASEURL/modules/struc.html): Omnibus module for volumetric anatomical preprocessing. Leverages ANTs to execute N4 bias field correction, SyN diffeomorphic registration, Atropos segmentation (prior-driven or priorless), or the complete ANTs Cortical Thickness pipeline.
 ## Anatomical derivatives
 Modules that generate derivative maps from anatomical data.
@@ -34,6 +37,7 @@ Modules that generate derivative maps from anatomical data.
 ## Registration
 
 Modules that generate transforms between different coordinate spaces, or that apply those transforms.
+
  * [`coreg`](%%BASEURL/modules/coreg.html): Co-registers the primary analyte image to a high-resolution reference image of the same subject’s brain by computing an affine transformation between the analyte and the high-resolution reference. (Combine with the deformation field obtained from `struc` to warp any analyte to a standard space.)
  * [`struc`](%%BASEURL/modules/struc.html): Computes transforms between a high-resolution anatomical image and a template image representing a standard coordinate space using the top-performing SyN algorithm. (Combine with the affine matrix obtained from `coreg` to warp any analyte to a standard space.)
  * [`norm`](%%BASEURL/modules/norm.html): Applies the requisite transforms (computed by `struc` and/or `coreg`) to shift all derivative maps from subject native space to a standard coordinate space.
@@ -45,11 +49,13 @@ Modules that generate transforms between different coordinate spaces, or that ap
 ## Connectomics and networks
 
 Modules that map or analyse brain networks.
+
  * [`fcon`](%%BASEURL/modules/fcon.html): Computes the functional connectivity between each pair of regions in each provided brain atlas or parcellation to produce an adjacency matrix for the functional connectome. Computes dynamic FC using the MTD.
  * [`net`](%%BASEURL/modules/net.html): Operates on an adjacency matrix. Detects community structure and calculates node-wise, edge-wise, community-wise, and graph-wise network properties. Inspired by BCT.
 
 ## Quality assessment
 
 Modules that produce estimates of data quality.
+
  * [`qcfc`](%%BASEURL/modules/qcfc.html): Quality assessment for functional connectivity. Generates voxelwise plots, QC-FC measures, and QC-FC estimates of distance-dependence to facilitate diagnosis of motion-related contamination and assessment of denoising efficacy.
  * [`qcanat`](%%BASEURL/modules/qcanat.html): Quality assessment for anatomical images inspired by QAP.

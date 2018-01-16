@@ -15,19 +15,19 @@ The pipeline install directory includes subdirectories called `space` and `atlas
 To use a particular standard space in a processing stream, configure the `Standard space` option in the configuration menu.
 
 This will set the variable `standard` to include (1) the name of that space's subdirectory in `space` and (2) the resolution of that space (without leading zeros or decimal points). The name of the the space is separated from the resolution of the space with the `%` delimiter:
-```
+```bash
 standard=MNI%1x1x1 # MNI 1mm isotropic
 standard=PNC%9375x9375x1 # PNC space, 0.9375x0.9375x1 voxel size
 ```
 To use multiple standard spaces, use the `via` keyword in the variable definition:
-```
+```bash
 standard=MNI%2x2x2_via_OASIS%1x1x1
 ```
 This will define the 2mm isotropic MNI space as the standard while also loading in the 1mm isotropic OASIS space and its attendant transformation functions. This approach is useful, for instance, if anatomical processing was performed using a custom template but you wish to register functional data to the MNI template.
 
 ## Main topics
 
- * _Spatial metadata_: An overview of the way that the pipeline system tracks the coordinate space of each brain image.
- * _warpspace_: The function that the pipeline system uses to shift an image or a set of coordinates between coordinate spaces. This is an integrative layer built on the ANTs utilities `antsApplyTransforms` and `antsApplyTransformsToPoints`.
- * _Template construction_: A guide to using the pipeline system to facilitate the creation of a custom standard space for a new data set.
- * _Brain atlases and parcellations_: An overview of the way that the pipeline system uses brain atlases and parcellations (to construct networks and to convert voxelwise values to regional values), as well as instructions for adding new parcellations.
+ * [Spatial metadata](%%BASEURL/space/metadata.html): An overview of the way that the pipeline system tracks the coordinate space of each brain image.
+ * [warpspace](%%BASEURL/functions/warpspace.html): The function that the pipeline system uses to shift an image or a set of coordinates between coordinate spaces. This is an integrative layer built on the ANTs utilities `antsApplyTransforms` and `antsApplyTransformsToPoints`.
+ * [Template construction](%%BASEURL/utils/templateConstruct.html): A guide to using the pipeline system to facilitate the creation of a custom standard space for a new data set.
+ * [Brain atlases and parcellations](%%BASEURL/space/atlas.html): An overview of the way that the pipeline system uses brain atlases and parcellations (to construct networks and to convert voxelwise values to regional values), as well as instructions for adding new parcellations.
