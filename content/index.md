@@ -1,7 +1,7 @@
 BBL Imaging Pipeline
 ====================
 
-[INTRODUCTION >](%%BASEURL/modules/index.html)
+[INTRODUCTION >](%%BASEURL/intro.html)
 
 [CONFIGURATION >](%%BASEURL/config/index.html)
 

@@ -4,7 +4,7 @@
 #  ☭  ☭  ☭  ☭  ☭  ☭  ☭  ☭  ☭  ☭  ☭  ☭  ☭  ☭  ☭  ☭  ☭  ☭  ☭  ☭  ☭  #
 ###################################################################
 #SAVE='templates\|content\|git\|index\|README'
-SAVE='templates\|content\|git\|README'
+SAVE='templates\|content\|git\|README\|404'
 BASE='https://pipedocs.github.io'
 RAW='https://raw.githubusercontent.com/pipedocs/pipedocs.github.io/master'
 [[ -z ${DOCS} ]] && echo "Define DOCS first -- site not built" && exit
