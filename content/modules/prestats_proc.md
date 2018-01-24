@@ -59,7 +59,7 @@ _Temporally filter the image_. This routine applies a temporal filter to the ima
 
 ### `prestats_dvol`
 
-_Number of volumes to discard_.
+_Number of volumes to discard._
 
 Context: `DVO`.
 
@@ -78,6 +78,12 @@ prestats_dvol[cxt]=-2
 `prestats_dvol` must be an integer.
 
 ### `prestats_stime` and `prestats_sdir`
+
+_Slice time correction parameters._
+
+Context: `STM`
+
+`prestats_stime` specifies the order of slice acquisition, while `prestats_sdir` specifies the direction of slice acquisition.
 
 When each 3D volume of a 4D timeseries is acquired, not all 2D slices of that volume are acquired simultaneously. To account for the temporal lag between acquisition of slices, FSL's `slicetimer` tool interpolates intensities using a Fourier transform when the module enters the `STM` routine. This correction is most important in event-related or lag analyses, and may be less important for time-averaged connectivity analyses and block designs.
 
@@ -114,9 +120,11 @@ prestats_stime_timing[cxt]=true
 prestats_stime_tpath[cxt]=/path/to/custom/file
 ```
 
-`prestats_stime` specifies the order of slice acquisition, while `prestats_sdir` specifies the direction of slice acquisition.
-
 ### `prestats_sptf` and `prestats_smo`
+
+_Spatial smoothing parameters._
+
+Context: `SPT`
 
 Endemic noise, for instance due to physiological signals or scanner activity, can introduce spurious or artefactual results in single voxels. The effects of noise-related artefacts can be mitigated by spatially filtering the data, thus dramatically increasing the signal-to-noise ratio. However, spatial smoothing is not without its costs: it effectively reduces volumetric resolution by blurring signals from adjacent voxels.
 
@@ -146,6 +154,10 @@ Endemic noise, for instance due to physiological signals or scanner activity, ca
  ```
 
 ### `prestats_tmpf`
+
+_Temporal filtering parameters._
+
+Context: `TMP`
 
 For functional connectivity analysis, filtering during the `prestats` module is not recommended. (Filter during the `regress` module instead.) Bandpass filtering the analyte timeseries but not nuisance regressors re-introduces noise-related variance at removed frequencies when the timeseries is residualised with respect to the regressors via linear fit (Hallquist et al., 2014). (The XCP Engine is designed so as to make this involuntary reintroduction of noise impossible.) Instead, the recommended approach is filtering both the timeseries and the nuisance regressors immediately prior to fitting and residualisation (Hallquist et al., 2014). To enable this analytic pathway, select no filter and instead use the `regress` module's built-in temporal filter.
 
@@ -184,6 +196,10 @@ prestats_tmpf_ripple2[cxt]=20
 
 ### `prestats_hipass` and `prestats_lopass`
 
+_Temporal filter cutoff frequencies._
+
+Context: `TMP`
+
 Any frequencies below the low-pass cutoff and above the high-pass cutoff will be counted as pass-band frequencies; these will be retained by the filter when it is applied during the `TMP` routine.
 
 Functional connectivity between regions of interest is typically determined on the basis of synchrony in low-frequency fluctuations (Biswal et al., 1995); therefore, removing higher frequencies using a low-pass filter may effectively remove noise from the timeseries while retaining signal of interest. For a contrasting view, see Boubela et al. (2013). Set `prestats_lopass` to `n` (Nyquist) to allow all low frequencies to pass.
@@ -206,6 +222,10 @@ prestats_lopass[cxt]=0.1
 
 ### `prestats_fit`
 
+_Brain extraction threshold._
+
+Context: `BXT`
+
 The fractional intensity threshold determines how much of an image will be retained after non-brain voxels are zeroed during the `BXT` routine. A more liberal mask can be obtained using a lower fractional intensity threshold. The fractional intensity threshold should be a positive number greater than 0 and less than 1.
 
 ```bash
@@ -215,6 +235,10 @@ prestats_fit[cxt]=0.3
 
 ### `prestats_bbgthr`
 
+_Brain extraction threshold._
+
+Context: `BXT`
+
 The brain-background threshold determines how much of an image will be retained after non-brain voxels are zeroed during the `BXT` routine. A more liberal mask can be obtained using a lower brain-background threshold. The brain-background threshold should be a positive number greater than 0 and less than 1.
 
 ```bash
@@ -223,6 +247,10 @@ prestats_bbgthr[cxt]=0.1
 ```
 
 ### `prestats_dmdt`
+
+_Demean/detrend order._
+
+Context: `DMT`
 
 Scanner drift may introduce linear or polynomial trends into time series data; these trends may be removed using a general linear model-based fit during the `DMT` routine. Notably, removal of trends in this manner will also remove the timeseries mean from the data, which may be undesirable for analyses in which absolute intensity is important. (The time series mean can be added back during the `regress` module.) `prestats_dmdt` must be a nonnegative integer.
 
@@ -248,6 +276,10 @@ prestats_dmdt[cxt]=auto
 
 ### `prestats_1ddt`
 
+_Demean/detrend for text derivatives._
+
+Context: `DMT`
+
 `prestats_1ddt` specifies whether 1-dimensional derivatives generated from the main time series should also be demeaned and detrended along with the main time series during the `DMT` routine. For instance, this flag would demean and detrend any realignment parameters.
 
 ```bash
@@ -259,6 +291,10 @@ prestats_1ddt[cxt]=0
 ```
 
 ### `prestats_censor`
+
+_Framewise censoring configuration._
+
+Context: `MPR`
 
 Censoring high-motion volumes prevents them from exerting inordinate influence upon connectivity results. It is a comparatively aggressive and highly effective preprocessing strategy, but its effects on connectivity dynamics are not well understood at this time. (Naive sliding windows, beware!)
 
@@ -275,6 +311,10 @@ prestats_censor[cxt]=1
 This value will propagate to all future modules from the first instance of prestats that includes motion realignment!
 
 ### `prestats_framewise`
+
+_Framewise quality configuration._
+
+Context: `MPR`
 
 A number of criteria are available for measuring the quality of each frame or volume of a functional time series. `prestats_framewise` is a list of the metrics that should be used and the maximum allowable threshold for each index.
 
@@ -297,6 +337,10 @@ prestats_framewise[cxt]=fds:0.15,dvars:2
 ```
 
 ### `prestats_censor_contig`
+
+_Framewise censoring of contiguous frames._
+
+Context: `MPR`
 
 `prestats_censor_contig` is relevant only if censoring is enabled. `prestats_censor_contig` specifies the minimum number of contiguous volumes required per non-censored epoch. If the number of contiguous volumes in a non-censored epoch is less than `prestats_censor_contig`, then those volumes will also be censored.
 
