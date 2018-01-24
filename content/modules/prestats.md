@@ -4,7 +4,7 @@
 
 ## Omnibus modules
 
-Omnibus modules defy modular logic to an extent: they do not comprise a single, well-encapsulated processing routine. Instead, they include a number of _routines_, each of which corresponds to a common processing routine. These routines can be combined and re-ordered within the parent module. Much like the `pipeline` variable specifies the inclusion and order of modules in the pipeline, the module-level `process` variable specifies the inclusion and order of routines within an omnibus module. An example is provided here for the `prestats` omnibus module:
+Omnibus modules defy modular logic to an extent: they do not comprise a single, well-encapsulated processing step. Instead, they include a number of _routines_, each of which corresponds to a common processing step. These routines can be combined and re-ordered within the parent module. Much like the `pipeline` variable specifies the inclusion and order of modules in the pipeline, the module-level `process` variable specifies the inclusion and order of routines within an omnibus module. An example is provided here for the `prestats` omnibus module:
 
 ```
 pipeline=prestats,coreg,confound,regress,fcon,reho,alff,net,roiquant,seed,norm,qcfc
