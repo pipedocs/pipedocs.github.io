@@ -27,8 +27,11 @@ Modules that generate derivative maps from functional data.
 Modules that process the analyte for anatomical data.
 
  * [`struc`](https://pipedocs.github.io/modules/struc.html): Omnibus module for volumetric anatomical preprocessing. Leverages ANTs to execute N4 bias field correction, SyN diffeomorphic registration, Atropos segmentation (prior-driven or priorless), or the complete ANTs Cortical Thickness pipeline.
+ 
 ## Anatomical derivatives
+
 Modules that generate derivative maps from anatomical data.
+
  * [`jlf`](https://pipedocs.github.io/modules/jlf.html): Uses the ANTs Joint Label Fusion algorithm to produce a high-resolution anatomical segmentation of the subject’s anatomical data. Generates a subject-specific atlas of anatomical landmarks that can be used for regional quantification or network mapping.
  * [`gmd`](https://pipedocs.github.io/modules/gmd.html): Computes voxelwise grey matter density.
  * [`sulc`](https://pipedocs.github.io/modules/sulc.html): (highly experimental) Computes voxelwise sulcal depth.

@@ -110,6 +110,7 @@ coreg_qacut[cxt]=-1,-1,-1,-1
 ```
 
 Coregistration quality is estimated using the utility `maskOverlap`, which computes metrics of similarity between the anatomical brain mask and the analyte brain mask after it has been aligned to anatomical space. The quality control metrics are as follows:
+
  * _Spatial cross-correlation_
  * _Coverage_ (fraction of the smaller of the two masks -- typically the anatomical mask -- covered by the larger of the two masks)
  * _Jaccard coefficient_
