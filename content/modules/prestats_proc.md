@@ -61,7 +61,7 @@ _Temporally filter the image_. This routine applies a temporal filter to the ima
 
 _Number of volumes to discard._
 
-Context: `DVO`.
+Routine: `DVO`.
 
 When the module enters the `DVO` routine, a number of volumes equal to `prestats_dvol` will be removed from the functional time series. If `prestats_dvol` is positive, volumes will be removed from the beginning of the scan. If `prestats_dvol` is negative, volumes will be removed from the end of the scan.
 
@@ -81,7 +81,7 @@ prestats_dvol[cxt]=-2
 
 _Slice time correction parameters._
 
-Context: `STM`
+Routine: `STM`
 
 `prestats_stime` specifies the order of slice acquisition, while `prestats_sdir` specifies the direction of slice acquisition.
 
@@ -124,7 +124,7 @@ prestats_stime_tpath[cxt]=/path/to/custom/file
 
 _Spatial smoothing parameters._
 
-Context: `SPT`
+Routine: `SPT`
 
 Endemic noise, for instance due to physiological signals or scanner activity, can introduce spurious or artefactual results in single voxels. The effects of noise-related artefacts can be mitigated by spatially filtering the data, thus dramatically increasing the signal-to-noise ratio. However, spatial smoothing is not without its costs: it effectively reduces volumetric resolution by blurring signals from adjacent voxels.
  
@@ -146,20 +146,22 @@ prestats_sptf[cxt]=uniform
 prestats_smo[cxt]=5
 ```
 
-`prestats_sptf` specifies the type of spatial filter to apply for smoothing, while `prestats_smo` specifies the full-width at half-maximum (FWHM) of the smoothink kernel in mm. All spatial filtering is contained in the `SPT` routine.
+`prestats_sptf` specifies the type of spatial filter to apply for smoothing, while `prestats_smo` specifies the full-width at half-maximum (FWHM) of the smoothing kernel in mm. All spatial filtering is contained in the `SPT` routine.
 
  * Gaussian smoothing applies the same Gaussian smoothing kernel across the entire volume.
  * SUSAN-based smoothing restricts mixing of signals from disparate tissue classes (Smith and Brady, 1997).
  * Uniform smoothing applies smoothing to all voxels until the smoothness computed at every voxel attains the target value.
  * Uniform smoothing may be used as a compensatory mechanism to reduce the effects of subject motion on the final processed image (Scheinost et al., 2014).
 
+Unlike the smoothing protocols in other modules (e.g., `regress`), the smoothing protocol in `prestats` is a replacement. In other words, other modules produce smoothed derivative images (which are subsequently processed in the same way as the primary analyte), while prestats replaces the primary analyte with a smoothed version.
+
 ### `prestats_tmpf`
 
 _Temporal filtering parameters._
 
-Context: `TMP`
+Routine: `TMP`
 
-For functional connectivity analysis, filtering during the `prestats` module is not recommended. (Filter during the `regress` module instead.) Bandpass filtering the analyte timeseries but not nuisance regressors re-introduces noise-related variance at removed frequencies when the timeseries is residualised with respect to the regressors via linear fit (Hallquist et al., 2014). (The XCP Engine is designed so as to make this involuntary reintroduction of noise impossible.) Instead, the recommended approach is filtering both the timeseries and the nuisance regressors immediately prior to fitting and residualisation (Hallquist et al., 2014). To enable this analytic pathway, select no filter and instead use the `regress` module's built-in temporal filter.
+For functional connectivity analysis, filtering during the `prestats` module is not recommended. (Filter during the `regress` module instead.) Bandpass filtering the analyte timeseries but not nuisance regressors re-introduces noise-related variance at removed frequencies when the timeseries is residualised with respect to the regressors via linear fit (Hallquist et al., 2014). (The pipeline system is designed so as to make this involuntary reintroduction of noise impossible.) Instead, the recommended approach is filtering both the timeseries and the nuisance regressors immediately prior to fitting and residualisation (Hallquist et al., 2014). To enable this analytic pathway, select no filter and instead use the `regress` module's built-in temporal filter.
 
 ```bash
 # Gaussian filter
@@ -198,7 +200,7 @@ prestats_tmpf_ripple2[cxt]=20
 
 _Temporal filter cutoff frequencies._
 
-Context: `TMP`
+Routine: `TMP`
 
 Any frequencies below the low-pass cutoff and above the high-pass cutoff will be counted as pass-band frequencies; these will be retained by the filter when it is applied during the `TMP` routine.
 
@@ -224,7 +226,7 @@ High-pass filters can be used to remove very-low-frequency drift from an acquisi
 
 _Brain extraction threshold._
 
-Context: `BXT`
+Routine: `BXT`
 
 The fractional intensity threshold determines how much of an image will be retained after non-brain voxels are zeroed during the `BXT` routine. A more liberal mask can be obtained using a lower fractional intensity threshold. The fractional intensity threshold should be a positive number greater than 0 and less than 1.
 
@@ -237,7 +239,7 @@ prestats_fit[cxt]=0.3
 
 _Brain extraction threshold._
 
-Context: `BXT`
+Routine: `BXT`
 
 The brain-background threshold determines how much of an image will be retained after non-brain voxels are zeroed during the `BXT` routine. A more liberal mask can be obtained using a lower brain-background threshold. The brain-background threshold should be a positive number greater than 0 and less than 1.
 
@@ -250,9 +252,9 @@ prestats_bbgthr[cxt]=0.1
 
 _Demean/detrend order._
 
-Context: `DMT`
+Routine: `DMT`
 
-Scanner drift may introduce linear or polynomial trends into time series data; these trends may be removed using a general linear model-based fit during the `DMT` routine. Notably, removal of trends in this manner will also remove the timeseries mean from the data, which may be undesirable for analyses in which absolute intensity is important. (The time series mean can be added back during the `regress` module.) `prestats_dmdt` must be a nonnegative integer.
+Scanner drift may introduce linear or polynomial trends into time series data; these trends may be removed using a general linear model-based fit during the `DMT` routine. Notably, removal of trends in this manner will also remove the time series mean from the data, which may be undesirable for analyses in which absolute intensity is important. (The time series mean can be added back during the `regress` module.) `prestats_dmdt` must be a nonnegative integer.
 
 ```bash
 # Demean only
@@ -270,7 +272,7 @@ prestats_dmdt[cxt]=auto
 
  * An order of 0 results in demeaning only.
  * Entering `auto` will automatically compute an appropriate value (following AFNI) based on the duration of the scan. The formula used to compute this is: `floor(1 + TR*nVOLS / 150)`
- * For another data-driven approach to detrending, remove DMT from prestats and apply a high-pass Gaussian filter in this module. (A filter with higher rolloff can be added later during the regress module.)
+ * For another data-driven approach to detrending, remove DMT from `prestats` and apply a high-pass Gaussian filter in this module. (A filter with higher rolloff can be added later during the `regress` module. This approach does not demean.)
  * To skip this step altogether, edit DMT out of the processing order.
  * If censoring is enabled, then the model will ignore the fit to any volumes flagged for censoring.
 
@@ -278,7 +280,7 @@ prestats_dmdt[cxt]=auto
 
 _Demean/detrend for text derivatives._
 
-Context: `DMT`
+Routine: `DMT`
 
 `prestats_1ddt` specifies whether 1-dimensional derivatives generated from the main time series should also be demeaned and detrended along with the main time series during the `DMT` routine. For instance, this flag would demean and detrend any realignment parameters.
 
@@ -294,7 +296,7 @@ prestats_1ddt[cxt]=0
 
 _Framewise censoring configuration._
 
-Context: `MPR`
+Routine: `MPR`
 
 Censoring high-motion volumes prevents them from exerting inordinate influence upon connectivity results. It is a comparatively aggressive and highly effective preprocessing strategy, but its effects on connectivity dynamics are not well understood at this time. (Naive sliding windows, beware!)
 
@@ -314,7 +316,7 @@ This value will propagate to all future modules from the first instance of prest
 
 _Framewise quality configuration._
 
-Context: `MPR`
+Routine: `MPR`
 
 A number of criteria are available for measuring the quality of each frame or volume of a functional time series. `prestats_framewise` is a list of the metrics that should be used and the maximum allowable threshold for each index.
 
@@ -340,7 +342,7 @@ prestats_framewise[cxt]=fds:0.15,dvars:2
 
 _Framewise censoring of contiguous frames._
 
-Context: `MPR`
+Routine: `MPR`
 
 `prestats_censor_contig` is relevant only if censoring is enabled. `prestats_censor_contig` specifies the minimum number of contiguous volumes required per non-censored epoch. If the number of contiguous volumes in a non-censored epoch is less than `prestats_censor_contig`, then those volumes will also be censored.
 
@@ -375,7 +377,7 @@ prestats_cleanup[cxt]=0
 
 ### `prestats_process`
 
-Specifies the order in preprocessing routines will be executed. Exercise discretion when using this option; unless you have a compelling reason for doing otherwise, it is recommended you use the default order.
+Specifies the order for execution of preprocessing routines. Exercise discretion when using this option; unless you have a compelling reason for doing otherwise, it is recommended you use the default order.
 
 The preprocessing order should be a string of concatenated three-character routine codes separated by hyphens (`-`). Each substring encodes a particular preprocessing routine; this feature should primarily be used to selectively run only parts of the preprocessing routine.
 

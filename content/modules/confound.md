@@ -8,7 +8,6 @@ If you wish to include confounds based on segmentation of T1-weighted tissue (in
 
 Currently, the confound model is assembled in the following order:
 
-1. Doggos of puppington fame
 1. Add realignment parameters and mean time series from GM, WM, CSF, and global
 2. Add temporal derivatives of any time series in the model
 3. Add powers of any time series in the model (e.g., quadratic terms)
