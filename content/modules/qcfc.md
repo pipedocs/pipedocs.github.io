@@ -10,19 +10,19 @@ Contains a comma-separated list of the names of the atlases over which QC-FC cor
 
 ```bash
 # Use the Power 264-sphere parcellation only
-fcon_atlas[cxt]=power264
+qcfc_atlas[cxt]=power264
 
 # Use both the Power 264 atlas and the Gordon atlas
-fcon_atlas[cxt]=power264,gordon
+qcfc_atlas[cxt]=power264,gordon
 
 # Use the 400-node version of the Schaefer atlas
-fcon_atlas[cxt]=schaefer400
+qcfc_atlas[cxt]=schaefer400
 
 # Use all available resolutions of the Schaefer atlas
-fcon_atlas[cxt]=schaefer
+qcfc_atlas[cxt]=schaefer
 
 # Use all available atlases
-fcon_atlas[cxt]=all
+qcfc_atlas[cxt]=all
 ```
 
 ### `qcfc_sig`
