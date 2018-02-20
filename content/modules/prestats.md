@@ -2,6 +2,12 @@
 
 `prestats` is an omnibus module for preprocessing of functional MR images. `prestats` incorporates removal of volumes, skull-stripping, outlier removal, temporal masking, motion estimation and correction, temporal and spatial filtering, and slice time correction.
 
+### Outputs
+
+ * [`mask`](%%BASEURL/products/mask.html)
+ * [`meanIntensity`](%%BASEURL/products/meanIntensity.html)
+ * [`referenceVolume`](%%BASEURL/products/referenceVolume.html)
+
 ## Omnibus modules
 
 Omnibus modules defy modular logic to an extent: they do not comprise a single, well-encapsulated processing step. Instead, they include a number of _routines_, each of which corresponds to a common processing step. These routines can be combined and re-ordered within the parent module. Much like the `pipeline` variable specifies the inclusion and order of modules in the pipeline, the module-level `process` variable specifies the inclusion and order of routines within an omnibus module. An example is provided here for the `prestats` omnibus module:
@@ -16,12 +22,6 @@ In the example here, the `pipeline` variable is defined as a standard functional
  * `prestats_process`: the name of the variable specifying the inclusion and order of routines
  * `[1]`: the scope of the `pipeline_process` variable, that is, the first module of the `pipeline`
  * `DVO-MPR-STM-MCO-BXT-DMT`: a series of three-letter codes for module routines to be called within `prestats`, offset by hyphens (`-`) and ordered in the same order that they are to be executed
-
-### Outputs
-
- * [`mask`](%%BASEURL/products/mask.html)
- * [`meanIntensity`](%%BASEURL/products/meanIntensity.html)
- * [`referenceVolume`](%%BASEURL/products/referenceVolume.html)
 
 ### Available routine codes
 
