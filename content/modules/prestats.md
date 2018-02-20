@@ -17,6 +17,12 @@ In the example here, the `pipeline` variable is defined as a standard functional
  * `[1]`: the scope of the `pipeline_process` variable, that is, the first module of the `pipeline`
  * `DVO-MPR-STM-MCO-BXT-DMT`: a series of three-letter codes for module routines to be called within `prestats`, offset by hyphens (`-`) and ordered in the same order that they are to be executed
 
+### Outputs
+
+ * [`mask`](%%BASEURL/products/mask.html)
+ * [`meanIntensity`](%%BASEURL/products/meanIntensity.html)
+ * [`referenceVolume`](%%BASEURL/products/referenceVolume.html)
+
 ### Available routine codes
 
 #### `DVO`
