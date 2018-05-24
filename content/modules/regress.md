@@ -87,7 +87,7 @@ regress_sptf[cxt]=uniform
 regress_smo[cxt]=5
 ```
 
-`regress_sptf` specifies the type of spatial filter to apply for smoothing, while `regress_smo` specifies the full-width at half-maximum (FWHM) of the smoothing kernel in mm. All spatial filtering is contained in the `SPT` routine.
+`regress_sptf` specifies the type of spatial filter to apply for smoothing, while `regress_smo` specifies the full-width at half-maximum (FWHM) of the smoothing kernel in mm.
 
  * Gaussian smoothing applies the same Gaussian smoothing kernel across the entire volume.
  * SUSAN-based smoothing restricts mixing of signals from disparate tissue classes (Smith and Brady, 1997).

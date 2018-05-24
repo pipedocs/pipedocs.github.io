@@ -6,7 +6,7 @@
 
 _Brain atlas or parcellation._
 
-Contains a comma-separated list of the names of the atlases over which regional values should be computed. The atlases should correspond to valid paths in `$XCPEDIR/atlas` or another appropriate `$BRAINATLAS` directory. All atlases listed here must be run through the `fcon` module before they can be used here.
+Contains a comma-separated list of the names of the atlases over which regional values should be computed. The atlases should correspond to valid paths in `$XCPEDIR/atlas` or another appropriate `$BRAINATLAS` directory.
 
 ```bash
 # Use the Power 264-sphere parcellation only
