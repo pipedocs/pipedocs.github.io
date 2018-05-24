@@ -19,7 +19,7 @@ Modules that generate derivative maps from functional data.
  * [`reho`](https://pipedocs.github.io/modules/reho.html): Computes voxelwise regional homogeneity.
  * [`alff`](https://pipedocs.github.io/modules/alff.html): Computes the amplitude of low-frequency fluctuations voxelwise.
  * [`task`](https://pipedocs.github.io/modules/task.html): Computes voxelwise activation maps for task-based models using FSL’s FEAT. Computes PEs, CoPEs, varCoPEs, z-statistics, and percent signal change maps. Distributes and augments any FEAT `.fsf` design. (Also supports preprocessing.)
- * [`cbf`](https://pipedocs.github.io/modules/cbf.html): Performs quantification of cerebral blood flow for ASL sequences (e.g., PCASL).
+ * [`cbf`](https://pipedocs.github.io/modules/cbf.html): \[UNSUPPORTED\] Performs quantification of cerebral blood flow for ASL sequences (e.g., PCASL).
  * [`seed`](https://pipedocs.github.io/modules/seed.html): Computes functional connectivity to an _a priori_ set of seed regions using seed-based correlation analysis.
 
 ## Anatomical image processing
@@ -32,10 +32,10 @@ Modules that process the analyte for anatomical data.
 
 Modules that generate derivative maps from anatomical data.
 
- * [`jlf`](https://pipedocs.github.io/modules/jlf.html): Uses the ANTs Joint Label Fusion algorithm to produce a high-resolution anatomical segmentation of the subject’s anatomical data. Generates a subject-specific atlas of anatomical landmarks that can be used for regional quantification or network mapping.
+ * [`jlf`](https://pipedocs.github.io/modules/jlf.html): \[UNSUPPORTED\] Uses the ANTs Joint Label Fusion algorithm to produce a high-resolution anatomical segmentation of the subject’s anatomical data. Generates a subject-specific atlas of anatomical landmarks that can be used for regional quantification or network mapping.
  * [`gmd`](https://pipedocs.github.io/modules/gmd.html): Computes voxelwise grey matter density.
- * [`sulc`](https://pipedocs.github.io/modules/sulc.html): (highly experimental) Computes voxelwise sulcal depth.
- * [`cortcon`](https://pipedocs.github.io/modules/cortcon.html): (highly experimental) Computes the voxelwise GM-WM tissue intensity contrast across the GM-WM cortical interface.
+ * [`sulc`](https://pipedocs.github.io/modules/sulc.html): \[UNSUPPORTED\] (highly experimental) Computes voxelwise sulcal depth.
+ * [`cortcon`](https://pipedocs.github.io/modules/cortcon.html): \[UNSUPPORTED\] (highly experimental) Computes the voxelwise GM-WM tissue intensity contrast across the GM-WM cortical interface.
 
 ## Registration
 
@@ -61,4 +61,4 @@ Modules that map or analyse brain networks.
 Modules that produce estimates of data quality.
 
  * [`qcfc`](https://pipedocs.github.io/modules/qcfc.html): Quality assessment for functional connectivity. Generates voxelwise plots, QC-FC measures, and QC-FC estimates of distance-dependence to facilitate diagnosis of motion-related contamination and assessment of denoising efficacy.
- * [`qcanat`](https://pipedocs.github.io/modules/qcanat.html): Quality assessment for anatomical images inspired by QAP.
+ * [`qcanat`](https://pipedocs.github.io/modules/qcanat.html): \[UNSUPPORTED\] Quality assessment for anatomical images inspired by QAP.
