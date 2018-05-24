@@ -13,6 +13,7 @@ Unlike [modules](https://pipedocs.github.io/modules) and [functions](https://pip
  * [nodeCoverage](https://pipedocs.github.io/utils/nodeCoverage.html)
  * [qcanat](https://pipedocs.github.io/utils/qcanat.html)
  * [qcfc](https://pipedocs.github.io/utils/qcfc.html)
+ * [qcfcDistanceDependence](https://pipedocs.github.io/utils/qcfcDistanceDependence.html)
  * [regslicer](https://pipedocs.github.io/utils/regslicer.html)
  * [tmask](https://pipedocs.github.io/utils/tmask.html)
  * [tmask2spkreg](https://pipedocs.github.io/utils/tmask2spkreg.html)

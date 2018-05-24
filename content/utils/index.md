@@ -13,6 +13,7 @@ Unlike [modules](%%BASEURL/modules) and [functions](%%BASEURL/functions), _utili
  * [nodeCoverage](%%BASEURL/utils/nodeCoverage.html)
  * [qcanat](%%BASEURL/utils/qcanat.html)
  * [qcfc](%%BASEURL/utils/qcfc.html)
+ * [qcfcDistanceDependence](%%BASEURL/utils/qcfcDistanceDependence.html)
  * [regslicer](%%BASEURL/utils/regslicer.html)
  * [tmask](%%BASEURL/utils/tmask.html)
  * [tmask2spkreg](%%BASEURL/utils/tmask2spkreg.html)
