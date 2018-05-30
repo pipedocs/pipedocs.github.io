@@ -19,14 +19,20 @@ set highres_files(1)
 set confoundev_files(1)
 set fmri(featwatcher_yn)
 ```
+
+It is possible to use a different FSF design for every subject. This is desirable in cases where you wish to model responses or stimulus timing that varies across subjects. To use a subject-specific FSF, add a new column to the [cohort file](https://pipedocs.github.io/config/cohort.html) and title it `fsf`. Additionally, set `task_design` to `${fsf[sub]}` to reference the cohort column. This is the default setting in the example task design file that is bundled with the pipeline system.
+
 ```bash
+# Use the fsf column in the cohort file as the FEAT design
+task_design[cxt]=${fsf[sub]}
+
 # Use the fractal_nback.fsf FEAT design
 task_design[cxt]=fractal_nback.fsf
 ```
 
 ### `task_rerun`
 
-Ordinarily, each module will detect whether a particular analysis has run to completion before beginning it. If re-running is disabled, then the module will immediately skip to the next stage of analysis. Otherwise, any completed analyses will be repeated.If you change the run parameters, you should rerun any modules downstream of the change.
+Ordinarily, each module will detect whether a particular analysis has run to completion before beginning it. If re-running is disabled, then the module will immediately skip to the next stage of analysis. Otherwise, any completed analyses will be repeated. If you change the run parameters, you should rerun any modules downstream of the change.
 
 ```bash
 # Skip processing steps if the pipeline detects the expected output
