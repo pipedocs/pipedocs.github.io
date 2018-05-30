@@ -3,6 +3,7 @@
 `norm` moves 4D timeseries from acquisition space into a standard space. It is only compatible with ITK-/ANTs-based transforms at this time. Before running normalisation, you must run coregistration to compute a transformation from the subject's functional image to the subject's anatomical image. It may also be necessary to compute a warp from the subject's anatomical image to a template in the target standard space.
 
 This module is not configurable at this time. Near-term customisability includes:
+
  * A multiplicity of target spaces for registrations
  * The option to disable registration of the primary analyte (since this often unnecessarily consumes disk space) and normalise only derivative images
 

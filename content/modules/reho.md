@@ -7,6 +7,7 @@
 _Voxel neighbourhood._
 
 Regional homogeneity is computed as Kendall's W (coefficient of concordance) among the timeseries of a voxel and its neighbours. The neighbours of a voxel may include either:
+
  * `faces`: Any of the 6 voxels adjoining that voxel along the surfaces of its faces
  * `edges`: Any of the 18 voxels adjoining that voxel along its faces or edges
  * `vertices`: Any of the 26 voxels adjoining that voxel at any of its faces, edges, or vertices
