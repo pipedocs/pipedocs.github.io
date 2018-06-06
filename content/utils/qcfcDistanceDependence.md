@@ -20,6 +20,12 @@ _Distance-dependence of QC-FC measures._
 
 ### Input arguments
 
+```
+${XCPEDIR}/utils/qcfcDistanceDependence –a <atlas> -q <test values> -o <output path> [-d <output distance matrix> -f <output correlation plot> -i <intermediate output>]
+```
+
+Optional arguments are denoted in square brackets ([]).
+
 #### `-a`: Atlas
 
 The atlas over which inter-nodal distances should be computed. This atlas should also have been used to define the test values.

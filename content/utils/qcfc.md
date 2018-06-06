@@ -20,7 +20,7 @@ The root output path, `<output root>`, is specified as the argument to the `-o` 
 ${XCPEDIR}/utils/qcfc.R –c <cohort> -o <output root> [-s <multiple comparisons correction> -t <significance threshold> -n <confound> -y <conformula>]
 ```
 
-Optional arguments are denoted in square brackets ([]).
+Optional arguments are denoted in square brackets (`[]`).
 
 #### `-c`: Cohort
 
@@ -66,7 +66,9 @@ If this file is saved as `sample-covariates.csv`, then call qcfc.R as above, wit
 
 ```R
 age+factor(sex)
-```  Note that sex, treated as a categorical variable in this toy example, is specified as a `factor`. If the data set contains repeated measures (e.g., multiple scans from the same subject), then the subject identifier can be included in the model specification (argument to `-y`) as a random intercept:
+```
+
+Note that sex, treated as a categorical variable in this toy example, is specified as a `factor`. If the data set contains repeated measures (e.g., multiple scans from the same subject), then the subject identifier can be included in the model specification (argument to `-y`) as a random intercept:
 
 ```R
 age+factor(sex)+(1|id0)
