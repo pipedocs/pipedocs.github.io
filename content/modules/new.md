@@ -25,6 +25,7 @@ source ${XCPEDIR}/core/functions/library_func.sh
 ```
 
 The general module header is the same for all modules. It currently comprises three steps:
+
  * Load global constants into the environment, and initialise any global associative arrays (`source ${XCPEDIR}/core/constants`)
  * Load the XCP core library of functions into the environment (`source ${XCPEDIR}/core/functions/library.sh`)
  * Parse arguments passed to the module (`source ${XCPEDIR}/core/parseArgsMod`)
@@ -96,11 +97,8 @@ derivative_set    <derivative name>       \
 For example, a new brain mask derivative can be instantiated as shown.
 
 ```bash
-derivative        mask     ${prefix}_mask.nii.gz
-
-derivative_set    mask     \
-                  Type     \
-                  Mask
+derivative        mask     ${prefix}_mask
+derivative_set    mask     Type     Mask
 ```
 
 #### `output`
@@ -109,6 +107,12 @@ derivative_set    mask     \
 
 ```bash
 output            <output name>        <path to output in module's directory>
+```
+
+For example, a connectivity matrix might be instantiated as shown.
+
+```bash
+output            connectivity   ${prefix}_connectivity.txt
 ```
 
 #### `configure`
