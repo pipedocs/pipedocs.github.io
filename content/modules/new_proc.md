@@ -44,6 +44,7 @@ source ${XCPEDIR}/core/parseArgsMod
 ### Actions on completion
 
 Immediately under the header, there should be a function that includes instructions for what the module should do when it successfully runs to completion. Minimal steps for module completion are:
+
  * Update the pipeline audit file to reflect successful completion of the current module (`source ${XCPEDIR}/core/auditComplete`)
  * Write any new quality assessment indices into the subject's quality tracker file (`source ${XCPEDIR}/core/updateQuality`)
  * Run the generic code for successful end-of-module (`source ${XCPEDIR}/core/moduleEnd`)
