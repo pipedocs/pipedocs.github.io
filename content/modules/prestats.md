@@ -20,7 +20,7 @@ prestats_process[1]=DVO-MPR-STM-MCO-BXT-DMT
 In the example here, the `pipeline` variable is defined as a standard functional connectivity stream that begins with `prestats`.
 
  * `prestats_process`: the name of the variable specifying the inclusion and order of routines
- * `[1]`: the scope of the `pipeline_process` variable, that is, the first module of the `pipeline`
+ * `[1]`: the scope of the `prestats_process` variable, that is, the first module of the `pipeline`
  * `DVO-MPR-STM-MCO-BXT-DMT`: a series of three-letter codes for module routines to be called within `prestats`, offset by hyphens (`-`) and ordered in the same order that they are to be executed
 
 ### Available routine codes

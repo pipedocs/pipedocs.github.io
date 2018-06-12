@@ -20,7 +20,7 @@ struc_process[1]=BFC-ABE-REG-SEG
 In the example here, the `pipeline` variable is defined as a standard anatomical stream that begins with `struc`.
 
  * `struc_process`: the name of the variable specifying the inclusion and order of routines
- * `[1]`: the scope of the `pipeline_process` variable, that is, the first module of the `pipeline`
+ * `[1]`: the scope of the `struc_process` variable, that is, the first module of the `pipeline`
  * `BFC-ABE-REG-SEG`: a series of three-letter codes for module routines to be called within `struc`, offset by hyphens (`-`) and ordered in the same order that they are to be executed
 
 ### Available routine codes
@@ -57,7 +57,7 @@ _Denoise anatomical image._
 
 Routine: `SEG`, `ACT`.
 
-During the segmentation procedure, ANTs can use the `DenoiseImage` program to remove random noise from an anatomical image using a spatially adaptive filter with a Gaussian or a Rician noise model.
+During the segmentation procedure, ANTs can use the `DenoiseImage` program to remove noise from an anatomical image using a spatially adaptive filter with a Gaussian or a Rician noise model.
 
 ```bash
 # do not denoise
@@ -114,11 +114,11 @@ The formulation for posterior probability maps produced by the segmentation rout
 # Use Socrates formulation with mixture model proportions
 struc_posterior_formulation[cxt]='Socrates[1]'
 
-# Use Aristotle formulation with mixture model proportions
-struc_posterior_formulation[cxt]='Aristotle[1]'
+# Use Plato formulation with mixture model proportions
+struc_posterior_formulation[cxt]='Plato[1]'
 ```
 
-`struc_posterior_formulation` can be either `'Aristotle[1]'` or `'Socrates[1]'` (default).
+`struc_posterior_formulation` can be, for instance, `'Socrates[1]'` (default), `'Plato[1]'`, `'Aristotle[1]'` or `'Sigmoid[1]'`. Consult the ANTs documentation for all available options.
 
 ### `struc_floating_point`
 
@@ -144,7 +144,7 @@ _Use random seed._
 
 Routine: `SEG`, `ABE`, `ACT`.
 
-The pseudorandom number generator can values that appear more random by seeding it with a value based on the system clock. To use random seeding to initialise the RNG, set `struc_random_seed` to a value of `1`.
+The pseudorandom number generator can generate values that appear more random if it is seeded with a value based on the system clock. To use random seeding to initialise the RNG, set `struc_random_seed` to a value of `1`.
 
 ```bash
 # Use random seed
