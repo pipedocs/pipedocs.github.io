@@ -1,6 +1,6 @@
 # Use cases for the XCP pipeline
 
-The XCP pipeline supports a number of use cases for aantomical and functional image processing. This page is concerned with starting analysis of a new dataset, as well as common modifications to existing datasets or existing analyses. For general information about standard processing streams (e.g., activation, connectivity, anatomical), see [streams documentation](https://pipedocs.github.io/config/streams).
+The XCP pipeline supports a number of use cases for anatomical and functional image processing. This page is concerned with configuring analysis of a new dataset, as well as configuring common modifications to existing datasets or existing analyses. For general information about standard processing streams (e.g., activation, connectivity, anatomical), see [streams documentation](https://pipedocs.github.io/config/streams).
 
 ## Run a new sample or dataset
 
