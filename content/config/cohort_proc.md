@@ -1,3 +1,5 @@
+[Return to config >](https://pipedocs.github.io/config)
+
 Pipeline cohort file
 ====================
 
@@ -93,3 +95,5 @@ Each of the columns in the cohort file becomes a _subject variable_ at runtime. 
 ``` bash
 coreg_segmentation[2]=${segmentation[sub]}
 ```
+
+[Return to config >](https://pipedocs.github.io/config)

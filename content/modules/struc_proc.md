@@ -1,3 +1,5 @@
+[Return to modules >](https://pipedocs.github.io/modules)
+
 # `struc`: MRI anatomical module
 
 `struc` is an omnibus module for processing of anatomical MR images. `struc` can run the ANTs Cortical Thickness (ANTsCT) pipeline in its entirety or can execute any combination of N4 bias field correction, FSL- or ANTs-based brain extraction, Atropos brain segmentation, and ANTs diffeomorphic registration.
@@ -254,3 +256,5 @@ Permitted codes include:
  * `FBE`: FSL brain extraction
  * `SEG`: Atropos image segmentation
  * `REG`: registration to a template
+
+[Return to modules >](https://pipedocs.github.io/modules)

@@ -1,5 +1,3 @@
-[Return to streams >](%%BASEURL/config/streams)
-
 # Anatomical processing streams
 
 The XCP system includes 7 standard processing streams for volumetric anatomy. These base anatomical streams are summarised below. All processing streams are heavily based on the ANTs software library. Base anatomical streams can be modified at will to suit the dataset that is to be processed.
@@ -131,5 +129,3 @@ Several indices of image quality are currently computable during anatomical proc
 _Module_: [`struc`](%%BASEURL/modules/struc)
 
 Image normalisation shifts derivative maps (and potentially the primary image) into a standard sample-level or population-level space to facilitate comparisons between subjects. The normalisation step applies the transformations computed in the ANTs registration step.
-
-[Return to streams >](%%BASEURL/config/streams)

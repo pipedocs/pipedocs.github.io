@@ -1,3 +1,5 @@
+[Return to modules >](https://pipedocs.github.io/modules)
+
 # `prestats`: fMRI preprocessing module
 
 `prestats` is an omnibus module for preprocessing of functional MR images. `prestats` incorporates removal of volumes, skull-stripping, outlier removal, temporal masking, motion estimation and correction, temporal and spatial filtering, and slice time correction.
@@ -412,3 +414,5 @@ Permitted codes include:
  * `DMT`: demean/detrend BOLD timeseries
  * `SPT`: spatial filter
  * `TMP`: temporal filter"
+
+[Return to modules >](https://pipedocs.github.io/modules)

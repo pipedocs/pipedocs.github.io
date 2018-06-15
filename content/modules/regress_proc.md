@@ -1,3 +1,5 @@
+[Return to modules >](https://pipedocs.github.io/modules)
+
 # `regress`: Confound/nuisance regression module
 
 `regress` executes multiple linear regression to fit any confound time series computed using the `confound` module to the time series of each voxel in the analyte image. Any variance in the BOLD time series that is explained by the confound model is discarded from the analyte image. The residuals (unexplained variance) of the BOLD time series are retained as the denoised image. `regress` additionally supports temporal filtering, censoring (configured in `prestats` and executed in `regress`), and production of smoothed derivative time series.
@@ -133,3 +135,5 @@ Format `regress_process` as a string of concatenated three-character routine cod
 
 # Temporal filtering first (equivalent to 'Simult' in Hallquist et al., 2014)
 ```
+
+[Return to modules >](https://pipedocs.github.io/modules)

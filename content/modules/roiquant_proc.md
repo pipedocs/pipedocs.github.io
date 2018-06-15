@@ -1,3 +1,5 @@
+[Return to modules >](https://pipedocs.github.io/modules)
+
 # `roiquant`: Regional quantification module
 
 `roiquant` performs ROI-wise quantification of voxelwise metrics. For each provided atlas or parcellation of the brain, it produces a table of values for each region of that parcellation. While many modules include internal routines for ROI-wise statistics, this module centralises all ROI-wise measures in a single routine. It accepts any number of ROI maps or parcellations, then computes, for each voxelwise metric, the mean across all voxels in each ROI of each provided parcellation.
@@ -75,3 +77,5 @@ roiquant_cleanup[cxt]=1
 # Retain temporary files
 roiquant_cleanup[cxt]=0
 ```
+
+[Return to modules >](https://pipedocs.github.io/modules)

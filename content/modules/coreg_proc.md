@@ -1,3 +1,5 @@
+[Return to modules >](https://pipedocs.github.io/modules)
+
 # `coreg`: Image co-registration module
 
 `coreg` computes an affine transformation from a subject's image to the same subject's high-resolution anatomical scan (for instance, a T1-weighted MPRAGE). `coreg` only computes the transformation and does not apply it; all transformations are applied in a single step by the `norm` module in order to reduce computational requirements and minimise the number of interpolation steps.
@@ -173,3 +175,5 @@ coreg_cleanup[cxt]=1
 # Retain temporary files
 coreg_cleanup[cxt]=0
 ```
+
+[Return to modules >](https://pipedocs.github.io/modules)

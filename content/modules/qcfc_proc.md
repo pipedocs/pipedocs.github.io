@@ -1,3 +1,5 @@
+[Return to modules >](https://pipedocs.github.io/modules)
+
 # `qcfc`: Quality control module for functional connectivity
 
 `qcfc` computes benchmark measures for a functional connectivity processing stream. Measures include (i) QC-FC correlations of functional connections with motion (number and fraction of related edges and absolute median correlation), (ii) distance-dependence of residual motion artefact, (iii) an estimate of the degrees of freedom lost through denoising procedures, and (iv) voxelwise activation timeseries plots for a set of example subjects. `qcfc` is divided into subject-level and group-level modules. The subject-level module collates subject-level estimates of data quality and produces the voxelwise plot, while the group-level module computes QC-FC correlations and distance-dependence.
@@ -116,3 +118,5 @@ qcfc_cleanup[cxt]=1
 # Retain temporary files
 qcfc_cleanup[cxt]=0
 ```
+
+[Return to modules >](https://pipedocs.github.io/modules)

@@ -1,3 +1,5 @@
+[Return to variables >](https://pipedocs.github.io/config/variables)
+
 # Variable scope
 
 In the pipeline system, the _scope_ of a variable refers to the blocks of the pipeline where that variable is active. Variables can have _subject_ scope, _module_ scope, _global_ scope, or _local/functional_ scope. The scope of each variable is typically set when the variable is defined in the pipeline's _design file_.
@@ -34,3 +36,5 @@ Global variables are active across all modules and across all subjects. They not
 Local variables are active only in the body of a function. They do not persist outside of the function; as soon as the function runs to completion, these variables become unset.
 
 ## Changing the scope of a variable: module-to-subject
+
+[Return to variables >](https://pipedocs.github.io/config/variables)

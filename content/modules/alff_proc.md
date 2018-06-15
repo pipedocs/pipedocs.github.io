@@ -1,3 +1,5 @@
+[Return to modules >](https://pipedocs.github.io/modules)
+
 # `alff`: Amplitude of low-frequency fluctuations module
 
 `alff` computes the amplitude of low-frequency fluctuations (ALFF) in each voxel of the processed image. Low-frequency fluctuations are of particular importance because functional connectivity is most typically computed on the basis of synchronous activations at low frequencies. It is possible that the magnitude (amplitude) of such activations has utility as a biomarker for pathologies or psychological variables.
@@ -70,3 +72,5 @@ alff_cleanup[cxt]=1
 # Retain temporary files
 alff_cleanup[cxt]=0
 ```
+
+[Return to modules >](https://pipedocs.github.io/modules)

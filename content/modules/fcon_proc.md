@@ -1,3 +1,5 @@
+[Return to modules >](https://pipedocs.github.io/modules)
+
 # `fcon`: Functional connectivity module
 
 `fcon` models the functional connectome by extracting an adjacency matrix from a voxelwise time series image. To do this, `fcon` requires a brain atlas, or a parcellation of the brain's voxels into regions of interest (network nodes). First, the local mean timeseries within each network node is extracted. The connectivity between time series is subsequently used to define the edges of an adjacency matrix over the parcellation. Currently, static connectivity is estimated using the Pearson correlation and dynamic connectivity using the multiplication of temporal derivatives (Shine et al., 2015), but alternative metrics will likely be introduced in the future.
@@ -104,3 +106,5 @@ fcon_cleanup[cxt]=1
 # Retain temporary files
 fcon_cleanup[cxt]=0
 ```
+
+[Return to modules >](https://pipedocs.github.io/modules)

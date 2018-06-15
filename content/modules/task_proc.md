@@ -1,3 +1,5 @@
+[Return to modules >](https://pipedocs.github.io/modules)
+
 # `task`: Task-constrained analysis module
 
 `task` executes any subject-level analysis that can be performed using FMRIB's FEAT. It accepts a FEAT design file (`.fsf`) and generalises it to every subject. It then reorganises the FEAT output directory to conform to the XCP standard.
@@ -53,3 +55,5 @@ task_cleanup[cxt]=1
 # Retain temporary files
 task_cleanup[cxt]=0
 ```
+
+[Return to modules >](https://pipedocs.github.io/modules)

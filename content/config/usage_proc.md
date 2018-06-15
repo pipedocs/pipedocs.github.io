@@ -1,3 +1,5 @@
+[Return to config >](https://pipedocs.github.io/config)
+
 # Use cases for the XCP pipeline
 
 The XCP pipeline supports a number of use cases for anatomical and functional image processing. This page is concerned with configuring analysis of a new dataset, as well as configuring common modifications to existing datasets or existing analyses. For general information about standard processing streams (e.g., activation, connectivity, anatomical), see [streams documentation](https://pipedocs.github.io/config/streams).
@@ -45,3 +47,5 @@ The XCP system supports image processing streams for multiple modalities, which 
  * [Functional connectivity](https://pipedocs.github.io/config/streams/fc)
  * [Anatomical](https://pipedocs.github.io/config/streams/anat)
  * [Functional activation](https://pipedocs.github.io/config/streams/task)
+
+[Return to config >](https://pipedocs.github.io/config)

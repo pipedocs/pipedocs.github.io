@@ -1,3 +1,5 @@
+[Return to modules >](https://pipedocs.github.io/modules)
+
 # `confound`: Confound/nuisance model module
 
 `confound` models artefactual signals present in a 4D time series image. The confound model created by this module can be used to mitigate effects of subject motion and other artefactual processes by residualising the 4D image with respect to the confound model. (The regression/residualisation procedure is managed separately in the `regress` module.) Several types of artefact can be modelled: physiological sources, including white matter and CSF signals; global signal; realignment parameters; and signals derived from principal component analysis (PCA, CompCor). Derivatives and squares can also be added to the confound model, as can signal during prior time points.
@@ -288,3 +290,5 @@ confound_custom[cxt]=
 confound_rerun[cxt]=0
 confound_cleanup[cxt]=1
 ```
+
+[Return to modules >](https://pipedocs.github.io/modules)

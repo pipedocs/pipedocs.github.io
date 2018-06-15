@@ -1,3 +1,5 @@
+[Return to modules >](https://pipedocs.github.io/modules)
+
 # `net`: Network analysis module
 
 `net` performs basic analysis of networks previously computed in other modules such as `fcon`. `net` operates on adjacency matrices, not images; adjacency matrices must be computed before `net` can be run. At this time, `net` principally computes community-related measures, beginning with computation of the community partition. A standard community detection algorithm is applied in order to identify major subnetworks or modules within the overall network. Community detection requires MATLAB; even if MATLAB is not available and community detection is not performed, community-based statistics will still be computed using an _a priori_ community partition if one is available for the current network. Afterward, within- and between-community connectivity measures are computed for potential use in group-level analyses.
@@ -95,3 +97,5 @@ net_cleanup[cxt]=1
 # Retain temporary files
 net_cleanup[cxt]=0
 ```
+
+[Return to modules >](https://pipedocs.github.io/modules)

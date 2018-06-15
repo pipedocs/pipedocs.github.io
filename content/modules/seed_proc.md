@@ -1,3 +1,5 @@
+[Return to modules >](https://pipedocs.github.io/modules)
+
 # `seed`: Seed-based correlation analysis module
 
 `seed` performs seed-based correlation analyses given a seed region or set of seed regions. For each seed region, which may be provided either as a 3D volume in NIfTI format or as coordinates in a library file, `seed` computes the pairwise connectivity between each voxel and the seed region, for instance using the Pearson correlation coefficient between timeseries (Biswal et al., 1995).
@@ -70,3 +72,5 @@ seed_cleanup[cxt]=1
 # Retain temporary files
 seed_cleanup[cxt]=0
 ```
+
+[Return to modules >](https://pipedocs.github.io/modules)

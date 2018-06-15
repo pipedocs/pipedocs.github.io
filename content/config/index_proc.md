@@ -1,3 +1,5 @@
+[Return to / >](https://pipedocs.github.io/)
+
 Pipeline configuration
 ======================
 
@@ -19,3 +21,5 @@ The system's front end, `xcpEngine`, accepts two primary arguments: a design fil
 [Front-end usage documentation](https://pipedocs.github.io/config/xcpEngine)
 
 [Standard processing streams](https://pipedocs.github.io/config/streams)
+
+[Return to / >](https://pipedocs.github.io/)

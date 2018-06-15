@@ -1,3 +1,5 @@
+[Return to modules >](https://pipedocs.github.io/modules)
+
 # Creating a new module
 
 Writing a new subject-level module for the BBL pipeline 
@@ -131,3 +133,5 @@ configure         <output name>        <initial value>
 ```bash
 qc <output name>  <variable name in quality tracker>  <path to output in module's directory>
 ```
+
+[Return to modules >](https://pipedocs.github.io/modules)

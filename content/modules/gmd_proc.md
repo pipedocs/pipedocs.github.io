@@ -1,3 +1,5 @@
+[Return to modules >](https://pipedocs.github.io/modules)
+
 # `gmd`: Grey matter density module
 
 `gmd` computes a voxelwise grey matter density map [based on previous work by Dr. Stathis Gennatas and colleagues](https://www.ncbi.nlm.nih.gov/pubmed/28432144). Grey matter density is loosely defined as the probability that each voxel is a part of the grey matter as determined using an iterative, priorless segmentation in ANTs Atropos.
@@ -27,3 +29,5 @@ gmd_cleanup[cxt]=1
 # Retain temporary files
 gmd_cleanup[cxt]=0
 ```
+
+[Return to modules >](https://pipedocs.github.io/modules)

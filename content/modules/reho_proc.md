@@ -1,3 +1,5 @@
+[Return to modules >](https://pipedocs.github.io/modules)
+
 # `reho`: Regional homogeneity module
 
 `reho` computes the regional homogeneity (ReHo) at each voxel of the processed image and/or within user-specified _a priori_ regions of interest. ReHo, or Kendall's W, is a measure of local uniformity in the BOLD signal. Greater ReHo values correspond to greater synchrony among BOLD activation patterns measured in a neighbourhood of voxels.
@@ -83,3 +85,5 @@ reho_cleanup[cxt]=1
 # Retain temporary files
 reho_cleanup[cxt]=0
 ```
+
+[Return to modules >](https://pipedocs.github.io/modules)

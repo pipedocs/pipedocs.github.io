@@ -1,3 +1,5 @@
+[Return to modules >](https://pipedocs.github.io/modules)
+
 # `norm`: Image normalisation module
 
 `norm` moves 4D timeseries from acquisition space into a standard space. It is only compatible with ITK-/ANTs-based transforms at this time. Before running normalisation, you must run coregistration to compute a transformation from the subject's functional image to the subject's anatomical image. It may also be necessary to compute a warp from the subject's anatomical image to a template in the target standard space.
@@ -30,3 +32,5 @@ norm_cleanup[cxt]=1
 # Retain temporary files
 norm_cleanup[cxt]=0
 ```
+
+[Return to modules >](https://pipedocs.github.io/modules)

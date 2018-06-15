@@ -1,3 +1,5 @@
+[Return to config >](https://pipedocs.github.io/config)
+
 # `xcpEngine`
 
 `xcpEngine` is the pipeline system's front end for image processing. This is the program that parses [design](https://pipedocs.github.io/config/design) and [cohort](https://pipedocs.github.io/config/cohort) files to deploy [processing streams](https://pipedocs.github.io/config/streams) for different imaging modalities. This page documents command-line options and acceptable arguments for the front end.
@@ -38,3 +40,5 @@ The verbosity level instructs the XCP system and its child scripts whether it sh
  * `1`: Module-level trace. Any image processing commands that are called by [pipeline modules](https://pipedocs.github.io/modules) are explicitly printed to the console or log. Calls to [utility scripts](https://pipedocs.github.io/utils) are printed, but any subroutines of utilities are omitted. For module validation and enhanced diagnosis of errors at the module level.
  * `2`: Utility-level trace. Like `1`, but subroutines of [utility scripts](https://pipedocs.github.io/utils) are also explicitly printed. For utility validation and enhanced diagnosis of errors at the utility level.
  * `3`: Maximum verbosity. Absolutely every command is traced. We've found that this level of verbosity is almost never warranted and that it will usually make error diagnosis more difficult, not easier, because it's easy to lose the most relevant information in the noise.
+
+[Return to config >](https://pipedocs.github.io/config)

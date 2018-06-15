@@ -1,3 +1,5 @@
+[Return to modules >](https://pipedocs.github.io/modules)
+
 # `aroma`: ICA-AROMA module
 
 `aroma` performs an ICA-based denoising procedure inspired by the ICA-AROMA strategy developed by Pruim and colleagues. ICA-AROMA decomposes fMRI time series data into spatial independent components using FSL's MELODIC. It then classifies each component as signal or noise on the basis of four features: correlation with motion parameters, fraction of the component in CSF, fraction of the component near the edge of the brain, and high-frequency content. If your work makes use of this module, please cite the original study by Pruim and colleagues.
@@ -129,3 +131,5 @@ aroma_cleanup[cxt]=1
 # Retain temporary files
 aroma_cleanup[cxt]=0
 ```
+
+[Return to modules >](https://pipedocs.github.io/modules)
