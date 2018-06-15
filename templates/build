@@ -6,6 +6,7 @@
 #SAVE='templates\|content\|git\|index\|README'
 SAVE='templates\|content\|git\|README'
 BASE='https://pipedocs.github.io'
+IMG='https://pipedocs.github.io/content/images'
 RAW='https://raw.githubusercontent.com/pipedocs/pipedocs.github.io/master'
 [[ -z ${DOCS} ]] && echo "Define DOCS first -- site not built" && exit
 
@@ -32,7 +33,7 @@ for c in ${content}
    c_d=${c_d##content}
    [[ -n ${c_d} ]] && c_d=${c_d##\/}/
    c=content/${c_d}${c_f}_proc.md
-   echo "${c_c}"|sed s@'%%BASEURL'@${BASE}@g >> ${c}
+   echo "${c_c}"|sed s@'%%BASEURL'@${BASE}@g|sed s@'%%IMAGE'@${IMG}@g >> ${c}
    mkdir -p ${DOCS}/${c_d}
    echo "${t_c}"|sed s@'%%BASEURL'@${BASE}@g|sed s@'%%MARKDOWN'@${RAW}'/'${c}@g >> ${DOCS}/${c_d}${c_f}.html
 done
