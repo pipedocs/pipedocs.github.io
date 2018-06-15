@@ -1,5 +1,3 @@
-[Return to / >](https://pipedocs.github.io/)
-
 # Functions
 
 _Functions_ are short, reusable, and encapsulated snippets of code that simplify specific operations within the pipeline ecosystem. For instance, functions support data I/O, metadata interfaces, and command logging. It’s not particularly important to be familiar with functions unless you are interested in developing or debugging pipeline modules and utilities.
@@ -144,5 +142,3 @@ This can be helpful when developing tools for the pipeline ecosystem.
  * [write_config_safe](https://pipedocs.github.io/functions/write_config_safe.html)
  * [write_derivative](https://pipedocs.github.io/functions/write_derivative.html)
  * [write_output](https://pipedocs.github.io/functions/write_output.html)
-
-[Return to / >](https://pipedocs.github.io/)

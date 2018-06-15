@@ -1,5 +1,3 @@
-[Return to / >](https://pipedocs.github.io/)
-
 # Modules
 
 Pipeline _modules_ are self-contained image processing routines. An image processing pipeline is created by combining desired modules; modules are the building blocks of an image processing pipeline. Each module either (a) processes the main brain image (the _analyte_), for instance by filtering or denoising it, or (b) uses the analyte to produce another dataset, called a _derivative_. (It’s also possible for modules to use derivatives to produce further derivatives).
@@ -64,5 +62,3 @@ Modules that produce estimates of data quality.
 
  * [`qcfc`](https://pipedocs.github.io/modules/qcfc.html): Quality assessment for functional connectivity. Generates voxelwise plots, QC-FC measures, and QC-FC estimates of distance-dependence to facilitate diagnosis of motion-related contamination and assessment of denoising efficacy.
  * [`qcanat`](https://pipedocs.github.io/modules/qcanat.html): \[UNSUPPORTED\] Quality assessment for anatomical images inspired by QAP.
-
-[Return to / >](https://pipedocs.github.io/)
