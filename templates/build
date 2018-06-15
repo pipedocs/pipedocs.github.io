@@ -34,6 +34,7 @@ for c in ${content}
    unset c_p c_p1 c_p2
    c_p=${c_d}
    [[ -n ${c_p} ]] && [[ ${c_f} == index ]] && c_p=$(dirname ${c_p})
+   [[ ${c_p} == '/' ]] && unset c_p
    [[ -n ${c_p} ]] && c_p='[Return to '$(basename ${c_p})' >](%%BASEURL'${c_p}')' && c_p1="${c_p}
 
 "  && c_p2="
