@@ -6,7 +6,9 @@ The XCP system is designed to run in the Linux bash shell. Users provide an inpu
 
 ## Neuroimage processing
 
+<p align="center">
 ![Raw to processed time series](%%IMAGE/tsRawToProcessed.png "Raw to processed time series")
+</p>
 
 Neuroimage processing refers collectively to the set of strategies used to convert the "raw" images collected from the scanner into appropriate inputs to group-level statistical analyses. The results of any group-level neuroimaging analysis will be sensitive to the combination of strategies used to process the subject-level images. Reproducibility of processing strategies is therefore critical.
 
