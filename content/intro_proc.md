@@ -6,6 +6,8 @@ The XCP system is designed to run in the Linux bash shell. Users provide an inpu
 
 ## Neuroimage processing
 
+![Raw to processed time series](https://pipedocs.github.io/content/images/tsRawToProcessed.png "Raw to processed time series")
+
 Neuroimage processing refers collectively to the set of strategies used to convert the "raw" images collected from the scanner into appropriate inputs to group-level statistical analyses. The results of any group-level neuroimaging analysis will be sensitive to the combination of strategies used to process the subject-level images. Reproducibility of processing strategies is therefore critical.
 
 MRI time series collected from the scanner are typically noisy. _Processing_ mitigates the effect of artefact and moves all subject-specific images into a common atlas space to facilitate direct voxelwise comparison.
@@ -33,6 +35,6 @@ The XCP system aims to provide a multimodal library of common processing routine
  * Analyses either in standard/atlas or subject/native space
  * Registration of images of any modality to a common template
 
-[Install the XCP system >](https://pipedocs.github.io/intro.html)
+[Install the XCP system >](https://github.com/PennBBL/xcpEngine)
 
-[Continue to pipeline configuration >](https://pipedocs.github.io/config/intro.html)
+[Continue to pipeline configuration >](https://pipedocs.github.io/config)
