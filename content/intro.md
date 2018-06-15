@@ -20,7 +20,19 @@ It encompasses denoising, filtering, registration, and production of any subject
 
 The XCP system was designed with the importance of scientific reproducibility in mind. Often, research groups process neuroimages using a dedicated, standalone "pipeline" for each image modality. For instance, task activation, perfusion, and functional connectivity analyses might each be processed by a separate script.
 
+<p align="center">
+![Non-modular pipelines](%%IMAGE/pipelinesOld.png "Non-modular pipelines")
+</p>
+
+_A standard, non-modular approach to developing pipelines with shared routines._
+
 However, this approach can easily lead to inconsistencies in output directory conventions, difficulty tracking pipeline versions, and limited flexibility in updating pipelines, all of which ultimately combine to compound reproducibility challenges. Often, many common routines are deployed across multiple MRI modalities, and it is in the interest of the investigator to minimise redundancy and maximise reproducibility.
+
+<p align="center">
+![A modular pipeline system](%%IMAGE/choosingModules.gif "A modular pipeline system")
+</p>
+
+_In the XCP system, select the modules that you want to use and recombine them into the pipeline that best suits your processing needs._
 
 The modular, atomic design of the XCP system allows for streamlined reproduction and recombination of frequently used image processing strategies across multiple pipelines and modalities.
 
@@ -36,6 +48,12 @@ The XCP system aims to provide a multimodal library of common processing routine
  * _Ad hoc_ generation of spherical ROI maps and node systems
  * Analyses either in standard/atlas or subject/native space
  * Registration of images of any modality to a common template
+
+<p align="center">
+![Standardised directory structure](%%IMAGE/directoryStructure.png "Standardised directory structure")
+</p>
+
+_The XCP system is agnostic to the directory structure of input data, but produces a consistent and intuitive output directory structure._
 
 [Install the XCP system >](https://github.com/PennBBL/xcpEngine)
 
