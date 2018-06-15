@@ -18,11 +18,7 @@ If you are adding new subjects to an existing sample, _do not_ create a new coho
 
 To add a new atlas or parcellation to a particular analysis, first ensure that you have the atlas files and metadata in your `$BRAINATLAS` directory (`${XCPEDIR}/atlas` by default). If files or metadata are missing, download the missing files from the brainspaces organisation.
 
-Next, add the new atlas to the collated spatial metadata file. To do this, run the [metadata repair utility](https://pipedocs.github.io/utils/repairMetadata.html):
-
-```bash
-${XCPEDIR}/utils/repairMetadata
-```
+Next, add the new atlas to the collated spatial metadata file. To do this, run the [metadata repair utility](https://pipedocs.github.io/utils/repairMetadata.html): `${XCPEDIR}/utils/repairMetadata`
 
 Finally, ensure that your design file correctly instructs the pipeline to include the new parcellation. Look for any [module-level variables](https://pipedocs.github.io/config/variables/scope.html) called `*_atlas`. As appropriate, ensure that those variables are set either to `all` (indicating that all atlases, including the new one, should be run) or a comma-separated series that includes the name of the new atlas. (This is the name of the directory in `$BRAINATLAS` from the first step above.)
 
