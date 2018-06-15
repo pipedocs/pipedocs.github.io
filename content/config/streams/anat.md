@@ -1,3 +1,5 @@
+[Return to streams >](%%BASEURL/config/streams)
+
 # Anatomical processing streams
 
 The XCP system includes 7 standard processing streams for volumetric anatomy. These base anatomical streams are summarised below. All processing streams are heavily based on the ANTs software library. Base anatomical streams can be modified at will to suit the dataset that is to be processed.
@@ -10,10 +12,14 @@ If you are processing anatomical data exclusively to obtain references for funct
 
 ## Available modules
 
+<p align="center">
+![Anatomical processing modules](%%IMAGE/streamsAnatModules.png "Anatomical processing modules")
+</p>
+
  * [`struc`](%%BASEURL/modules/struc)
  * [`gmd`](%%BASEURL/modules/gmd)
- * [`cortcon`](%%BASEURL/modules/cortcon)
- * [`sulc`](%%BASEURL/modules/sulc)
+ * [`cortcon`](%%BASEURL/modules/cortcon) \[UNSUPPORTED\]
+ * [`sulc`](%%BASEURL/modules/sulc) \[UNSUPPORTED\]
  * [`jlf`](%%BASEURL/modules/jlf)
  * [`roiquant`](%%BASEURL/modules/roiquant)
  * [`qcanat`](%%BASEURL/modules/qcanat)
@@ -78,13 +84,13 @@ Grey matter density is estimated as the probability that each voxel is assigned 
 
 [Reference](https://www.ncbi.nlm.nih.gov/pubmed/28432144)
 
-### Sulcal depth
+### Sulcal depth*
 
 _Module_: [`sulc`](%%BASEURL/modules/sulc)
 
 Sulcal depth is an index of the average depth or sulcalisation of each region relative to an estimate of the brain's hull. Sulcal depth is computed across two ribbons, corresponding to rough estimates of the pial-grey and grey-white interfaces. The voxelwise map should _never_ be used for group-level analysis; only regional values are to be used. This feature is highly experimental, unproven, and unsupported, as computations of sulcal depth are historically performed using surface-based rather than volumetric processing.
 
-### Cortical contrast
+### Cortical contrast*
 
 _Module_: [`cortcon`](%%BASEURL/modules/cortcon)
 
@@ -125,3 +131,5 @@ Several indices of image quality are currently computable during anatomical proc
 _Module_: [`struc`](%%BASEURL/modules/struc)
 
 Image normalisation shifts derivative maps (and potentially the primary image) into a standard sample-level or population-level space to facilitate comparisons between subjects. The normalisation step applies the transformations computed in the ANTs registration step.
+
+[Return to streams >](%%BASEURL/config/streams)
