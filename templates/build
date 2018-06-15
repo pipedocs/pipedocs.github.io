@@ -31,9 +31,19 @@ for c in ${content}
    c_f=$(basename ${c})
    c_f=${c_f//\.md/}
    c_d=${c_d##content}
+   unset c_p c_p1 c_p2
+   c_p=${c_d}
+   [[ -n ${c_p} ]] && [[ ${c_f} == index ]] && c_p=$(dirname ${c_p})
+   [[ -n ${c_p} ]] && c_p='[Return to '$(basename ${c_p})' >](%%BASEURL'${c_p}')' && c_p1="${c_p}
+
+"  && c_p2="
+
+${c_p}" || c_p=''
    [[ -n ${c_d} ]] && c_d=${c_d##\/}/
    c=content/${c_d}${c_f}_proc.md
-   echo "${c_c}"|sed s@'%%BASEURL'@${BASE}@g|sed s@'%%IMAGE'@${IMG}@g >> ${c}
+   echo \
+"${c_p1}${c_c}${c_p2}"\
+   |sed s@'%%BASEURL'@${BASE}@g|sed s@'%%IMAGE'@${IMG}@g >> ${c}
    mkdir -p ${DOCS}/${c_d}
    echo "${t_c}"|sed s@'%%BASEURL'@${BASE}@g|sed s@'%%MARKDOWN'@${RAW}'/'${c}@g >> ${DOCS}/${c_d}${c_f}.html
 done
