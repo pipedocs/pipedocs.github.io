@@ -1,8 +1,8 @@
 # BBL Imaging Pipeline
 
-The BBL imaging pipeline (XCP system) is a free, open-source software package for processing of multimodal neuroimages. The XCP system uses a modular design to deploy analytic routines from leading MRI analysis platforms, including FSL, AFNI,and ANTs.
+The BBL imaging pipeline (XCP system) is a free, open-source software package for processing of multimodal neuroimages. The XCP system uses a [modular design](https://pipedocs.github.io/modules/index.html) to deploy analytic routines from leading MRI analysis platforms, including FSL, AFNI,and ANTs.
 
-The XCP system is designed to run in the Linux bash shell. Users provide an input data set and specify parameters for the analysis that they wish to perform on that data set, and the XCP Engine parses the user-provided parameters to build a processing pipeline. The XCP system supports a number of pipeline modalities, including functional connectivity, volumetric anatomy, task-based activation, and perfusion.
+The XCP system is designed to run in the Linux bash shell. Users provide an input data set and specify parameters for the analysis that they wish to perform on that data set, and the XCP Engine parses the user-provided parameters to build a processing pipeline. The XCP system supports a number of pipeline modalities, including [functional connectivity](https://pipedocs.github.io/config/streams/fc), [volumetric anatomy](https://pipedocs.github.io/config/streams/anat), [task-based activation](https://pipedocs.github.io/config/streams/task), and perfusion.
 
 ## Neuroimage processing
 
@@ -18,6 +18,8 @@ The XCP system was designed with the importance of scientific reproducibility in
 
 However, this approach can easily lead to inconsistencies in output directory conventions, difficulty tracking pipeline versions, and limited flexibility in updating pipelines, all of which ultimately combine to compound reproducibility challenges. Often, many common routines are deployed across multiple MRI modalities, and it is in the interest of the investigator to minimise redundancy and maximise reproducibility.
 
+The modular, atomic design of the XCP system allows for streamlined reproduction and recombination of frequently used image processing strategies across multiple pipelines and modalities.
+
 ## Features
 
 The XCP system aims to provide a multimodal library of common processing routines that will improve scientific reproducibility. Features include:
@@ -30,3 +32,7 @@ The XCP system aims to provide a multimodal library of common processing routine
  * _Ad hoc_ generation of spherical ROI maps and node systems
  * Analyses either in standard/atlas or subject/native space
  * Registration of images of any modality to a common template
+
+[Install the XCP system >](https://pipedocs.github.io/intro.html)
+
+[Continue to pipeline configuration >](https://pipedocs.github.io/config/intro.html)
