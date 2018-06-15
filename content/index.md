@@ -1,4 +1,4 @@
-BBL Imaging Pipeline
+XCP Imaging Pipeline
 ====================
 
 [INTRODUCTION >](%%BASEURL/intro.html)

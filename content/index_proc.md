@@ -1,4 +1,4 @@
-BBL Imaging Pipeline
+XCP Imaging Pipeline
 ====================
 
 [INTRODUCTION >](https://pipedocs.github.io/intro.html)
