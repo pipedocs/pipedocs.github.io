@@ -1,6 +1,6 @@
-# BBL Imaging Pipeline
+# XCP Imaging Pipeline
 
-The BBL imaging pipeline (XCP system) is a free, open-source software package for processing of multimodal neuroimages. The XCP system uses a [modular design](%%BASEURL/modules/index.html) to deploy analytic routines from leading MRI analysis platforms, including FSL, AFNI, and ANTs.
+The XCP imaging pipeline (XCP system) is a free, open-source software package for processing of multimodal neuroimages. The XCP system uses a [modular design](%%BASEURL/modules/index.html) to deploy analytic routines from leading MRI analysis platforms, including FSL, AFNI, and ANTs.
 
 The XCP system is designed to run in the Linux bash shell. Users provide an input data set and specify parameters for the analysis that they wish to perform on that data set, and the XCP Engine parses the user-provided parameters to build a processing pipeline. The XCP system supports a number of pipeline modalities, including [functional connectivity](%%BASEURL/config/streams/fc), [volumetric anatomy](%%BASEURL/config/streams/anat), [task-based activation](%%BASEURL/config/streams/task), and perfusion.
 
