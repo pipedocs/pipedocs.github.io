@@ -24,7 +24,8 @@ ${XCPEDIR}/xcpEngine \
    -o ${output_root} \
    -t 1 \
    -r ${DATADIR} \
-   ${cluster_arg}
+   ${cluster_arg} \
+   -a 'standard=MNI%2x2x2'
 ```
 
 This call will bring up 2 validation steps: (1) a command-line check and (2) a dependency check. During the command-line check (preceded by the notification `"Constructing a pipeline based on user specifications"`), the pipeline engine validates each of the command-line options passed by the user. During the dependency check (preceded by the notification `"Checking general dependencies"`), the pipeline engine verifies that all of its dependencies are installed and well-defined in its environment.
@@ -61,7 +62,11 @@ All environmental variables are defined.
 Checking module-specific dependencies
 ```
 
-The pipeline will also log all dependency versions in a JSON file located in the group-level output directory. You can verify that the pipeline is logging dependency versions and paths by running `${XCPEDIR}/thirdparty/jq/jq-linux64 '.' ${output_root}/group/dependencies/*_pipelineDescription.json`. You can also use this metadata file to compare versions across pipeline runs and ensure consistency.
+The pipeline will also log all dependency versions in a JSON file located in the group-level output directory. You can verify that the pipeline is logging dependency versions and paths by running the command shown. You can also use this metadata file to compare versions across pipeline runs and ensure consistency.
+
+```bash
+${XCPEDIR}/thirdparty/jq/jq-linux64 '.' ${output_root}/group/dependencies/*_pipelineDescription.json
+```
 
 After the input and environment validation completes, the pipeline will launch with a console splash, a notification of the [module]($$BASEURL/modules) (or processing step) that it's currently running, and (if you're running in cluster mode) a tally of the number of jobs left before that module is complete.
 
@@ -165,7 +170,10 @@ Begin by looking at the subject-level output. Navigate to the first subject's ou
 * A subject-specific copy of the design file that you used to run the pipeline, evaluated and modified to correspond to this particular subject (`19441,9768`). (In the XCP system, the process of mapping the template design file to each subject is called _localisation_, and the script that handles this is called the _localiser_.)
 * An atlas directory (`19441_9768_atlas`). Inside the atlas directory, each parcellation that has been analysed will exist as a NIfTI file, registered to the subject's [native space](https://pipedocs.github.io/space).
   * The pipeline can process any number of atlases. For each provided atlas, the pipeline will produce regional values for any measures of interest (including networks/adjacency matrices, regional homogeneity, or activation maps).
-  * To verify that the registration succeeded, take a look at the atlas's alignment with a representative image of the sequence. Run `fslview ${output_root}/19441/9768/prestats/19441_9768_referenceVolume.nii.gz ${output_root}/19441/9768/19441_9768_atlas/19441_9768_schaefer400.nii.gz &` to examine the atlas overlaid on the representative image. There should be good concordance between the images, with the exception of temporopolar and orbitofrontal regions. (This deficit occurs because we did not run distortion correction on this example dataset.)
+  * To verify that the registration succeeded, take a look at the atlas's alignment with a representative image of the sequence. Run the `fslview` command to examine the atlas overlaid on the representative image. There should be good concordance between the images, with the exception of temporopolar and orbitofrontal regions. (This deficit occurs because we did not run distortion correction on this example dataset.)
+```bash
+fslview ${output_root}/19441/9768/prestats/19441_9768_referenceVolume.nii.gz ${output_root}/19441/9768/19441_9768_atlas/19441_9768_schaefer400.nii.gz &
+```
 * A subdirectory corresponding to each pipeline module, as defined in the `pipeline` variable in the [design file](https://pipedocs.github.io/config/design). For the most part, these directories store images and files that the pipeline uses to verify successful processing.
   * Take a look inside the [`fcon`](https://pipedocs.github.io/modules/fcon) subdirectory. Inside, there will be a separate subdirectory for each of the atlases that the pipeline has processed. For instance, in the `power264` subdirectory (corresponding to the [264-node Power atlas](https://www.ncbi.nlm.nih.gov/pubmed/22099467)), there will be files suffixed `ts.1D` and `network.txt`.
   * `ts.1D` contains 264 columns corresponding to each node of the atlas; each column contains a region's functional time series.
@@ -175,7 +183,10 @@ Begin by looking at the subject-level output. Navigate to the first subject's ou
 * A spatial metadata file (`19441_9768_spaces.json`). The pipeline uses this to determine how to move images between different [coordinate spaces](https://pipedocs.github.io/space).
 * The final output of processing (`19441_9768.nii.gz`). This is the primary functional image, after all image processing steps have been applied to it. However, this file usually isn't as useful for analysis as are its derivatives, which brings us to . . .
 * An index of derivative images (`19441_9768_derivatives.json`).
-  * Let's look at the content of the derivatives file now. Run `${XCPEDIR}/thirdparty/jq/jq-linux64 '.' ${output_root}/19441/9768/19441_9768_derivatives.json`, and find the entry for `reho`. This JSON object corresponds to the voxelwise map of this subject's regional homogeneity (_ReHo_).
+  * Let's look at the content of the derivatives file now. Run the command shown, and find the entry for `reho`. This JSON object corresponds to the voxelwise map of this subject's regional homogeneity (_ReHo_).
+  ```bash
+  ${XCPEDIR}/thirdparty/jq/jq-linux64 '.' ${output_root}/19441/9768/19441_9768_derivatives.json
+  ```
   * The map can be found in the path next to the `Map` attribute. (You can open this in `fslview` if you would like.)
   * The `Provenance` attributes tell us that the map was produced as part of the 6th pipeline module, `reho`.
   * The `Space` attribute tells us that the map is in 2mm isotropic MNI space.
