@@ -84,7 +84,7 @@ Segmentation implemented in the `SEG` routine can be either prior-driven or prio
 struc_seg_priors[cxt]=1
 
 # do not use priors for segmentation
-struc_seg_priors[cxt]=1
+struc_seg_priors[cxt]=0
 ```
 
 `struc_seg_priors` must be either `0` or `1`.
