@@ -23,7 +23,7 @@ container, these will be seen as existing relative to the
 bind point. This means they need to be specified like so:
 
 ```console
-singularity run \
+$ singularity run xcpEngine.simg \
     -B /data:/home/user/data \
     -c /home/user/data/study/my_cohort_rel_container.csv \
     -d /home/user/data/study/my_design.dsn \
@@ -40,7 +40,7 @@ the host OS, you would need to specify a *relative root* when
 you run the container.
 
 ```console
-singularity run \
+$ singularity run xcpEngine.simg \
     -B /data:/home/user/data \
     -c /home/user/data/study/my_cohort_host_paths.csv \
     -d /home/user/data/study/my_design.dsn \
@@ -92,9 +92,9 @@ echo \$HEADER > \$TEMP_COHORT
 echo \$LINE >> \$TEMP_COHORT
 
 \$SNGL run -B /data:/home/mcieslak/data \$SIMG \\
-  -c /home/user\${TEMP_COHORT} \
-  -d /home/user/data/study/my_design.dsn \
-  -o /home/user/data/study/output \
+  -c /home/user\${TEMP_COHORT} \\
+  -d /home/user/data/study/my_design.dsn \\
+  -o /home/user/data/study/output \\
   -i \$TMPDIR
 
 EOF
