@@ -102,3 +102,25 @@ qsub xcpRun.sh
 ```
 You will need to run group analysis with your whole cohort file after the
 jobs have all finished.
+
+## Using the bundled software
+
+All the neuroimaging software used by xcpEngine is available
+inside the Singularity image. Suppose you couldn't get FSL 5.0.11
+to run on your host OS. You could access it by
+
+```console
+$ singularity shell -B /data:/home/user/data xcpEngine.simg
+Singularity: Invoking an interactive shell within container...
+
+Singularity xcpEngine.simg:~> flirt -version
+FLIRT version 6.0
+
+Singularity xcpEngine.simg:~> antsRegistration --version
+ANTs Version: 2.2.0.dev815-g0740f
+Compiled: Jun 27 2017 17:39:25
+
+```
+
+This can be useful on a system where you don't have current compilers or
+root permissions.

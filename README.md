@@ -1,11 +1,6 @@
-# This is a readme
+# Making html
 
-## Maybe
-
-### Something
-
-Something something
-
-## Or maybe not
-
-There is a cat here
+```bash
+export DOCS=/path/to/.
+templates/build
+```
