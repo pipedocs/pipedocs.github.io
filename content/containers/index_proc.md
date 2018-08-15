@@ -23,7 +23,7 @@ container, these will be seen as existing relative to the
 bind point. This means they need to be specified like so:
 
 ```console
-singularity run \
+$ singularity run xcpEngine.simg \
     -B /data:/home/user/data \
     -c /home/user/data/study/my_cohort_rel_container.csv \
     -d /home/user/data/study/my_design.dsn \
@@ -40,7 +40,7 @@ the host OS, you would need to specify a *relative root* when
 you run the container.
 
 ```console
-singularity run \
+$ singularity run xcpEngine.simg \
     -B /data:/home/user/data \
     -c /home/user/data/study/my_cohort_host_paths.csv \
     -d /home/user/data/study/my_design.dsn \
@@ -62,7 +62,8 @@ inside the container and provide the container-bound path to it.
 ## Using SGE to parallelize across subjects
 
 By running xcpEngine from a container, you lose the ability to submit jobs
-to the cluster directly from xcpEngine.
+to the cluster directly from xcpEngine. Here is a way to split your cohort
+file and submit a qsub job for each line.
 
 ```bash
 #!/bin/bash
@@ -91,11 +92,35 @@ echo \$HEADER > \$TEMP_COHORT
 echo \$LINE >> \$TEMP_COHORT
 
 \$SNGL run -B /data:/home/mcieslak/data \$SIMG \\
-  -c /home/user\${TEMP_COHORT} \
-  -d /home/user/data/study/my_design.dsn \
-  -o /home/user/data/study/output \
+  -c /home/user\${TEMP_COHORT} \\
+  -d /home/user/data/study/my_design.dsn \\
+  -o /home/user/data/study/output \\
   -i \$TMPDIR
 
 EOF
 qsub xcpRun.sh
 ```
+You will need to run group analysis with your whole cohort file after the
+jobs have all finished.
+
+## Using the bundled software
+
+All the neuroimaging software used by xcpEngine is available
+inside the Singularity image. Suppose you couldn't get FSL 5.0.11
+to run on your host OS. You could access it by
+
+```console
+$ singularity shell -B /data:/home/user/data xcpEngine.simg
+Singularity: Invoking an interactive shell within container...
+
+Singularity xcpEngine.simg:~> flirt -version
+FLIRT version 6.0
+
+Singularity xcpEngine.simg:~> antsRegistration --version
+ANTs Version: 2.2.0.dev815-g0740f
+Compiled: Jun 27 2017 17:39:25
+
+```
+
+This can be useful on a system where you don't have current compilers or
+root permissions.

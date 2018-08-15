@@ -1,4 +1,4 @@
-[Return to utils >](https://pipedocs.github.io/utils)
+[Return to utils >](https://pipedocs.github.io//utils)
 
 # `qcfc`
 
@@ -102,4 +102,4 @@ _Default value: `true`_
 
 A logical-valued option indicating whether `qcfc` should save a density plot of the QC-FC distribution. If `ggplot2` and `reshape2` are not installed, then this option is automatically disabled.
 
-[Return to utils >](https://pipedocs.github.io/utils)
+[Return to utils >](https://pipedocs.github.io//utils)

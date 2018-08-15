@@ -1,4 +1,4 @@
-[Return to config >](https://pipedocs.github.io/config)
+[Return to config >](https://pipedocs.github.io//config)
 
 Pipeline tutorial
 =================
@@ -221,4 +221,4 @@ Now, let's pull this information together to consider how the pipeline system op
 
 To get help, the correct channel to use is [Github](https://github.com/PennBBL/xcpEngine/issues). Open a new issue and describe your problem. If the problem is highly dataset-specific, you can contact the development team by email, but Github is almost always the preferred channel for communicating about pipeline functionality. You can also use the issue system to request new pipeline features or suggest changes.
 
-[Return to config >](https://pipedocs.github.io/config)
+[Return to config >](https://pipedocs.github.io//config)

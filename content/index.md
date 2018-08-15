@@ -5,6 +5,8 @@ XCP Imaging Pipeline
 
 [CONFIGURATION >](%%BASEURL/config/index.html)
 
+[SINGULARITY >](%%BASEURL/containers/index.html)
+
 [FUNCTIONS >](%%BASEURL/functions/index.html)
 
 [MODULES >](%%BASEURL/modules/index.html)

@@ -1,4 +1,4 @@
-[Return to modules >](https://pipedocs.github.io/modules)
+[Return to modules >](https://pipedocs.github.io//modules)
 
 # `net`: Network analysis module
 
@@ -98,4 +98,4 @@ net_cleanup[cxt]=1
 net_cleanup[cxt]=0
 ```
 
-[Return to modules >](https://pipedocs.github.io/modules)
+[Return to modules >](https://pipedocs.github.io//modules)

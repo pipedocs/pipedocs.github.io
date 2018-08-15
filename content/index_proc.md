@@ -5,6 +5,8 @@ XCP Imaging Pipeline
 
 [CONFIGURATION >](https://pipedocs.github.io/config/index.html)
 
+[SINGULARITY >](https://pipedocs.github.io/containers/index.html)
+
 [FUNCTIONS >](https://pipedocs.github.io/functions/index.html)
 
 [MODULES >](https://pipedocs.github.io/modules/index.html)

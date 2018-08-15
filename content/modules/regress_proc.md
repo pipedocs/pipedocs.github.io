@@ -1,4 +1,4 @@
-[Return to modules >](https://pipedocs.github.io/modules)
+[Return to modules >](https://pipedocs.github.io//modules)
 
 # `regress`: Confound/nuisance regression module
 
@@ -136,4 +136,4 @@ Format `regress_process` as a string of concatenated three-character routine cod
 # Temporal filtering first (equivalent to 'Simult' in Hallquist et al., 2014)
 ```
 
-[Return to modules >](https://pipedocs.github.io/modules)
+[Return to modules >](https://pipedocs.github.io//modules)

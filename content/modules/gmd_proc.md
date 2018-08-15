@@ -1,4 +1,4 @@
-[Return to modules >](https://pipedocs.github.io/modules)
+[Return to modules >](https://pipedocs.github.io//modules)
 
 # `gmd`: Grey matter density module
 
@@ -30,4 +30,4 @@ gmd_cleanup[cxt]=1
 gmd_cleanup[cxt]=0
 ```
 
-[Return to modules >](https://pipedocs.github.io/modules)
+[Return to modules >](https://pipedocs.github.io//modules)

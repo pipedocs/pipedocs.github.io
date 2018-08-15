@@ -1,4 +1,4 @@
-[Return to modules >](https://pipedocs.github.io/modules)
+[Return to modules >](https://pipedocs.github.io//modules)
 
 # `roiquant`: Regional quantification module
 
@@ -78,4 +78,4 @@ roiquant_cleanup[cxt]=1
 roiquant_cleanup[cxt]=0
 ```
 
-[Return to modules >](https://pipedocs.github.io/modules)
+[Return to modules >](https://pipedocs.github.io//modules)

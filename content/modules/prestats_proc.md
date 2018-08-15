@@ -1,4 +1,4 @@
-[Return to modules >](https://pipedocs.github.io/modules)
+[Return to modules >](https://pipedocs.github.io//modules)
 
 # `prestats`: fMRI preprocessing module
 
@@ -415,4 +415,4 @@ Permitted codes include:
  * `SPT`: spatial filter
  * `TMP`: temporal filter"
 
-[Return to modules >](https://pipedocs.github.io/modules)
+[Return to modules >](https://pipedocs.github.io//modules)

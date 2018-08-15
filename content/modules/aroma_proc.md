@@ -1,4 +1,4 @@
-[Return to modules >](https://pipedocs.github.io/modules)
+[Return to modules >](https://pipedocs.github.io//modules)
 
 # `aroma`: ICA-AROMA module
 
@@ -132,4 +132,4 @@ aroma_cleanup[cxt]=1
 aroma_cleanup[cxt]=0
 ```
 
-[Return to modules >](https://pipedocs.github.io/modules)
+[Return to modules >](https://pipedocs.github.io//modules)
