@@ -63,7 +63,10 @@ inside the container and provide the container-bound path to it.
 
 By running xcpEngine from a container, you lose the ability to submit jobs
 to the cluster directly from xcpEngine. Here is a way to split your cohort
-file and submit a qsub job for each line.
+file and submit a qsub job for each line. *Note that we are using
+`my_cohort_rel_container.csv`, which means we don't need to specify
+an `-r` flag. If your cohort file uses paths relative to the host's
+file system you will beed to specify `-r`*
 
 ```bash
 #!/bin/bash
@@ -74,7 +77,7 @@ if [[ ${NJOBS} == 0 ]]; then
     exit 0
 fi
 
-cat << EOF > xcpRun.sh
+cat << EOF > xcpParallel.sh
 #$ -V
 #$ -t 1-${NJOBS}
 
@@ -98,7 +101,7 @@ echo \$LINE >> \$TEMP_COHORT
   -i \$TMPDIR
 
 EOF
-qsub xcpRun.sh
+qsub xcpParallel.sh
 ```
 You will need to run group analysis with your whole cohort file after the
 jobs have all finished.
