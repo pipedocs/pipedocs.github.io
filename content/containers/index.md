@@ -66,7 +66,7 @@ to the cluster directly from xcpEngine. Here is a way to split your cohort
 file and submit a qsub job for each line. *Note that we are using
 `my_cohort_rel_container.csv`, which means we don't need to specify
 an `-r` flag. If your cohort file uses paths relative to the host's
-file system you will beed to specify `-r`*
+file system you will need to specify `-r`*
 
 ```bash
 #!/bin/bash
