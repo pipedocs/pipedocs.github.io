@@ -1,4 +1,4 @@
-[Return to modules >](https://pipedocs.github.io//modules)
+[Return to modules >](https://pipedocs.github.io/modules)
 
 # `norm`: Image normalisation module
 
@@ -33,4 +33,4 @@ norm_cleanup[cxt]=1
 norm_cleanup[cxt]=0
 ```
 
-[Return to modules >](https://pipedocs.github.io//modules)
+[Return to modules >](https://pipedocs.github.io/modules)

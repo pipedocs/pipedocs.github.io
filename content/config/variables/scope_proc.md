@@ -1,4 +1,4 @@
-[Return to variables >](https://pipedocs.github.io//config/variables)
+[Return to variables >](https://pipedocs.github.io/config/variables)
 
 # Variable scope
 
@@ -37,4 +37,4 @@ Local variables are active only in the body of a function. They do not persist o
 
 ## Changing the scope of a variable: module-to-subject
 
-[Return to variables >](https://pipedocs.github.io//config/variables)
+[Return to variables >](https://pipedocs.github.io/config/variables)

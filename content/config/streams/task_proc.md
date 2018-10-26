@@ -1,4 +1,4 @@
-[Return to streams >](https://pipedocs.github.io//config/streams)
+[Return to streams >](https://pipedocs.github.io/config/streams)
 
 # Functional activation stream
 
@@ -92,4 +92,4 @@ _Module_: [`norm`](https://pipedocs.github.io/modules/norm)
 
 Image normalisation shifts derivative maps (and potentially the primary image) into a standard sample-level or population-level space to facilitate comparisons between subjects. The normalisation step applies the affine coregistration and any diffeomorphic warps computed as part of the [anatomical stream](https://pipedocs.github.io/config/streams/anat).
 
-[Return to streams >](https://pipedocs.github.io//config/streams)
+[Return to streams >](https://pipedocs.github.io/config/streams)

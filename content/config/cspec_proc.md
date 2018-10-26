@@ -1,4 +1,4 @@
-[Return to config >](https://pipedocs.github.io//config)
+[Return to config >](https://pipedocs.github.io/config)
 
 # The cluster specifications file
 
@@ -17,4 +17,4 @@ cspec=(
 )
 ```
 
-[Return to config >](https://pipedocs.github.io//config)
+[Return to config >](https://pipedocs.github.io/config)

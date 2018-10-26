@@ -1,4 +1,4 @@
-[Return to space >](https://pipedocs.github.io//space)
+[Return to space >](https://pipedocs.github.io/space)
 
 # Spatial coordinate libraries (`.sclib`)
 
@@ -8,4 +8,4 @@ A spatial coordinate library (`.sclib` file) provides a concise (but admittedly 
 
 The header of the `sclib` file defines the reference coordinate space in which all coordinates in the library are defined. The space should be defined as a subdirectory of `$BRAINSPACES`, typically located at `$XCPEDIR/space`.
 
-[Return to space >](https://pipedocs.github.io//space)
+[Return to space >](https://pipedocs.github.io/space)

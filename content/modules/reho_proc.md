@@ -1,4 +1,4 @@
-[Return to modules >](https://pipedocs.github.io//modules)
+[Return to modules >](https://pipedocs.github.io/modules)
 
 # `reho`: Regional homogeneity module
 
@@ -86,4 +86,4 @@ reho_cleanup[cxt]=1
 reho_cleanup[cxt]=0
 ```
 
-[Return to modules >](https://pipedocs.github.io//modules)
+[Return to modules >](https://pipedocs.github.io/modules)
