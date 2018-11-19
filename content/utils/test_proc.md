@@ -1,4 +1,4 @@
-[Return to utils >](https://pipedocs.github.io//utils)
+[Return to utils >](https://pipedocs.github.io/utils)
 
 # This is a readme
 
@@ -12,4 +12,4 @@ Something something
 
 There is a cat here
 
-[Return to utils >](https://pipedocs.github.io//utils)
+[Return to utils >](https://pipedocs.github.io/utils)

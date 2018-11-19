@@ -1,4 +1,4 @@
-[Return to modules >](https://pipedocs.github.io//modules)
+[Return to modules >](https://pipedocs.github.io/modules)
 
 # `coreg`: Image co-registration module
 
@@ -176,4 +176,4 @@ coreg_cleanup[cxt]=1
 coreg_cleanup[cxt]=0
 ```
 
-[Return to modules >](https://pipedocs.github.io//modules)
+[Return to modules >](https://pipedocs.github.io/modules)

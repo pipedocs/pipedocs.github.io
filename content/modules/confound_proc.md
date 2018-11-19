@@ -1,4 +1,4 @@
-[Return to modules >](https://pipedocs.github.io//modules)
+[Return to modules >](https://pipedocs.github.io/modules)
 
 # `confound`: Confound/nuisance model module
 
@@ -291,4 +291,4 @@ confound_rerun[cxt]=0
 confound_cleanup[cxt]=1
 ```
 
-[Return to modules >](https://pipedocs.github.io//modules)
+[Return to modules >](https://pipedocs.github.io/modules)

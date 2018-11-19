@@ -1,4 +1,4 @@
-[Return to config >](https://pipedocs.github.io//config)
+[Return to config >](https://pipedocs.github.io/config)
 
 # Processing streams
 
@@ -16,4 +16,4 @@ In the XCP system, a standard set of processing streams is available for each su
 
 [Diffusion >](https://pipedocs.github.io/config/streams/diffusion) \[UNRELEASED\]
 
-[Return to config >](https://pipedocs.github.io//config)
+[Return to config >](https://pipedocs.github.io/config)

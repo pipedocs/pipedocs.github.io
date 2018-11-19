@@ -1,4 +1,4 @@
-[Return to modules >](https://pipedocs.github.io//modules)
+[Return to modules >](https://pipedocs.github.io/modules)
 
 # `fcon`: Functional connectivity module
 
@@ -107,4 +107,4 @@ fcon_cleanup[cxt]=1
 fcon_cleanup[cxt]=0
 ```
 
-[Return to modules >](https://pipedocs.github.io//modules)
+[Return to modules >](https://pipedocs.github.io/modules)
