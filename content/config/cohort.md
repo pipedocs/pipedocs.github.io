@@ -11,7 +11,7 @@ A pipeline cohort file defines the experimental sample -- the set of subjects th
 
 ## Examples
 
-Cohort files can usually be prepared using a simple command-line call. In the future, the pipeline system will be expanded to support automated generation of cohorts given a known standard directory structure (e.g., HCP, OpenFMRI, BIDS, BBL). The contents of a cohort file will vary depending upon:
+Cohort files can usually be prepared using a simple command-line call. The contents of a cohort file will vary depending upon:
 
  * The imaging modality
  * The experimental objective
@@ -21,17 +21,17 @@ Examples for a few common processing cases are provided below.
 
 ### Subject identifiers
 
-In general, all cohort files should contain a unique set of identifier variables for each unique subject. The pipeline system uses identifier variables to generate a unique output path for each input. To cast a cohort field as an identifier, give it the name `id<i>` in the cohort header, where `<i>` is a nonnegative integer. In the illustrative example, `id0` might correspond to the subject's identifier, `id1` to the time point (as in a longitudinal study). So `DSQ,001` would denote the first time point for subject DSQ.
+In general, all cohort files should contain a unique set of identifier variables for each unique subject. The pipeline system uses identifier variables to generate a unique output path for each input. To cast a cohort field as an identifier, give it the name `id<i>` in the cohort header, where `<i>` is a nonnegative integer. In the illustrative example, `id0` might correspond to the subject's identifier, `id1` to the time point (as in a longitudinal study). So `sub-01,ses-01` would denote the first session for subject 001. Note that these do not get automatically added to paths when xcp is looking for files.
 
 ```
 id0,id1
-ACC,001
-ACC,002
-DSQ,001
-DSQ,001
-DSQ,002
-DSQ,002
-CAT,001
+sub-01,ses-01
+sub-01,ses-02
+sub-02,ses-01
+sub-03,ses-01
+sub-03,ses-02
+sub-04,ses-02
+sub-04,ses-01
 ```
 
 #### Guidelines and specifications
@@ -39,55 +39,46 @@ CAT,001
  * There are no upper or lower limits to the number of identifier variables that can be provided, but in general it is recommended that they be ordered hierarchically. That is, subject should precede time point and not the other way around.
  * Identifiers can comprise any combination of alphanumeric characters and underscores. Any other characters should be excised or mapped to the set of valid characters.
 
-#### Missing identifiers
-
-If no identifier columns are provided in the cohort file, then the pipeline system will automatically assign a single identifier to each subject. Automatic identifiers are integers beginning with `9001` and ascending in increments of 1 for each row. So row 1 is assigned `9001`, row 2 is assigned `9002`, and row 2133 is assigned `11133`.
-
 ### Path definitions
 
-Paths defined in a cohort file can be specified either as absolute paths or as relative paths. For portability, relative path definitions are recommended where possible. If relative paths are provided, then the call to `xcpEngine` should include the `-r` flag, which accepts as its argument the path relative to which cohort paths were defined. For instance, the provided example would yield a value of `/data/studies/example/raw/ACC_001_anat.nii.gz` for `img`.
+Paths defined in a cohort file can be specified either as absolute paths or as relative paths. For portability, relative path definitions are recommended where possible. If relative paths are provided, then the call to `xcpEngine` should include the `-r` flag, which accepts as its argument the path relative to which cohort paths were defined. For instance, the provided example would yield a value of `/data/example/derivatives/fmriprep/sub-01/ses-01/anat/sub-01_ses-01_desc-preproc_T1w.nii.gz` for `img`.
 ```
--r /data/studies/example/
+-r /data/example/derivatives/fmriprep
 
 id0,id1,img
-ACC,001,raw/ACC_001_anat.nii.gz
+sub-01,ses-01,sub-01/ses-01/anat/sub-01_ses-01_desc-preproc_T1w.nii.gz
 ```
+
+This is particularly useful for using directories mounted in Singularity.
 
 ### Anatomical processing
 
-For anatomical processing, the cohort file is quite minimal: only the subject's anatomical image is required in addition to the set of identifiers. The subject's anatomical image should receive the header `img`. **Anatomical processing must occur after
-`FMRIPREP` and before functional processing**.
+For anatomical processing, the cohort file is quite minimal: only the subject's anatomical image is required in addition to the set of identifiers. The subject's anatomical image should receive the header `img`. **Anatomical processing must occur after `FMRIPREP` and before functional processing**.
 
 ```
 id0,id1,img
-ACC,001,raw/ACC_001_anat.nii.gz
-DSQ,001,raw/DSQ_001_anat.nii.gz
-DSQ,001,raw/DSQ_002_anat.nii.gz
-CAT,001,raw/CAT_001_anat.nii.gz
+sub-01,ses-01,sub-01/ses-01/anat/sub-01_ses-01_desc-preproc_T1w.nii.gz
+sub-01,ses-02,sub-01/ses-02/anat/sub-01_ses-02_desc-preproc_T1w.nii.gz
+sub-02,ses-01,sub-02/ses-01/anat/sub-02_ses-01_desc-preproc_T1w.nii.gz
+sub-03,ses-01,sub-03/ses-01/anat/sub-03_ses-01_desc-preproc_T1w.nii.gz
 ```
+
+There are some important differences in what analyses can be run depending on whether you specify an MNI-normalized structural image or a native space T1w image. For additional information see the [antomical stream documentation](%%BASEURL/config/streams/anat.html).
 
 ### Functional processing
 
-For functional processing, the cohort file should include not only the subject's `FMRIPREP` output directory, but also the outputs from anatomical processing. If anatomical processing was performed within the pipeline system, or if it was performed using the ANTs Cortical Thickness pipeline, only one additional column is required. This column should receive the header `antsct` and should include the path to the immediate directory containing the output from anatomical processing.
+There are two ways that the cohort file for the functional processing stream can be specified. In the case where the T1w-space output from `FMRIPREP` (requires that `--output-spaces` included `T1w` in your `FMRIPREP` call) was processed with the XCP anatomical stream, you need to specify the directory where that output exists. An example cohort file for this use case would look like
 
 ```
 id0,id1,fmriprep,antsct
-ACC,001,path/to/fmriprep/sub-ACC/ses-001/sub-ACC_ses-001_task-rest,proc/ACC_001_antsct
-DSQ,001,path/to/fmriprep/sub-DSQ/ses-001/sub-DSQ_ses-001_task-rest,proc/DSQ_001_antsct
-DSQ,002,path/to/fmriprep/sub-DSQ/ses-001/sub-DSQ_ses-001_task-rest,proc/DSQ_002_antsct
-CAT,001,path/to/fmriprep/sub-CAT/ses-001/sub-CAT_ses-001_task-rest,proc/CAT_001_antsct
+sub-01,ses-01,sub-01/ses-01/func/sub-01_ses-01_task-rest_space-T1w,xcp_output/sub-01/ses-01/struc
+sub-01,ses-02,sub-01/ses-02/func/sub-01_ses-02_task-rest_space-T1w,xcp_output/sub-01/ses-02/struc
+sub-02,ses-01,sub-01/ses-01/func/sub-02_ses-01_task-rest_space-T1w,xcp_output/sub-02/ses-01/struc
+sub-03,ses-01,sub-03/ses-01/func/sub-03_ses-01_task-rest_space-T1w,xcp_output/sub-03/ses-01/struc
 ```
 
-If anatomical processing was performed externally, it will be necessary to ensure that all inputs required for a functional processing stream are provided with the appropriate headers. These include:
+The first line of this cohort file would process the image `${DATA_ROOT}/sub-01/ses-01/func/sub-01_ses-01_task-rest_space-T1w_desc-preproc_bold.nii.gz`.
 
- * `struct       :` The subject's fully processed, bias field-corrected, brain-extracted anatomical image.
- * `segmentation :` A 3- or 6-class segmentation of the subject's anatomical image into tissue classes.
- * `xfm_affine   :` An ANTs-formatted affine transformation from the subject's anatomical space to a template.
- * `xfm_warp     :` An ANTs-formatted deformation field from the subject's anatomical space to a template.
- * `ixfm_affine  :` An ANTs-formatted affine transformation from a template to the subject's anatomical space.
- * `ixfm_warp    :` An ANTs-formatted deformation field from a template to the subject's anatomical space.
-
-(If you include `antsct` in your cohort file, you can still use and access any of the 6 above variables.)
 
 ## Subject variables
 

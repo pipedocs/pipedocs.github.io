@@ -10,9 +10,9 @@ Module-specific cluster parameters are dictated by a _cluster specifications fil
 
 The cluster specifications file contains a single array variable, `cspec` (for cluster specification). Each entry in `cspec` contains cluster specifications for the module that shares its index in the processing stream (`pipeline` in the [design file](https://pipedocs.github.io/config/design)). For instance, `cspec[3]` specifies cluster parameters for the third module in the pipeline. (`cspec[0]` is reserved for the `xcpLocaliser`).
 
-In the example shown, 16 gigabytes of virtual memory are allocated to each of the `prestats` and `regress` modules while limiting all other modules to the user's default memory allotment. (Note the only `cspec` should be defined in the cluster specifications file. `pipeline` is shown below only to provide context.)
+In the example shown, 16 gigabytes of virtual memory are allocated to the  `regress` module while limiting all other modules to the user's default memory allotment. (Note the only `cspec` should be defined in the cluster specifications file. `pipeline` is shown below only to provide context.)
 ```bash
-pipeline=prestats,coreg,confound,regress,net,qcfc
+pipeline=confound,regress,net,qcfc
 cspec=(
    [1]='-l h_vmem=16.5G,s_vmem=16.0G'
    [4]='-l h_vmem=16.5G,s_vmem=16.0G'

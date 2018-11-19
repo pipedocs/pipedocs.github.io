@@ -2,20 +2,20 @@
 
 # Creating a new module
 
-Writing a new subject-level module for the BBL pipeline 
+Writing a new subject-level module for the BBL pipeline
 
 ### Headers
 
 The first code in any new pipeline module should be a pair of module headers: first a *specific* module header and afterward a *general* module header.
 
-The specific module header contains, at minimum, the module name and a short description of its functionality. 
+The specific module header contains, at minimum, the module name and a short description of its functionality.
 
 ```bash
 ###################################################################
 # SPECIFIC MODULE HEADER
 # <one-line description of module functionality>
 ###################################################################
-mod_name_short=<short name of module, e.g. prestats or coreg>
+mod_name_short=<short name of module, e.g. confound or regress>
 mod_name='<full name of module>'
 mod_head=${XCPEDIR}/core/CONSOLE_MODULE_G
 ```
@@ -62,13 +62,12 @@ completion() {
 }
 ```
 
-In the body of the `completion` function, these minimal steps can be supplemented by any additional code that should be executed when the module successfully completes. In almost every case, those additional steps should be executed before the general `completion` code. The example shown here is for the `prestats` module.
+In the body of the `completion` function, these minimal steps can be supplemented by any additional code that should be executed when the module successfully completes. In almost every case, those additional steps should be executed before the general `completion` code. The example shown here is for the `net` module.
 
 ```bash
 completion() {
-   contains ${prestats_process[cxt]} 'DMT' && configure demeaned 1
-   is_1D    ${tmask[cxt]}                  && configure censored 1
-   unset  confproc
+   write_atlas
+
    source ${XCPEDIR}/core/auditComplete
    source ${XCPEDIR}/core/updateQuality
    source ${XCPEDIR}/core/moduleEnd
@@ -106,7 +105,7 @@ derivative_set    mask     Type     Mask
 
 #### `output`
 
-`output` is used to declare outputs that exist as non-NIfTI files on the file system (or NIfTI files that shouldn't be accessible from the index of `derivatives`). Outputs *must* be assigned paths with the most appropriate file extension (e.g., `.nii.gz`, `.1D`, `.csv`, `.txt`, etc.). 
+`output` is used to declare outputs that exist as non-NIfTI files on the file system (or NIfTI files that shouldn't be accessible from the index of `derivatives`). Outputs *must* be assigned paths with the most appropriate file extension (e.g., `.nii.gz`, `.1D`, `.csv`, `.txt`, etc.).
 
 ```bash
 output            <output name>        <path to output in module's directory>
@@ -120,7 +119,7 @@ output            connectivity   ${prefix}_connectivity.txt
 
 #### `configure`
 
-`configure` is used to declare outputs that exist as values rather than files. For instance, signals for downstream module behaviour can be declared using `configure`. Outputs declared using `configure` must be initialised with some default value. (This can be the value of an existing variable or any upstream output.) The value of the `configure` is then changed during the course of the module.
+`configure` is used to declare outputs that exist as values rather than files. For instance, signals for downstream module behavior can be declared using `configure`. Outputs declared using `configure` must be initialized with some default value. (This can be the value of an existing variable or any upstream output.) The value of the `configure` is then changed during the course of the module.
 
 ```bash
 configure         <output name>        <initial value>
