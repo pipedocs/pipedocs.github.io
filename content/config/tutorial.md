@@ -29,7 +29,8 @@ Then download the antsCT design [file](https://raw.githubusercontent.com/PennBBL
 
 Now you're ready to run the anatomical pipeline! Create an empty directory in your home directory
 (which we'll assume is `${HOME}`, so do `mkdir ${HOME}/data`). This will be the bind point for
-your system's `${DATA_ROOT}` directory and will let singularity access your files.
+your system's `${DATA_ROOT}` directory and will let singularity access your files. Binding directories
+is very important and worth understanding well. See the [singularity documentation](https://www.sylabs.io/guides/3.0/user-guide/bind_paths_and_mounts.html) for details.
 
 ```bash
 singularity run -B ${DATA_ROOT}:${HOME}/data  \
