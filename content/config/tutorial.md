@@ -49,7 +49,7 @@ learn about the available templates and atlases.
 ## 2. Running a functional connectivity pipeline
 
 Processing fMRI data for functional connectivity analysis can be done using another
-design file. Now save one of the nicely-performing pipeline [design files](https://raw.githubusercontent.com/PennBBL/xcpEngine/master/designs/fc-36P.dsn) as
+design file. Now save one of the nicely-performing pipeline [design files](https://raw.githubusercontent.com/PennBBL/xcpEngine/master/designs/fc-36p.dsn) as
 something like `${DATA_ROOT}/fc-36P.dsn`. This will take the preprocessed BOLD output from
 `FMRIPREP` and prepare it for functional connectivity analysis. Create a new cohort csv that
 tells XCP where the output from the `struc` module is located and where the output from `FMRIPREP` is located. In `${DATA_ROOT}/func_cohort.csv` write:
@@ -64,7 +64,7 @@ This specifies that we will process the `task-rest` scan from this subject. Othe
 ```bash
 singularity run -B ${DATA_ROOT}:${HOME}/data  \
    /data/applications/xcpEngine.simg
-   -d ${HOME}/data/fc-36P.dsn \
+   -d ${HOME}/data/fc-36p.dsn \
    -c ${HOME}/data/func_cohort.csv  \
    -o ${HOME}/data/xcp_output \
    -t 1 \
@@ -98,16 +98,16 @@ The design file instructs the pipeline as to how inputs should be processed, but
 
 ```
 id0,antsct,fmriprep
-sub-001,xcp_output/sub-001/struc,fmriprep/sub-001/func/sub-001_task-rest_space-T1w
+sub-1,xcp_output/sub-1/struc,fmriprep/sub-1/func/sub-1_task-rest_space-T1w
 ```
 
-The cohort file is formatted as a `.csv` with 3 variables and 1 observation (subject). The first line of the cohort file is a header that defines each of the variables. Subject identifiers are placed in columns starting with `id` and ending with a non-negative integer. For instance, the first identifier (`id0`) of the first subject is `sub-001`. There could be a second identifier (`id1`) such as `ses-01` if needed.
+The cohort file is formatted as a `.csv` with 3 variables and 1 observation (subject). The first line of the cohort file is a header that defines each of the variables. Subject identifiers are placed in columns starting with `id` and ending with a non-negative integer. For instance, the first identifier (`id0`) of the first subject is `sub-1`. There could be a second identifier (`id1`) such as `ses-01` if needed.
 
-The inputs for each subject are defined in the remaining columns, here `antsct` and `fmriprep`. `antsct` defines the path to the output files of the subject's processed ANTs Cortical Thickness pipeline (which has already been run as part of the [anatomical stream](%%BASEURL/config/streams/anat) in step 1). `fmriprep` defines the prefix to the main image that this pipeline will analyse. Since this is the cohort for a functional connectivity stream, the main image will be a functional image (in this case, resting state).
+The inputs for each subject are defined in the remaining columns, here `antsct` and `fmriprep`. `antsct` defines the path to the output files of the subject's processed ANTs Cortical Thickness pipeline (which has already been run as part of the [anatomical stream](%%BASEURL/config/streams/anat) in step 1). `fmriprep` defines the prefix to the main image that this pipeline will analyze. Since this is the cohort for a functional connectivity stream, the main image will be a functional image (in this case, resting state).
 
 If we look at our call to `xcpEngine`, we can see that we passed it the argument `-r ${DATADIR}`. This argument instructs `xcpEngine` to search within `${DATADIR}` for cohort paths. This is very useful when using Singularity of Docker, as you can specify the relative bind path as your root while keeping the paths in your cohort file relative to your system's root.
 
-Now, let's suppose that we have already processed this subject through the pipeline system, and we acquire data for a new, 2nd subject. Let's say this new subject has identifier `sub-002`. To process this new subject, DO NOT CREATE A NEW COHORT FILE. Instead, edit your existing cohort file and add the new subject as a new line at the end of the file. For our example subject, the corresponding line in the cohort file might be something like `sub-002,xcp_output/sub-002/struc,fmriprep/sub-002/func/sub-002_task-rest_space-T1w
+Now, let's suppose that we have already processed this subject through the pipeline system, and we acquire data for a new, 2nd subject. Let's say this new subject has identifier `sub-2`. To process this new subject, DO NOT CREATE A NEW COHORT FILE. Instead, edit your existing cohort file and add the new subject as a new line at the end of the file. For our example subject, the corresponding line in the cohort file might be something like `sub-2,xcp_output/sub-2/struc,fmriprep/sub-2/func/sub-2_task-rest_space-T1w
 `. Why edit the existing cohort file instead of creating a new one?
 
 * The pipeline will automatically detect that it has already run for the other subject, so it will not waste computational resources on them.
@@ -119,7 +119,7 @@ To see what the remaining arguments to `xcpEngine` do, we will need to look at t
 
 Begin by looking at the subject-level output. Navigate to the first subject's output directory, `${output_root}/sub-1`. In this directory, you will find:
 
-* A subject-specific copy of the design file that you used to run the pipeline, evaluated and modified to correspond to this particular subject (`sub-001`). (In the XCP system, the process of mapping the template design file to each subject is called _localisation_, and the script that handles this is called the _localiser_.)
+* A subject-specific copy of the design file that you used to run the pipeline, evaluated and modified to correspond to this particular subject (`sub-1`). (In the XCP system, the process of mapping the template design file to each subject is called _localisation_, and the script that handles this is called the _localiser_.)
 * An atlas directory (`sub-1_atlas`). Inside the atlas directory, each parcellation that has been analysed will exist as a NIfTI file, registered to the subject's [ (T1w) native space](%%BASEURL/space).
 
 * A subdirectory corresponding to each pipeline module, as defined in the `pipeline` variable in the [design file](%%BASEURL/config/design). For the most part, these directories store images and files that the pipeline uses to verify successful processing.
