@@ -2,7 +2,9 @@
 
 # The cluster specifications file
 
-If you are running the pipeline on a cluster with a SGE-like job management system, then it is possible to configure each module of the pipeline to be submitted to the cluster with a different set of parameters. This can be useful, for instance, when the memory demand of modules varies considerably and the user accordingly wishes to allocate different amounts of memory for each module. 
+**NOTE: this section is not applicable if you are using singularity or docker**
+
+If you are running the pipeline on a cluster with a SGE-like job management system, then it is possible to configure each module of the pipeline to be submitted to the cluster with a different set of parameters. This can be useful, for instance, when the memory demand of modules varies considerably and the user accordingly wishes to allocate different amounts of memory for each module.
 
 Module-specific cluster parameters are dictated by a _cluster specifications file_ that can be passed to the [pipeline front end](https://pipedocs.github.io/config/xcpEngine) as an argument to the `-m` option. If the `-m` option receives a file as an argument, then it will perform as though it had received the argument `c` (i.e., it will submit all jobs to the cluster for execution in parallel). However, it will also use the values defined in the file when submitting jobs.
 

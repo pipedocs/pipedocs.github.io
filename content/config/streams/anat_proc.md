@@ -2,7 +2,15 @@
 
 # Anatomical processing streams
 
-The XCP system includes 7 standard processing streams for volumetric anatomy. These base anatomical streams are summarised below. All processing streams are heavily based on the ANTs software library. Base anatomical streams can be modified at will to suit the dataset that is to be processed. Consult module documentation for additional details.
+If your `FMRIPREP` output is written out in the `T1w` output space, it is already aligned to
+the preprocessed `T1w` image. You can send this native space preprocessed `T1w` into the XCP
+structural processing stream to
+
+* Register it to one of our many supplied templates (including OASIS, MNI and PNC)
+* Warp our many included atlases into the space of your BOLD data to extract time series
+* Run structural analysis on your `T1w` images
+
+The XCP system includes 7 standard processing streams for volumetric anatomy. These base anatomical streams are summarized below. All processing streams are heavily based on the ANTs software library. Base anatomical streams can be modified at will to suit the dataset that is to be processed. Consult module documentation for additional details.
 
 <p align="center">
 ![Anatomical processing streams](https://pipedocs.github.io/content/images/streamsAnat.png "Anatomical processing streams")
@@ -21,8 +29,6 @@ The XCP system includes 7 standard processing streams for volumetric anatomy. Th
 
  * [`struc`](https://pipedocs.github.io/modules/struc)
  * [`gmd`](https://pipedocs.github.io/modules/gmd)
- * [`cortcon`](https://pipedocs.github.io/modules/cortcon) \[UNSUPPORTED\]
- * [`sulc`](https://pipedocs.github.io/modules/sulc) \[UNSUPPORTED\]
  * [`jlf`](https://pipedocs.github.io/modules/jlf)
  * [`roiquant`](https://pipedocs.github.io/modules/roiquant)
  * [`qcanat`](https://pipedocs.github.io/modules/qcanat)
@@ -97,13 +103,6 @@ Grey matter density is estimated as the probability that each voxel is assigned 
 
 [Reference](https://www.ncbi.nlm.nih.gov/pubmed/28432144)
 
-### Sulcal depth*
-
-_Module_: [`sulc`](https://pipedocs.github.io/modules/sulc)
-
-_Products_: [`sulcalDepthOuter`](https://pipedocs.github.io/products/sulcalDepthOuter), [`sulcalDepthInner`](https://pipedocs.github.io/products/sulcalDepthInner)
-
-Sulcal depth is an index of the average depth or sulcalisation of each region relative to an estimate of the brain's hull. Sulcal depth is computed across two ribbons, corresponding to rough estimates of the pial-grey and grey-white interfaces. The voxelwise map should _never_ be used for group-level analysis; only regional values are to be used. This feature is highly experimental, unproven, and unsupported, as computations of sulcal depth are historically performed using surface-based rather than volumetric processing.
 
 ### Cortical contrast*
 

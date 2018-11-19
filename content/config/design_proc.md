@@ -14,34 +14,11 @@ The design file contains:
 
 There are currently three ways to edit a design file:
 
- * Preconfigured template (`xcpConfig` -- recommended)
  * Manual preparation
  * Direct (runtime) assignment
 
-### Recommended approach: `xcpConfig`
-
-`xcpConfig` is a lightweight utility that facilitates customisation of a pipeline design file. The advantages of this approach are:
-
- * Pipelines generated using `xcpConfig` have undergone testing and should be stable.
- * Most `xcpConfig` pipelines correspond to high-performance protocols that reflect field consensus.
- * It limits the configuration's parameter space to options that are simple to understand and likely to be of interest.
-
-The principal disadvantage of `xcpConfig` is that it affords less customisability than manual preparation.
-
-`xcpConfig` is bundled with the BBL's image processing system and can be invoked using the command `${XCPEDIR}/xcpConfig` after [installation](https://pipedocs.github.io/config/installation.html). Alternatively, if you wish to configure a pipeline without installing the entire processing system, a [standalone is available](https://github.com/PennBBL/xcpConfig). This is a useful option if you intend to run the pipeline on a remote server or in the cloud (for instance, using [CBICA's IPP](https://ipp.cbica.upenn.edu/)).
-
-### Manual preparation
-
-The design system supports a highly configurable pipeline, permitting millions of potential configurations to be run. The flexibility of this system presents both opportunity and danger: out of all possible pipelines, the vast majority are not appropriate, and there is no feasible way to test the entire parameter space. The bottom line is this: manual edits to the design file can produce unexpected results and should generally be reserved for two cases:
-
- * Minor tweaks (e.g., changing the values of a few parameters to improve performance for your data) -- but, in this case, direct (runtime) assignment (see below) is sometimes a better option
- * Expert users and developers
-
-*Design files prepared manually are never guaranteed to produce the expected output out of the box.* Validation of all outputs is strongly advised.
-
- * It is our team's intention to support the entire space of reasonable pipeline configurations, so please notify us via GitHub issues if you attempt a manual edit and receive an unexpected result.
- * If you successfully execute a highly customised pipeline to completion, please consider sharing it with the community to help future users reproduce your stream in their data.
- * If enough users request a particular pipeline structure to be supported, we will consider adding it to the preconfigured template database.
+We strongly recommend you copy and use one of the [standard design files](https://github.com/PennBBL/xcpEngine/tree/master/designs) that come with XCP Engine.
+These are regularly tested and usually work.
 
 ### Direct (runtime) assignment
 
@@ -97,22 +74,17 @@ The design file includes the `pipeline` variable, which defines the backbone of 
 
 The standard [functional connectivity processing stream](https://pipedocs.github.io/config/streams/fc.html) is:
 ``` bash
-pipeline=prestats,coreg,confound,regress,fcon,reho,alff,net,roiquant,seed,norm,qcfc
+pipeline=confound,regress,fcon,reho,alff,net,roiquant,seed,norm,qcfc
 ```
 
 The standard [benchmarking processing stream](https://pipedocs.github.io/config/streams/qcfc.html) is an abbreviated version of the FC stream:
 ``` bash
-pipeline=prestats,coreg,confound,regress,fcon,qcfc
+pipeline=confound,regress,fcon,qcfc
 ```
 
 The complete [anatomical processing stream](https://pipedocs.github.io/config/streams/anat.html) is:
 ``` bash
 pipeline=struc,jlf,gmd,cortcon,sulc,roiquant,qcanat
-```
-
-The standard [functional activation processing stream](https://pipedocs.github.io/config/streams/task.html) is:
-``` bash
-pipeline=task,coreg,roiquant,norm
 ```
 
 ### Module configurations

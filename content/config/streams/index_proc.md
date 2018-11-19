@@ -12,8 +12,6 @@ In the XCP system, a standard set of processing streams is available for each su
 
 [Functional Connectivity >](https://pipedocs.github.io/config/streams/fc)
 
-[Functional Activation >](https://pipedocs.github.io/config/streams/task)
-
 [Perfusion >](https://pipedocs.github.io/config/streams/cbf) \[UNRELEASED\]
 
 [Diffusion >](https://pipedocs.github.io/config/streams/diffusion) \[UNRELEASED\]

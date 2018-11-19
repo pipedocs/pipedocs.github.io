@@ -3,7 +3,14 @@
 The XCP imaging pipeline (XCP system) is a free, open-source software package for processing of multimodal neuroimages. The XCP system uses a [modular design](https://pipedocs.github.io/modules/index.html) to deploy analytic routines from leading MRI analysis platforms, including FSL, AFNI, and ANTs.
 
 The XCP system is designed to run in the Linux bash shell or from
-a Docker or Singularity image. Users provide an input data set and specify parameters for the analysis that they wish to perform on that data set, and the XCP Engine parses the user-provided parameters to build and run a processing pipeline. The XCP system supports a number of pipeline modalities, including [functional connectivity](https://pipedocs.github.io/config/streams/fc), [volumetric anatomy](https://pipedocs.github.io/config/streams/anat), [task-based activation](https://pipedocs.github.io/config/streams/task), and perfusion.
+a Docker or Singularity image. We strongly recommend using Docker or Singularity.
+Users provide XCP Engine with the output from ``FMRIPREP`` and specify parameters for the analysis that they wish to perform. XCP Engine parses the user-provided parameters to build and run a processing pipeline. The XCP system supports a number of pipeline modalities, including [functional connectivity](https://pipedocs.github.io/config/streams/fc), [volumetric anatomy](https://pipedocs.github.io/config/streams/anat) and perfusion.
+
+
+## Useful Features
+
+XCP Engine provides tools to take ``FMRIPREP`` output and performs the next steps required
+for many functional connectivity and structural analyses.
 
 ## Neuroimage processing
 
@@ -33,7 +40,7 @@ However, this approach can easily lead to inconsistencies in output directory co
 ![A modular pipeline system](https://pipedocs.github.io/content/images/choosingModules.gif "A modular pipeline system")
 </p>
 
-_In the XCP system, select the modules that you want to use and recombine them into the pipeline that best suits your processing needs._
+_In the XCP system, select the modules that you want to use and combine them into the pipeline that best suits your processing needs._
 
 The modular, atomic design of the XCP system allows for streamlined reproduction and recombination of frequently used image processing strategies across multiple pipelines and modalities.
 
@@ -42,7 +49,6 @@ The modular, atomic design of the XCP system allows for streamlined reproduction
 The XCP system aims to provide a multimodal library of common processing routines that will improve scientific reproducibility. Features include:
 
  * Standardised output directory structure and naming conventions
- * Automatic version and dependency tracking
  * Systematised quality control variables computed and collated for each analysis (for easy identification of motion and registration outliers)
  * Region-wise quantification of any voxelwise derivative map for any number of parcellation schemes or regions of interest
  * Easy addition of new regions of interest, node systems, or parcellation schemes
@@ -54,7 +60,6 @@ The XCP system aims to provide a multimodal library of common processing routine
 ![Standardised directory structure](https://pipedocs.github.io/content/images/directoryStructure.png "Standardised directory structure")
 </p>
 
-_The XCP system is agnostic to the directory structure of input data, but produces a consistent and intuitive output directory structure._
 
 [Install the XCP system >](https://github.com/PennBBL/xcpEngine)
 

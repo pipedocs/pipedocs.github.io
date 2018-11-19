@@ -10,7 +10,7 @@ to build a Singularity image from the xcpEngine released on
 dockerhub.
 
 ```console
-$ singularity build xcpEngine.simg docker://matthewcieslak/xcpengine:latest
+$ singularity build xcpEngine.simg docker://pennbbl/xcpengine:latest
 ```
 
 The only potentially tricky part about using a singularity image
