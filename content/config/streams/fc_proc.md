@@ -1,4 +1,4 @@
-[Return to streams >](https://pipedocs.github.io/config/streams)
+[Return to streams >](https://pipedocs.github.io//config/streams)
 
 # Functional connectivity streams
 
@@ -198,4 +198,4 @@ _Module_: [`qcfc`](https://pipedocs.github.io/modules/qcfc)
 
 Several indices of image quality are computed during functional connectivity processing at both subject and group levels. Additional details are available in the [`qcfc`](https://pipedocs.github.io/modules/qcfc) module documentation.
 
-[Return to streams >](https://pipedocs.github.io/config/streams)
+[Return to streams >](https://pipedocs.github.io//config/streams)

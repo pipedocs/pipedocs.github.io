@@ -1,4 +1,4 @@
-[Return to streams >](https://pipedocs.github.io/config/streams)
+[Return to streams >](https://pipedocs.github.io//config/streams)
 
 # Anatomical processing streams
 
@@ -150,4 +150,4 @@ _Module_: [`struc`](https://pipedocs.github.io/modules/struc)
 
 Image normalisation shifts derivative maps (and potentially the primary image) into a standard sample-level or population-level space to facilitate comparisons between subjects. The normalisation step applies the transformations computed in the ANTs registration step.
 
-[Return to streams >](https://pipedocs.github.io/config/streams)
+[Return to streams >](https://pipedocs.github.io//config/streams)

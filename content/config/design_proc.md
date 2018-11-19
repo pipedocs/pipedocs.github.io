@@ -1,4 +1,4 @@
-[Return to config >](https://pipedocs.github.io/config)
+[Return to config >](https://pipedocs.github.io//config)
 
 Pipeline design file
 ====================
@@ -133,4 +133,4 @@ altreg1[9001]=corratio
 
 Each row corresponds to an output defined by the `coreg` module that can be used by all downstream modules. For example, `struct2seq` defines an affine transformation from the subject's high-resolution anatomical space to the subject's functional space. This transformation can later be used to align white matter and CSF masks to the functional image, enabling tissue-based confound regression.
 
-[Return to config >](https://pipedocs.github.io/config)
+[Return to config >](https://pipedocs.github.io//config)

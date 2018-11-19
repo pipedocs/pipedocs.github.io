@@ -1,4 +1,4 @@
-[Return to modules >](https://pipedocs.github.io/modules)
+[Return to modules >](https://pipedocs.github.io//modules)
 
 # `alff`: Amplitude of low-frequency fluctuations module
 
@@ -73,4 +73,4 @@ alff_cleanup[cxt]=1
 alff_cleanup[cxt]=0
 ```
 
-[Return to modules >](https://pipedocs.github.io/modules)
+[Return to modules >](https://pipedocs.github.io//modules)

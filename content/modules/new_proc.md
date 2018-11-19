@@ -1,4 +1,4 @@
-[Return to modules >](https://pipedocs.github.io/modules)
+[Return to modules >](https://pipedocs.github.io//modules)
 
 # Creating a new module
 
@@ -134,4 +134,4 @@ configure         <output name>        <initial value>
 qc <output name>  <variable name in quality tracker>  <path to output in module's directory>
 ```
 
-[Return to modules >](https://pipedocs.github.io/modules)
+[Return to modules >](https://pipedocs.github.io//modules)

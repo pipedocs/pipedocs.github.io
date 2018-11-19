@@ -1,4 +1,4 @@
-[Return to modules >](https://pipedocs.github.io/modules)
+[Return to modules >](https://pipedocs.github.io//modules)
 
 # `prestats`: fMRI preprocessing module
 
@@ -6,4 +6,4 @@
 functionality of `prestats` is mostly covered by ``FMRIPREP``. Denoising, scrubbing etc have
 been moved to other modules. 
 
-[Return to modules >](https://pipedocs.github.io/modules)
+[Return to modules >](https://pipedocs.github.io//modules)

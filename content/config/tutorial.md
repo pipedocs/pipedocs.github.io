@@ -9,7 +9,7 @@ To get started, first [create a singularity image of xcpEngine](%%BASEURL/contai
 singularity build /data/applications/xcpEngine.simg docker://pennbbl/xcpengine:latest
 ```
 
-Next, download [an example output from FMRIPREP](https://openneuro.org/datasets/ds000164/versions/00001?app=FMRIPREP&version=61&job=5b0d753f2afa3badacec83df).
+Next, download [an example output from FMRIPREP](https://figshare.com/articles/xcpEngine_tutorial_data/7359086).
 
 Suppose the downloaded data is extracted to `/data/example/fmriprep`.
 

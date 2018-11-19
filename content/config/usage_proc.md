@@ -1,4 +1,4 @@
-[Return to config >](https://pipedocs.github.io/config)
+[Return to config >](https://pipedocs.github.io//config)
 
 # Use cases for the XCP pipeline
 
@@ -44,4 +44,4 @@ The XCP system supports image processing streams for multiple modalities, which 
  * [Anatomical](https://pipedocs.github.io/config/streams/anat)
  * [Functional activation](https://pipedocs.github.io/config/streams/task)
 
-[Return to config >](https://pipedocs.github.io/config)
+[Return to config >](https://pipedocs.github.io//config)

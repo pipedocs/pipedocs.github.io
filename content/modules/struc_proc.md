@@ -1,4 +1,4 @@
-[Return to modules >](https://pipedocs.github.io/modules)
+[Return to modules >](https://pipedocs.github.io//modules)
 
 # `struc`: MRI anatomical module
 
@@ -275,4 +275,4 @@ Permitted codes include:
  * `SEG`: Atropos image segmentation
  * `REG`: registration to a template
 
-[Return to modules >](https://pipedocs.github.io/modules)
+[Return to modules >](https://pipedocs.github.io//modules)

@@ -1,4 +1,4 @@
-[Return to utils >](https://pipedocs.github.io/utils)
+[Return to utils >](https://pipedocs.github.io//utils)
 
 # `erodespare`
 
@@ -44,4 +44,4 @@ If this variable is defined, then the specified range of labels will be extracte
 
 A path where `erodespare` stores temporary files. If your machine or file system has a designated space for temporary files (e.g., `/tmp`), then using this space can substantially improve I/O speed.
 
-[Return to utils >](https://pipedocs.github.io/utils)
+[Return to utils >](https://pipedocs.github.io//utils)
