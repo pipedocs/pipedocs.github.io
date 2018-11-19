@@ -2,11 +2,11 @@
 
 _Label erosion tool._
 
-`erodespare` erodes a subset of labels (or range of values) in a provided image such that only the deepest k percent of voxels in the label set are retained. `erodespare` _erodes_ an image while _sparing_ the deepest voxels. This can be a useful tool for generating tissue maps for nuisance regression in a way that minimisises partial volume effects and decreases the correlation between tissue-based nuisance regressors and the global signal.
+`erodespare` erodes a subset of labels (or range of values) in a provided image such that only the deepest k percent of voxels in the label set are retained. `erodespare` _erodes_ an image while _sparing_ the deepest voxels. This can be a useful tool for generating tissue maps for nuisance regression in a way that minimizes partial volume effects and decreases the correlation between tissue-based nuisance regressors and the global signal.
 
 `erodespare` executes in the following order, using its inputs as follows:
 
- 1. Read in the image specified by the `-i` flag 
+ 1. Read in the image specified by the `-i` flag
  2. Binarise the image such that voxels with the values specified by the `-v` flag are set to 1 while all other voxels are set to 0
  3. Compute a fractional depth map such that, for instance, a voxel in the 33rd percentile of deepest voxels is assigned a value of 33
  4. Threshold the depth map according to the criterion set by the `-r` flag. (This is the erosion step.)

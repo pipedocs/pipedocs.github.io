@@ -21,17 +21,17 @@ Examples for a few common processing cases are provided below.
 
 ### Subject identifiers
 
-In general, all cohort files should contain a unique set of identifier variables for each unique subject. The pipeline system uses identifier variables to generate a unique output path for each input. To cast a cohort field as an identifier, give it the name `id<i>` in the cohort header, where `<i>` is a nonnegative integer. In the illustrative example, `id0` might correspond to the subject's identifier, `id1` to the time point (as in a longitudinal study), and `id2` to the scan within the session. So `DSQ,001,002` would denote the second scan during subject DSQ's first time point.
+In general, all cohort files should contain a unique set of identifier variables for each unique subject. The pipeline system uses identifier variables to generate a unique output path for each input. To cast a cohort field as an identifier, give it the name `id<i>` in the cohort header, where `<i>` is a nonnegative integer. In the illustrative example, `id0` might correspond to the subject's identifier, `id1` to the time point (as in a longitudinal study). So `DSQ,001` would denote the first time point for subject DSQ.
 
 ```
-id0,id1,id2
-ACC,001,001
-ACC,002,001
-DSQ,001,001
-DSQ,001,002
-DSQ,002,001
-DSQ,002,002
-CAT,001,001
+id0,id1
+ACC,001
+ACC,002
+DSQ,001
+DSQ,001
+DSQ,002
+DSQ,002
+CAT,001
 ```
 
 #### Guidelines and specifications
@@ -45,46 +45,48 @@ If no identifier columns are provided in the cohort file, then the pipeline syst
 
 ### Path definitions
 
-Paths defined in a cohort file can be specified either as absolute paths or as relative paths. For portability, relative path definitions are recommended where possible. If relative paths are provided, then the call to `xcpEngine` should include the `-r` flag, which accepts as its argument the path relative to which cohort paths were defined. For instance, the provided example would yield a value of `/data/studies/example/raw/ACC_001_001_anat.nii.gz` for `img`.
+Paths defined in a cohort file can be specified either as absolute paths or as relative paths. For portability, relative path definitions are recommended where possible. If relative paths are provided, then the call to `xcpEngine` should include the `-r` flag, which accepts as its argument the path relative to which cohort paths were defined. For instance, the provided example would yield a value of `/data/studies/example/raw/ACC_001_anat.nii.gz` for `img`.
 ```
 -r /data/studies/example/
 
-id0,id1,id2,img
-ACC,001,001,raw/ACC_001_001_anat.nii.gz
+id0,id1,img
+ACC,001,raw/ACC_001_anat.nii.gz
 ```
 
 ### Anatomical processing
 
-For anatomical processing, the cohort file is quite minimal: only the subject's anatomical image is required in addition to the set of identifiers. The subject's anatomical image should receive the header `img`.
+For anatomical processing, the cohort file is quite minimal: only the subject's anatomical image is required in addition to the set of identifiers. The subject's anatomical image should receive the header `img`. **Anatomical processing must occur after
+`FMRIPREP` and before functional processing**.
 
 ```
-id0,id1,id2,img
-ACC,001,001,raw/ACC_001_001_anat.nii.gz
-DSQ,001,001,raw/DSQ_001_001_anat.nii.gz
-DSQ,001,002,raw/DSQ_001_002_anat.nii.gz
-CAT,001,001,raw/CAT_001_001_anat.nii.gz
+id0,id1,img
+ACC,001,raw/ACC_001_anat.nii.gz
+DSQ,001,raw/DSQ_001_anat.nii.gz
+DSQ,001,raw/DSQ_002_anat.nii.gz
+CAT,001,raw/CAT_001_anat.nii.gz
 ```
 
 ### Functional processing
 
-For functional processing, the cohort file should include not only the subject's functional time series, but also the outputs from anatomical processing. If anatomical processing was performed within the pipeline system, or if it was performed using the ANTs Cortical Thickness pipeline, only one additional column is required. This column should receive the header `antsct` and should include the path to the immediate directory containing the output from anatomical processing. The subject's functional time series should receive the header `img`.
+For functional processing, the cohort file should include not only the subject's `FMRIPREP` output directory, but also the outputs from anatomical processing. If anatomical processing was performed within the pipeline system, or if it was performed using the ANTs Cortical Thickness pipeline, only one additional column is required. This column should receive the header `antsct` and should include the path to the immediate directory containing the output from anatomical processing.
+
 ```
-id0,id1,id2,img,antsct
-ACC,001,001,raw/ACC_001_001_rest.nii.gz,proc/ACC_001_001_antsct
-DSQ,001,001,raw/DSQ_001_001_rest.nii.gz,proc/DSQ_001_001_antsct
-DSQ,001,002,raw/DSQ_001_002_rest.nii.gz,proc/DSQ_001_002_antsct
-CAT,001,001,raw/CAT_001_001_rest.nii.gz,proc/CAT_001_001_antsct
+id0,id1,fmriprep,antsct
+ACC,001,path/to/fmriprep/sub-ACC/ses-001/sub-ACC_ses-001_task-rest,proc/ACC_001_antsct
+DSQ,001,path/to/fmriprep/sub-DSQ/ses-001/sub-DSQ_ses-001_task-rest,proc/DSQ_001_antsct
+DSQ,002,path/to/fmriprep/sub-DSQ/ses-001/sub-DSQ_ses-001_task-rest,proc/DSQ_002_antsct
+CAT,001,path/to/fmriprep/sub-CAT/ses-001/sub-CAT_ses-001_task-rest,proc/CAT_001_antsct
 ```
 
 If anatomical processing was performed externally, it will be necessary to ensure that all inputs required for a functional processing stream are provided with the appropriate headers. These include:
 
  * `struct       :` The subject's fully processed, bias field-corrected, brain-extracted anatomical image.
- * `segmentation :` A 3- or 6-class segmentation of the subject's anatomical image into tissue classes. 
+ * `segmentation :` A 3- or 6-class segmentation of the subject's anatomical image into tissue classes.
  * `xfm_affine   :` An ANTs-formatted affine transformation from the subject's anatomical space to a template.
  * `xfm_warp     :` An ANTs-formatted deformation field from the subject's anatomical space to a template.
  * `ixfm_affine  :` An ANTs-formatted affine transformation from a template to the subject's anatomical space.
  * `ixfm_warp    :` An ANTs-formatted deformation field from a template to the subject's anatomical space.
- 
+
 (If you include `antsct` in your cohort file, you can still use and access any of the 6 above variables.)
 
 ## Subject variables

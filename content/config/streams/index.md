@@ -10,8 +10,6 @@ In the XCP system, a standard set of processing streams is available for each su
 
 [Functional Connectivity >](%%BASEURL/config/streams/fc)
 
-[Functional Activation >](%%BASEURL/config/streams/task)
-
 [Perfusion >](%%BASEURL/config/streams/cbf) \[UNRELEASED\]
 
 [Diffusion >](%%BASEURL/config/streams/diffusion) \[UNRELEASED\]
