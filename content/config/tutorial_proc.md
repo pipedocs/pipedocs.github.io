@@ -35,7 +35,7 @@ your system's `/data` directory and will let singularity access your files.
 
 ```bash
 singularity run -B /data:/home/me/data  \
-   /data/applications/xcpEngine.simg
+   /data/applications/xcpEngine.simg \
    -d /home/me/data/example/anat-antsct.dsn \
    -c /home/me/data/example/anat_cohort.csv  \
    -o /home/me/data/example/xcp_output \
@@ -48,6 +48,17 @@ antsCorticalThickness for this subject! It also provides all the spatial normali
 info to map atlases to your BOLD data. See the [anatomical stream](https://pipedocs.github.io/modules/instructs) to
 learn about the available templates and atlases.
 
+If the you dont want corttical thickness, a short verison can be run within 10  minutes. You need to replace `struc_process[1]=ACT` with  `struc_process[1]=BFC-ABE-SEG-REG`
+
+
+If the ouput of `FMRIPREP` is written out in MNI space, then the cohort file will look like: 
+```
+id0,img
+sub-001,/data/example/fmriprep/sub-001/anat/sub-001_MNI152NLin2009cAsym_desc-preproc_T1w.nii.gz
+```
+
+
+
 ## 2. Running a functional connectivity pipeline
 
 Processing fMRI data for functional connectivity analysis can be done using another
@@ -59,18 +70,29 @@ is located.
 
 ```
 id0,antsct,fmriprep
-sub-001,/data/example/xcp_output/sub-001/struc,/data/example/fmriprep/sub-001/func/sub-001_T1w_preproc.nii.gz
+sub-001,/data/example/xcp_output/sub-001/struc,/data/example/fmriprep/sub-001/func
 ```
 
 ```bash
 singularity run -B /data:/home/me/data  \
-   /data/applications/xcpEngine.simg
-   -d /home/me/data/example/anat-antsct.dsn \
-   -c /home/me/data/example/anat_cohort.csv  \
+   /data/applications/xcpEngine.simg \
+   -d /home/me/data/example/fc-36P.dsn \
+   -c /home/me/data/example/fmripcohort.csv  \
    -o /home/me/data/example/xcp_output \
    -t 1 \
    -r /home/me
 ```
+
+If the ouput of `FMRIPREP` is written out in MNI space, then the cohort file will look like:  
+
+```
+id0,fmriprepmni,mnireg
+sub-001,/data/example/fmriprep/sub-001,/data/example/xcp_output/sub-001/struc
+
+```
+
+
+
 
 ## 3. Arguments
 
@@ -99,7 +121,7 @@ The design file instructs the pipeline as to how inputs should be processed, but
 
 ```
 id0,antsct,fmriprep
-sub-001,/data/example/xcp_output/sub-001/struc,/data/example/fmriprep/sub-001/func/sub-001_task-rest_space-T1w
+sub-001,/data/example/xcp_output/sub-001/struc,/data/example/fmriprep/sub-001/func
 ```
 
 The cohort file is formatted as a `.csv` with 3 variables and 1 observation (subject). The first line of the cohort file is a header that defines each of the variables. Subject identifiers are placed in columns starting with `id` and ending with a non-negative integer. For instance, the first identifier (`id0`) of the first subject is `sub-001`. There could be a second identifier (`id1`) such as `ses-01` if needed.
@@ -108,7 +130,7 @@ The inputs for each subject are defined in the remaining columns, here `antsct` 
 
 If we look at our call to `xcpEngine`, we can see that we passed it the argument `-r ${DATADIR}`. This argument instructs `xcpEngine` to search within `${DATADIR}` for cohort paths. This is very useful when using Singularity of Docker, as you can specify the relative bind path as your root while keeping the paths in your cohort file relative to your system's root.
 
-Now, let's suppose that we have already processed this subject through the pipeline system, and we acquire data for a new, 2nd subject. Let's say this new subject has identifier `sub-002`. To process this new subject, DO NOT CREATE A NEW COHORT FILE. Instead, edit your existing cohort file and add the new subject as a new line at the end of the file. For our example subject, the corresponding line in the cohort file might be something like `sub-002,/data/example/xcp_output/sub-002/struc,/data/example/fmriprep/sub-002/func/sub-002_task-rest_space-T1w
+Now, let's suppose that we have already processed this subject through the pipeline system, and we acquire data for a new, 2nd subject. Let's say this new subject has identifier `sub-002`. To process this new subject, DO NOT CREATE A NEW COHORT FILE. Instead, edit your existing cohort file and add the new subject as a new line at the end of the file. For our example subject, the corresponding line in the cohort file might be something like `sub-002,/data/example/xcp_output/sub-002/struc,/data/example/fmriprep/sub-002/func
 `. Why edit the existing cohort file instead of creating a new one?
 
 * The pipeline will automatically detect that it has already run for the other subject, so it will not waste computational resources on them.
