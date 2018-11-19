@@ -52,7 +52,7 @@ learn about the available templates and atlases.
 
 Processing fMRI data for functional connectivity analysis can be done using another
 design file. Now save one of the nicely-performing pipeline [design files](https://raw.githubusercontent.com/PennBBL/xcpEngine/master/designs/fc-36p.dsn) as
-something like `${DATA_ROOT}/fc-36P.dsn`. This will take the preprocessed BOLD output from
+something like `${DATA_ROOT}/fc-36p.dsn`. This will take the preprocessed BOLD output from
 `FMRIPREP` and prepare it for functional connectivity analysis. Create a new cohort csv that
 tells XCP where the output from the `struc` module is located and where the output from `FMRIPREP` is located. In `${DATA_ROOT}/func_cohort.csv` write:
 
