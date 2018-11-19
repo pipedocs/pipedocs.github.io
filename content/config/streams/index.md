@@ -2,14 +2,8 @@
 
 Neuroimage processing refers collectively to the set of strategies used to convert the "raw" images collected from the scanner into appropriate inputs to group-level statistical analyses. A _processing stream_ is the specific set of routines that are selected to extract a desired modality of analytic data from a neuroimage.
 
-Complementary bodies of information can be obtained from the same source image if the image is subject to different processing streams. For instance, a functional image can be processed either using an [activation](%%BASEURL/config/streams/task) stream, which returns information about the responses of brain regions to a stimulus, or using a [connectivity](%%BASEURL/config/streams/fc) stream, which returns information about synchrony among different brain regions and can be performed in the presence or absence of a controlled stimulus.
-
-In the XCP system, a standard set of processing streams is available for each supported imaging modality. Each processing stream is parametrised by a [design file](%%BASEURL/config/design). Detailed information about standard implementations of multimodal processing streams is available at the links below, organised by imaging modality.
+In the XCP system, a standard set of processing streams is available for each supported imaging modality. Each processing stream is parameterized by a [design file](%%BASEURL/config/design). Detailed information about standard implementations of multimodal processing streams is available at the links below, organised by imaging modality.
 
 [Anatomical >](%%BASEURL/config/streams/anat)
 
 [Functional Connectivity >](%%BASEURL/config/streams/fc)
-
-[Perfusion >](%%BASEURL/config/streams/cbf) \[UNRELEASED\]
-
-[Diffusion >](%%BASEURL/config/streams/diffusion) \[UNRELEASED\]

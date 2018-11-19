@@ -13,8 +13,6 @@ __Important Note: we are in the process of transitioning to use `FMRIPREP` for i
 
 [SINGULARITY >](https://pipedocs.github.io/containers/index.html)
 
-[FUNCTIONS >](https://pipedocs.github.io/functions/index.html)
-
 [MODULES >](https://pipedocs.github.io/modules/index.html)
 
 [SPACE >](https://pipedocs.github.io/space/index.html)

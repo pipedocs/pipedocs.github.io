@@ -39,7 +39,6 @@ Modules that generate derivative maps from anatomical data.
 
 Modules that generate transforms between different coordinate spaces, or that apply those transforms.
 
- * [`coreg`](https://pipedocs.github.io/modules/coreg.html): Co-registers the primary analyte image to a high-resolution reference image of the same subject’s brain by computing an affine transformation between the analyte and the high-resolution reference. (Combine with the deformation field obtained from `struc` to warp any analyte to a standard space.)
  * [`struc`](https://pipedocs.github.io/modules/struc.html): Computes transforms between a high-resolution anatomical image and a template image representing a standard coordinate space using the top-performing SyN algorithm. (Combine with the affine matrix obtained from `coreg` to warp any analyte to a standard space.)
  * [`norm`](https://pipedocs.github.io/modules/norm.html): Applies the requisite transforms (computed by `struc` and/or `coreg`) to shift all derivative maps from subject native space to a standard coordinate space.
 

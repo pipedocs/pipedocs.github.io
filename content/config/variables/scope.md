@@ -21,7 +21,7 @@ confound_gsr[cxt]=mean
 When the pipeline is launched, the value of `cxt` is set to `0`. As the pipeline completes each module, the value of `cxt` is incremented. Thus, during the first module, `cxt` is equal to `1`. During the second module, `cxt` is equal to `2`. During the ninth module, `cxt` is equal to `9`.
 
 ```
-pipeline=prestats,coreg,confound,regress
+pipeline=confound,regress
 prestats_tmpf[1]=
 ```
 
@@ -32,5 +32,3 @@ Global variables are active across all modules and across all subjects. They not
 ### Local variables
 
 Local variables are active only in the body of a function. They do not persist outside of the function; as soon as the function runs to completion, these variables become unset.
-
-## Changing the scope of a variable: module-to-subject

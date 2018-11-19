@@ -13,8 +13,6 @@ __Important Note: we are in the process of transitioning to use `FMRIPREP` for i
 
 [SINGULARITY >](%%BASEURL/containers/index.html)
 
-[FUNCTIONS >](%%BASEURL/functions/index.html)
-
 [MODULES >](%%BASEURL/modules/index.html)
 
 [SPACE >](%%BASEURL/space/index.html)

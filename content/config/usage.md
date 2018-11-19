@@ -12,13 +12,6 @@ Sometimes, you will want to add new subjects to an existing sample that has alre
 
 If you are adding new subjects to an existing sample, _do not_ create a new cohort file for only the new subjects. If you do this, the pipeline system will separately collate group-level data for new and existing subjects. Instead, edit the existing cohort file for the pipeline, and append each new subject to the file as a new line. The pipeline system automatically detects whether it has produced expected output for each subject, so it will not repeat any processing that has already completed. Check your design file to verify that any module-level `rerun` variables are set to a value of `0`. Otherwise, the pipeline will re-run for all subjects, even those that have already completed.
 
-## Add a new atlas or parcellation
-
-To add a new atlas or parcellation to a particular analysis, first ensure that you have the atlas files and metadata in your `$BRAINATLAS` directory (`${XCPEDIR}/atlas` by default). If files or metadata are missing, download the missing files from the brainspaces organisation.
-
-Next, add the new atlas to the collated spatial metadata file. To do this, run the [metadata repair utility](%%BASEURL/utils/repairMetadata.html): `${XCPEDIR}/utils/repairMetadata`
-
-Finally, ensure that your design file correctly instructs the pipeline to include the new parcellation. Look for any [module-level variables](%%BASEURL/config/variables/scope.html) called `*_atlas`. As appropriate, ensure that those variables are set either to `all` (indicating that all atlases, including the new one, should be run) or a comma-separated series that includes the name of the new atlas. (This is the name of the directory in `$BRAINATLAS` from the first step above.)
 
 ## Add new seeds for connectivity mapping
 
@@ -30,7 +23,7 @@ After locating the coordinate library, edit it, adding new lines for each seed i
 
 ## Fork an existing pipeline
 
-Sometimes, it can be useful to run the same sample through multiple pipeline variants, for instance to evaluate efficacy of different denoising strategies in the sample under consideration. In many cases, these pipeline variants will share many processing steps. For instance, many denoising strategies might include the same pre-processing and co-registration protocols ([`prestats`](%%BASEURL/modules/prestats) and [`coreg`](%%BASEURL/modules/coreg) modules). In this case, it is desirable not to commit unnecessary computational resources to redundant processing. This can be achieved by sharing the same module outputs among mutliple pipelines.
+Sometimes, it can be useful to run the same sample through multiple pipeline variants, for instance to evaluate efficacy of different denoising strategies in the sample under consideration. In many cases, these pipeline variants will share many processing steps. In this case, it is desirable not to commit unnecessary computational resources to redundant processing. This can be achieved by sharing the same module outputs among mutliple pipelines.
 
 Sharing a few modules among multiple pipelines is called _forking_ a pipeline. A pipeline is forked using the [`forkPipeline` utility](%%BASEURL/utils/forkPipeline). Before a pipeline can be forked, it is necessary to run a pipeline variant that includes all of the shared modules. After this _template_ pipeline is run, consult documentation for [`forkPipeline`](%%BASEURL/utils/forkPipeline).
 
@@ -40,4 +33,3 @@ The XCP system supports image processing streams for multiple modalities, which 
 
  * [Functional connectivity](%%BASEURL/config/streams/fc)
  * [Anatomical](%%BASEURL/config/streams/anat)
- * [Functional activation](%%BASEURL/config/streams/task)

@@ -8,24 +8,6 @@
  * [`mask`](%%BASEURL/products/mask.html)
  * [`segmentation`](%%BASEURL/products/segmentation.html)
 
-## Critical Note
-
-The ANTs tools interpret orientation information from NIfTI files
-differently than AFNI and FSL. Because of this, it is absolutely
-critical that your anatomical scans are stored in the same
-orientation as the template used. The MNI-1x1x1 template is
-stored in an LAS+ matrix, or using AFNI's terminology, in
-the "RPI" orientation. If using the built-in MNI atlases, be
-sure to convert your anatomical scans to match. This can be
-done with AFNI's 3dresample.
-
-```console
-$ 3dresample -orient RPI -inset sub-01_T1w.nii.gz -prefix sub-01_orient-LAS_T1w.nii.gz
-```
-
-Unless orientation matches exactly, you may end up with a reasonable-looking
-normalization that contains a left/right flip.
-
 ## Omnibus modules
 
 Omnibus modules defy modular logic to an extent: they do not comprise a single, well-encapsulated processing step. Instead, they include a number of _routines_, each of which corresponds to a common processing step. These routines can be combined and re-ordered within the parent module. Much like the `pipeline` variable specifies the inclusion and order of modules in the pipeline, the module-level `process` variable specifies the inclusion and order of routines within an omnibus module. An example is provided here for the `struc` omnibus module:

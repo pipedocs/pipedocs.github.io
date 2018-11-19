@@ -13,34 +13,34 @@ singularity build /data/applications/xcpEngine.simg docker://pennbbl/xcpengine:l
 
 Next, download [an example output from FMRIPREP](https://figshare.com/articles/xcpEngine_tutorial_data/7359086).
 
-Suppose the downloaded data is extracted to `/data/example/fmriprep`.
+Suppose the downloaded data is extracted to `${DATA_ROOT}/fmriprep`, where `${DATA_ROOT}` is an existing directory on your system.
 
 ## 1. Running the anatomical pipeline
 
 You need to create a cohort file and a design file to show XCP where your data is and tell it what
 to do with it. Since there is only a single subject with a single session, write the following
-content to `/data/example/anat_cohort.csv`:
+content to `${DATA_ROOT}/anat_cohort.csv`:
 
 ```
 id0,img
-sub-001,/data/example/fmriprep/sub-001/anat/sub-001_T1w_preproc.nii.gz
+sub-1,fmriprep/sub-1/anat/sub-1_T1w_preproc.nii.gz
 ```
 
 Then download the antsCT design [file](https://raw.githubusercontent.com/PennBBL/xcpEngine/master/designs/anat-antsct.dsn) into
-`/data/example/anat-antsct.dsn`
+`${DATA_ROOT}/anat-antsct.dsn`
 
 Now you're ready to run the anatomical pipeline! Create an empty directory in your home directory
-(which we'll assume is `/home/me`, so do `mkdir /home/me/data`). This will be the bind point for
-your system's `/data` directory and will let singularity access your files.
+(which we'll assume is `${HOME}`, so do `mkdir ${HOME}/data`). This will be the bind point for
+your system's `${DATA_ROOT}` directory and will let singularity access your files.
 
 ```bash
-singularity run -B /data:/home/me/data  \
-   /data/applications/xcpEngine.simg \
-   -d /home/me/data/example/anat-antsct.dsn \
-   -c /home/me/data/example/anat_cohort.csv  \
-   -o /home/me/data/example/xcp_output \
+singularity run -B ${DATA_ROOT}:${HOME}/data  \
+   /data/applications/xcpEngine.simg
+   -d ${HOME}/data/anat-antsct.dsn \
+   -c ${HOME}/data/anat_cohort.csv  \
+   -o ${HOME}/data/xcp_output \
    -t 1 \
-   -r /home/me
+   -r ${HOME}/data
 ```
 
 This will take up to 2 days, but when it's done you will have the full output of
@@ -48,61 +48,40 @@ antsCorticalThickness for this subject! It also provides all the spatial normali
 info to map atlases to your BOLD data. See the [anatomical stream](https://pipedocs.github.io/modules/instructs) to
 learn about the available templates and atlases.
 
-If the you dont want corttical thickness, a short verison can be run within 10  minutes. You need to replace `struc_process[1]=ACT` with  `struc_process[1]=BFC-ABE-SEG-REG`
-
-
-If the ouput of `FMRIPREP` is written out in MNI space, then the cohort file will look like: 
-```
-id0,img
-sub-001,/data/example/fmriprep/sub-001/anat/sub-001_MNI152NLin2009cAsym_desc-preproc_T1w.nii.gz
-```
-
-
-
 ## 2. Running a functional connectivity pipeline
 
 Processing fMRI data for functional connectivity analysis can be done using another
 design file. Now save one of the nicely-performing pipeline [design files](https://raw.githubusercontent.com/PennBBL/xcpEngine/master/designs/fc-36P.dsn) as
-something like `/data/example/fc-36P.dsn`. This will take the preprocessed BOLD output from
+something like `${DATA_ROOT}/fc-36P.dsn`. This will take the preprocessed BOLD output from
 `FMRIPREP` and prepare it for functional connectivity analysis. Create a new cohort csv that
-tells XCP where the output from the `struc` module is located and where the output from `FMRIPREP`
-is located.
+tells XCP where the output from the `struc` module is located and where the output from `FMRIPREP` is located. In `${DATA_ROOT}/func_cohort.csv` write:
 
 ```
 id0,antsct,fmriprep
-sub-001,/data/example/xcp_output/sub-001/struc,/data/example/fmriprep/sub-001/func
+sub-1,xcp_output/sub-1/struc,fmriprep/sub-1/func/sub-1_task-rest_space-T1w
 ```
+
+This specifies that we will process the `task-rest` scan from this subject. Other runs from the same session would need to be added as additional lines in the cohort file. Run xcpEngine with this new cohort file:
 
 ```bash
-singularity run -B /data:/home/me/data  \
-   /data/applications/xcpEngine.simg \
-   -d /home/me/data/example/fc-36P.dsn \
-   -c /home/me/data/example/fmripcohort.csv  \
-   -o /home/me/data/example/xcp_output \
+singularity run -B ${DATA_ROOT}:${HOME}/data  \
+   /data/applications/xcpEngine.simg
+   -d ${HOME}/data/fc-36P.dsn \
+   -c ${HOME}/data/func_cohort.csv  \
+   -o ${HOME}/data/xcp_output \
    -t 1 \
-   -r /home/me
+   -r ${HOME}
 ```
-
-If the ouput of `FMRIPREP` is written out in MNI space, then the cohort file will look like:  
-
-```
-id0,fmriprepmni,mnireg
-sub-001,/data/example/fmriprep/sub-001,/data/example/xcp_output/sub-001/struc
-
-```
-
-
-
 
 ## 3. Arguments
 
 While the pipeline is running, let's break down the call that we made to the XCP Engine. We passed a total of 5 arguments to the pipeline.
 
-* A [design file](https://pipedocs.github.io/config/design), `-d /home/me/data/example/anat-antsct.dsn`
-* A [cohort file](https://pipedocs.github.io/config/cohort), `-c /home/me/data/example/anat_cohort.csv`
-* An [output path](https://pipedocs.github.io/config/xcpEngine#xcpengine--o-output-path), `/home/me/data/example/xcp_output`
+* A [design file](https://pipedocs.github.io/config/design), `-d ${HOME}/data/example/anat-antsct.dsn`
+* A [cohort file](https://pipedocs.github.io/config/cohort), `-c ${HOME}/data/example/anat_cohort.csv`
+* An [output path](https://pipedocs.github.io/config/xcpEngine#xcpengine--o-output-path), `${HOME}/data/example/xcp_output`
 * A [verbosity level](https://pipedocs.github.io/config/xcpEngine#xcpengine--t-trace-verbosity-level), `-t 1`
-* A [reference directory](https://pipedocs.github.io/config/xcpEngine#xcpengine--r-reference-directory), `-r /home/me`
+* A [reference directory](https://pipedocs.github.io/config/xcpEngine#xcpengine--r-reference-directory), `-r ${HOME}/data`
 
 Let's discuss each of these, and how a user might go about selecting or preparing them.
 
@@ -121,7 +100,7 @@ The design file instructs the pipeline as to how inputs should be processed, but
 
 ```
 id0,antsct,fmriprep
-sub-001,/data/example/xcp_output/sub-001/struc,/data/example/fmriprep/sub-001/func
+sub-001,xcp_output/sub-001/struc,fmriprep/sub-001/func/sub-001_task-rest_space-T1w
 ```
 
 The cohort file is formatted as a `.csv` with 3 variables and 1 observation (subject). The first line of the cohort file is a header that defines each of the variables. Subject identifiers are placed in columns starting with `id` and ending with a non-negative integer. For instance, the first identifier (`id0`) of the first subject is `sub-001`. There could be a second identifier (`id1`) such as `ses-01` if needed.
@@ -130,7 +109,7 @@ The inputs for each subject are defined in the remaining columns, here `antsct` 
 
 If we look at our call to `xcpEngine`, we can see that we passed it the argument `-r ${DATADIR}`. This argument instructs `xcpEngine` to search within `${DATADIR}` for cohort paths. This is very useful when using Singularity of Docker, as you can specify the relative bind path as your root while keeping the paths in your cohort file relative to your system's root.
 
-Now, let's suppose that we have already processed this subject through the pipeline system, and we acquire data for a new, 2nd subject. Let's say this new subject has identifier `sub-002`. To process this new subject, DO NOT CREATE A NEW COHORT FILE. Instead, edit your existing cohort file and add the new subject as a new line at the end of the file. For our example subject, the corresponding line in the cohort file might be something like `sub-002,/data/example/xcp_output/sub-002/struc,/data/example/fmriprep/sub-002/func
+Now, let's suppose that we have already processed this subject through the pipeline system, and we acquire data for a new, 2nd subject. Let's say this new subject has identifier `sub-002`. To process this new subject, DO NOT CREATE A NEW COHORT FILE. Instead, edit your existing cohort file and add the new subject as a new line at the end of the file. For our example subject, the corresponding line in the cohort file might be something like `sub-002,xcp_output/sub-002/struc,fmriprep/sub-002/func/sub-002_task-rest_space-T1w
 `. Why edit the existing cohort file instead of creating a new one?
 
 * The pipeline will automatically detect that it has already run for the other subject, so it will not waste computational resources on them.
@@ -140,27 +119,27 @@ Now, let's suppose that we have already processed this subject through the pipel
 
 To see what the remaining arguments to `xcpEngine` do, we will need to look at the pipeline's output. By now, the pipeline that you launched earlier will hopefully have executed to completion. Let's take a look at the output directory that you defined using the `-o` option, `${output_root}`. If you list the contents of `${output_root}`, you will find 7 subject-level output directories (corresponding to the values of the `id0` variable in the cohort file) and one group-level output directory (called `group`). (You can change the group-level output path using the additional command-line argument `-a out_group=<where you want the group-level output>`.)
 
-Begin by looking at the subject-level output. Navigate to the first subject's output directory, `${output_root}/sub-001`. In this directory, you will find:
+Begin by looking at the subject-level output. Navigate to the first subject's output directory, `${output_root}/sub-1`. In this directory, you will find:
 
 * A subject-specific copy of the design file that you used to run the pipeline, evaluated and modified to correspond to this particular subject (`sub-001`). (In the XCP system, the process of mapping the template design file to each subject is called _localisation_, and the script that handles this is called the _localiser_.)
-* An atlas directory (`sub-001_atlas`). Inside the atlas directory, each parcellation that has been analysed will exist as a NIfTI file, registered to the subject's [ (T1w) native space](https://pipedocs.github.io/space).
+* An atlas directory (`sub-1_atlas`). Inside the atlas directory, each parcellation that has been analysed will exist as a NIfTI file, registered to the subject's [ (T1w) native space](https://pipedocs.github.io/space).
 
 * A subdirectory corresponding to each pipeline module, as defined in the `pipeline` variable in the [design file](https://pipedocs.github.io/config/design). For the most part, these directories store images and files that the pipeline uses to verify successful processing.
   * Take a look inside the [`fcon`](https://pipedocs.github.io/modules/fcon) subdirectory. Inside, there will be a separate subdirectory for each of the atlases that the pipeline has processed. For instance, in the `power264` subdirectory (corresponding to the [264-node Power atlas](https://www.ncbi.nlm.nih.gov/pubmed/22099467)), there will be files suffixed `ts.1D` and `network.txt`.
   * `ts.1D` contains 264 columns corresponding to each node of the atlas; each column contains a region's functional time series.
   * `network.txt` contains the functional connectivity matrix or connectome for the Power atlas, formatted as a vector to remove redundant edges.
-* A log directory (`sub-001_logs`). Inside the log directory, open the file whose name ends with `_LOG`. This is where all of the pipeline's image processing commands are logged. [The verbosity of this log can be modified using the argument to the `-t` option](https://pipedocs.github.io/config/xcpEngine#xcpengine--t-trace-verbosity-level). It is recommended that you use a verbosity level of either 1 or 2. For most cases, 1 will be sufficient, but 2 can sometimes provide additional, lower-level diagnostic information.
-* A quality file (`sub-001_quality.csv`). The contents of the quality file will be discussed in detail later, along with group-level outputs.
-* A spatial metadata file (`sub-001_spaces.json`). The pipeline uses this to determine how to move images between different [coordinate spaces](https://pipedocs.github.io/space).
-* The final output of processing (`sub-001.nii.gz`). This is the primary functional image, after all image processing steps have been applied to it. However, this file usually isn't as useful for analysis as are its derivatives, which brings us to . . .
-* An index of derivative images (`sub-001_derivatives.json`).
+* A log directory (`sub-1_logs`). Inside the log directory, open the file whose name ends with `_LOG`. This is where all of the pipeline's image processing commands are logged. [The verbosity of this log can be modified using the argument to the `-t` option](https://pipedocs.github.io/config/xcpEngine#xcpengine--t-trace-verbosity-level). It is recommended that you use a verbosity level of either 1 or 2. For most cases, 1 will be sufficient, but 2 can sometimes provide additional, lower-level diagnostic information.
+* A quality file (`sub-1_quality.csv`). The contents of the quality file will be discussed in detail later, along with group-level outputs.
+* A spatial metadata file (`sub-1_spaces.json`). The pipeline uses this to determine how to move images between different [coordinate spaces](https://pipedocs.github.io/space).
+* The final output of processing (`sub-1.nii.gz`). This is the primary functional image, after all image processing steps have been applied to it. However, this file usually isn't as useful for analysis as are its derivatives, which brings us to . . .
+* An index of derivative images (`sub-1_derivatives.json`).
   * Let's look at the content of the derivatives file now. Run the command shown, and find the entry for `reho`. This JSON object corresponds to the voxelwise map of this subject's regional homogeneity (_ReHo_).
   * The map can be found in the path next to the `Map` attribute. (You can open this in `fslview` if you would like.)
   * The `Provenance` attributes tell us that the map was produced as part of the 6th pipeline module, `reho`.
   * The `Space` attribute tells us that the map is in 2mm isotropic MNI space.
   * The `Statistic` attribute instructs the pipeline's `roiquant` module that it should compute the mean value within each parcel of each atlas when converting the voxelwise derivative into an ROI-wise derivative.
   * The `Type` attribute is used by the pipeline when it makes decisions regarding interpolations and other processing steps.
-  * There will actually be a separate index for each coordinate space that has been processed. Note that there's also a `sub-001_derivatives-sub-001_fc.json`, which has the same metadata for derivatives in the subject's native functional space.
+  * There will actually be a separate index for each coordinate space that has been processed. Note that there's also a `sub-1_derivatives-sub-1_fc.json`, which has the same metadata for derivatives in the subject's native functional space.
 
 Next, let's examine the group-level output. Navigate to `${output_root}/group`. In this directory, you will find:
 
