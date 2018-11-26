@@ -72,11 +72,11 @@ There are some important differences in what analyses can be run depending on wh
 There are two ways that the cohort file for the functional processing stream can be specified. In the case where the T1w-space output from `FMRIPREP` (requires that `--output-spaces` included `T1w` in your `FMRIPREP` call) was processed with the XCP anatomical stream, you need to specify the directory where that output exists. An example cohort file for this use case would look like
 
 ```
-id0,id1,fmriprep,antsct
-sub-01,ses-01,sub-01/ses-01/func/sub-01_ses-01_task-rest_space-T1w,xcp_output/sub-01/ses-01/struc
-sub-01,ses-02,sub-01/ses-02/func/sub-01_ses-02_task-rest_space-T1w,xcp_output/sub-01/ses-02/struc
-sub-02,ses-01,sub-01/ses-01/func/sub-02_ses-01_task-rest_space-T1w,xcp_output/sub-02/ses-01/struc
-sub-03,ses-01,sub-03/ses-01/func/sub-03_ses-01_task-rest_space-T1w,xcp_output/sub-03/ses-01/struc
+id0,id1,img,antsct
+sub-01,ses-01,sub-01/ses-01/func/sub-01_ses-01_task-rest_space-T1w_desc-preproc_bold.nii.gz,xcp_output/sub-01/ses-01/struc
+sub-01,ses-02,sub-01/ses-02/func/sub-01_ses-02_task-rest_space-T1w_desc-preproc_bold.nii.gz,xcp_output/sub-01/ses-02/struc
+sub-02,ses-01,sub-01/ses-01/func/sub-02_ses-01_task-rest_space-T1w_desc-preproc_bold.nii.gz,xcp_output/sub-02/ses-01/struc
+sub-03,ses-01,sub-03/ses-01/func/sub-03_ses-01_task-rest_space-T1w_desc-preproc_bold.nii.gz,xcp_output/sub-03/ses-01/struc
 ```
 
 The first line of this cohort file would process the image `${DATA_ROOT}/sub-01/ses-01/func/sub-01_ses-01_task-rest_space-T1w_desc-preproc_bold.nii.gz`.

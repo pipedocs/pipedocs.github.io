@@ -56,8 +56,8 @@ something like `${DATA_ROOT}/fc-36p.dsn`. This will take the preprocessed BOLD o
 tells XCP where the output from the `struc` module is located and where the output from `FMRIPREP` is located. In `${DATA_ROOT}/func_cohort.csv` write:
 
 ```
-id0,antsct,fmriprep
-sub-1,xcp_output/sub-1/struc,fmriprep/sub-1/func/sub-1_task-rest_space-T1w
+id0,antsct,img
+sub-1,xcp_output/sub-1/struc,fmriprep/sub-1/func/sub-1_task-rest_space-T1w_desc-preproc_bold.nii.gz
 ```
 
 This specifies that we will process the `task-rest` scan from this subject. Other runs from the same session would need to be added as additional lines in the cohort file. Run xcpEngine with this new cohort file:
@@ -98,8 +98,8 @@ Underneath the `pipeline` variable, you will find code blocks corresponding to e
 The design file instructs the pipeline as to how inputs should be processed, but the [cohort file](%%BASEURL/config/cohort) (also called a subject list) actually informs the pipeline where to find the inputs. Let's look at the cohort file that we used for this analysis.
 
 ```
-id0,antsct,fmriprep
-sub-1,xcp_output/sub-1/struc,fmriprep/sub-1/func/sub-1_task-rest_space-T1w
+id0,antsct,img
+sub-1,xcp_output/sub-1/struc,fmriprep/sub-1/func/sub-1_task-rest_space-T1w_desc-preproc_bold.nii.gz
 ```
 
 The cohort file is formatted as a `.csv` with 3 variables and 1 observation (subject). The first line of the cohort file is a header that defines each of the variables. Subject identifiers are placed in columns starting with `id` and ending with a non-negative integer. For instance, the first identifier (`id0`) of the first subject is `sub-1`. There could be a second identifier (`id1`) such as `ses-01` if needed.
@@ -108,7 +108,7 @@ The inputs for each subject are defined in the remaining columns, here `antsct` 
 
 If we look at our call to `xcpEngine`, we can see that we passed it the argument `-r ${DATADIR}`. This argument instructs `xcpEngine` to search within `${DATADIR}` for cohort paths. This is very useful when using Singularity of Docker, as you can specify the relative bind path as your root while keeping the paths in your cohort file relative to your system's root.
 
-Now, let's suppose that we have already processed this subject through the pipeline system, and we acquire data for a new, 2nd subject. Let's say this new subject has identifier `sub-2`. To process this new subject, DO NOT CREATE A NEW COHORT FILE. Instead, edit your existing cohort file and add the new subject as a new line at the end of the file. For our example subject, the corresponding line in the cohort file might be something like `sub-2,xcp_output/sub-2/struc,fmriprep/sub-2/func/sub-2_task-rest_space-T1w
+Now, let's suppose that we have already processed this subject through the pipeline system, and we acquire data for a new, 2nd subject. Let's say this new subject has identifier `sub-2`. To process this new subject, DO NOT CREATE A NEW COHORT FILE. Instead, edit your existing cohort file and add the new subject as a new line at the end of the file. For our example subject, the corresponding line in the cohort file might be something like `sub-2,xcp_output/sub-2/struc,fmriprep/sub-2/func/sub-2_task-rest_space-T1w_desc-preproc_bold.nii.gz
 `. Why edit the existing cohort file instead of creating a new one?
 
 * The pipeline will automatically detect that it has already run for the other subject, so it will not waste computational resources on them.
